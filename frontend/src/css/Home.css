@@ -1,0 +1,87 @@
+* { padding: 0; margin: 0; }
+
+body {
+    overflow-y: scroll;
+}
+
+.home-layer {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.home {
+    background: #f2ebe6;
+}
+
+.logo-image {
+    width: 400px;
+    margin: 30px;
+    margin-top: 60px;
+}
+
+.logo-title {
+    font-size: 3rem;
+    line-height: 100%;
+    font-family: Georgia;
+    font-weight: 800;
+}
+
+.button {
+    display: inline-block;
+    margin: 100px 50px;
+    width: 250px;
+    height: 250px;
+    color: #683a2f;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    cursor: pointer;
+}
+
+.button > div {
+    margin-top: 20px;
+    font-size: 2rem;
+    line-height: 100%;
+    font-family: Georgia;
+    font-weight: 800;
+}
+
+.button > div > img {
+    width: 150px;
+    color: #683a2f;
+    filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
+}
+
+.footer {
+    background: #683a2f;
+    color: white;
+    padding: 20px;
+}
+
+.footer-text1 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 1.7rem;
+    line-height: 100%;
+    font-family: Georgia;
+    font-weight: 600;
+}
+
+.footer-text2 {
+    margin: 15px;
+    font-size: 1.3rem;
+    line-height: 100%;
+    font-weight: 600;
+}
+
+.language {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.language > div > img {
+    width: 60px;
+    cursor: pointer;
+}
