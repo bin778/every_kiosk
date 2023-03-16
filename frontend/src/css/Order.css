@@ -1,0 +1,30 @@
+* { padding: 0; margin: 0; }
+
+body {
+    overflow-y: scroll;
+}
+
+.order-layer {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.header {
+    background: #683a2f;
+}
+
+.header > img {
+    width: 60px;
+    margin: 15px;
+}
+
+.menu-button1 {
+    display: inline-block;
+    color: #683a2f;
+    filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
+}
+
+.menu-button1 > img {
+    margin: 10px;
+    width: 80px;
+}

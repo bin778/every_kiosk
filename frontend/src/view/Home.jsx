@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IMG_LOGO1 from "../images/logo1.png";
 import IMG_KOREA from "../images/Korea.png";
@@ -23,11 +22,11 @@ export default function Home() {
       <div className="home">
         <img className="logo-image" src={IMG_LOGO1} alt="" />
         <h1 className="logo-title">어디서 드실건가요?</h1>
-        <span className="button" onClick={moveOrder}>
+        <span className="home-button" onClick={moveOrder}>
           <div><img src={IMG_SHOP} alt="" /></div>
           <div>매장 식사</div>
         </span>
-        <span className="button" onClick={moveOrder}>
+        <span className="home-button" onClick={moveOrder}>
           <div><img src={IMG_TAKE_OUT} alt="" /></div>
           <div>포장 주문</div>
         </span>

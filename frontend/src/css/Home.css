@@ -26,7 +26,7 @@ body {
     font-weight: 800;
 }
 
-.button {
+.home-button {
     display: inline-block;
     margin: 100px 50px;
     width: 250px;
@@ -38,7 +38,7 @@ body {
     cursor: pointer;
 }
 
-.button > div {
+.home-button > div {
     margin-top: 20px;
     font-size: 2rem;
     line-height: 100%;
@@ -46,7 +46,7 @@ body {
     font-weight: 800;
 }
 
-.button > div > img {
+.home-button > div > img {
     width: 150px;
     color: #683a2f;
     filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
