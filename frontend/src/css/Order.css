@@ -10,7 +10,7 @@ body {
 }
 
 .header {
-    background: #683a2f;
+    background: #b08972;
 }
 
 .header > img {
@@ -18,13 +18,47 @@ body {
     margin: 15px;
 }
 
+.order-menu {
+    background-color: white;
+}
+
+/* 메뉴 목록 */
 .menu-button1 {
+    padding: 5px;
+    margin: 3px 0;
+    border-left: 3px solid;
     display: inline-block;
+    width: calc(15% - 2px);
     color: #683a2f;
     filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
 }
 
+.first {
+    border: none;
+}
+
 .menu-button1 > img {
     margin: 10px;
-    width: 80px;
+    width: 60px;
+}
+
+.menu-button1 > div {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* 선택한 메뉴 */
+.select {
+    background-color: #683a2f;
+    color: white;
+    filter: opacity(1);
+}
+
+.select > img {
+    filter: invert(100%);
+}
+
+/* 주문 내역 */
+.order-list {
+    background-color: #c7a186;
 }

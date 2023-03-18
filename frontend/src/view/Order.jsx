@@ -20,7 +20,7 @@ export default function Order(props) {
       <div className="order-menu">
         {/* 메뉴 목록 선택하기 */}
         <div>
-          <span className="menu-button1">
+          <span className="menu-button1 first select">
             <img src={IMG_RECO} alt="" />
             <div>추천 메뉴</div>
           </span>
@@ -34,7 +34,7 @@ export default function Order(props) {
           </span>
           <span className="menu-button1">
             <img src={IMG_SIDE} alt="" />
-            <div>곁들임 음식</div>
+            <div>사이드메뉴</div>
           </span>
           <span className="menu-button1">
             <img src={IMG_DRINK} alt="" />
@@ -46,9 +46,6 @@ export default function Order(props) {
           </span>
         </div>
         {/* 음식 목록 선택하기 */}
-        <div>
-        </div>
-        {/* 주문 내역 확인 */}
         <div>
         </div>
       </div>
