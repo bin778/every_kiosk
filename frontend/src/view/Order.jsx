@@ -49,9 +49,21 @@ export default function Order(props) {
         <div>
         </div>
       </div>
-      {/* 주문내역 화면 */}
+      {/* 주문 내역 화면 */}
       <div className="order-list">
-
+        <div className="list">
+          <span className="list-text">주문 내역</span>
+          <span className="list-count">2</span>
+        </div>
+        <div className="amount">
+          <span className="list-text">총 주문금액</span>
+          <span className="list-text red">10,000원</span>
+        </div>
+        <div>
+          <span className="guide-button">주문 취소</span>
+          <span className="guide-button">직원 호출</span>
+          <span className="guide-button order-button">결제하기</span>
+        </div>
       </div>
     </div>
   );

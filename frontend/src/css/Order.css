@@ -1,6 +1,7 @@
 * { padding: 0; margin: 0; }
 
 body {
+    overflow-x: hidden;
     overflow-y: scroll;
 }
 
@@ -31,6 +32,7 @@ body {
     width: calc(15% - 2px);
     color: #683a2f;
     filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
+    cursor: pointer;
 }
 
 .first {
@@ -60,5 +62,62 @@ body {
 
 /* 주문 내역 */
 .order-list {
-    background-color: #c7a186;
+    display: inline-block;
+    width: 100%;
+    background-color: #f2ebe6;
+    padding: 5px;
+    padding-top: 15px;
+}
+
+/* 주문 내역 */
+.list {
+    position: absolute;
+    left: 0;
+    padding-left: 30px;
+}
+
+/* 총 주문 금액 */
+.amount {
+    position: relative;
+    text-align: right;
+    padding-right: 30px;
+}
+
+.list-text {
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.list-count {
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    width: 50px;
+    color: white;
+    border-radius: 20px;
+    background-color: #d72300;
+}
+
+.red {
+    color: #d72300;
+}
+
+/* 안내 버튼 */
+.guide-button {
+    display: inline-block;
+    width: calc(27% - 2px);
+    margin: 6px;
+    padding: 10px;
+    background-color: #683a2f;
+    border-radius: 30px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+
+.order-button {
+    background-color: #d72300;
 }
