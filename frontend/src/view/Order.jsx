@@ -7,6 +7,12 @@ import IMG_SIDE from "../images/side.png";
 import IMG_DRINK from "../images/drink.png";
 import IMG_SEARCH from "../images/search.png";
 
+import IMG_CLOSE from "../images/close.png";
+import IMG_PREV from "../images/left.png";
+import IMG_NEXT from "../images/right.png";
+
+import IMG_MENU1 from "../images/menu1.png";
+
 import "../css/Order.css"
 
 export default function Order(props) {
@@ -46,7 +52,7 @@ export default function Order(props) {
           </span>
         </div>
         {/* 음식 목록 선택하기 */}
-        <div>
+        <div className="select-list">
         </div>
       </div>
       {/* 주문 내역 화면 */}
@@ -59,6 +65,28 @@ export default function Order(props) {
           <span className="list-text">총 주문금액</span>
           <span className="list-text red">10,000원</span>
         </div>
+        <ul>
+          <li className="order-card">
+            <div className="card-text1">불고기버거세트</div>
+            <img src={IMG_MENU1} className="ordered" alt="" />
+            <img src={IMG_CLOSE} className="btn-close" alt="" />
+            <div className="card-text2 position-up">1개</div>
+            <div className="card-text2">5,000원</div>
+          </li>
+          <li className="order-card">
+            <div className="card-text1">불고기버거세트</div>
+            <img src={IMG_MENU1} className="ordered" alt="" />
+            <img src={IMG_CLOSE} className="btn-close" alt="" />
+            <div className="card-text2 position-up">1개</div>
+            <div className="card-text2">5,000원</div>
+          </li>
+          <span className="btn-prev">
+            <img src={IMG_PREV} alt="" />
+          </span>
+          <span className="btn-next">
+            <img src={IMG_NEXT} alt="" />
+          </span>
+        </ul>
         <div>
           <span className="guide-button">주문 취소</span>
           <span className="guide-button">직원 호출</span>

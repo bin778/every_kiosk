@@ -60,13 +60,25 @@ body {
     filter: invert(100%);
 }
 
+/* 음식 목록 선택하기 */
+.select-list {
+    width: 100%;
+    height: 300px;
+}
+
 /* 주문 내역 */
 .order-list {
-    display: inline-block;
+    position: relative;
+    display: block;
     width: 100%;
     background-color: #f2ebe6;
     padding: 5px;
     padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.order-list > ul {
+    display: flex;
 }
 
 /* 주문 내역 */
@@ -102,6 +114,91 @@ body {
 
 .red {
     color: #d72300;
+}
+
+/* 주문 목록 카드 */
+.order-card {
+    display: flexbox;
+    position: relative;
+    border-radius: 10px;
+    background-color: white;
+    margin: 10px 20px;
+    padding: 10px;
+    box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
+    width: calc(42% - 5px);
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-text1 {
+    position: absolute;
+    padding: 3px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    left: 20px;
+}
+
+.card-text2 {
+    position: absolute;
+    padding: 3px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    right: 20px;
+    bottom: 20px;
+}
+
+.position-up {
+    bottom: 60px;
+}
+
+.ordered {
+    position: absolute;
+    display: inline-block;
+    width: 180px;
+    left: 20px;
+    bottom: 10px;
+
+}
+
+.btn-close {
+    position: absolute;
+    background-color: #999999;
+    cursor: pointer;
+    top: 15px;
+    right: 15px;
+    width: 20px;
+    padding: 7px;
+    border-radius: 50px;
+    opacity: 1.0;
+}
+
+.btn-prev {
+    position: absolute;
+    background-color: #999999;
+    cursor: pointer;
+    top: 40%;
+    left: 5px;
+    padding: 7px;
+    border-radius: 50px;
+    opacity: 1.0;
+    z-index: 1;
+}
+
+.btn-next {
+    position: absolute;
+    background-color: #999999;
+    cursor: pointer;
+    top: 40%;
+    right: 15px;
+    padding: 7px;
+    border-radius: 50px;
+    opacity: 1.0;
+    z-index: 1;
+}
+
+.btn-prev > img, .btn-next > img {
+    width: 30px;
+    height: 30px;
 }
 
 /* 안내 버튼 */
