@@ -10,6 +10,8 @@ import IMG_SEARCH from "../images/search.png";
 import IMG_CLOSE from "../images/close.png";
 import IMG_PREV from "../images/left.png";
 import IMG_NEXT from "../images/right.png";
+import IMG_UP from "../images/up.png";
+import IMG_DOWN from "../images/down.png";
 
 import IMG_MENU1 from "../images/menu1.png";
 
@@ -53,6 +55,12 @@ export default function Order(props) {
         </div>
         {/* 음식 목록 선택하기 */}
         <div className="select-list">
+          <span className="btn-up">
+            <img src={IMG_UP} alt="" />
+          </span>
+          <span className="btn-down">
+            <img src={IMG_DOWN} alt="" />
+          </span>
         </div>
       </div>
       {/* 주문 내역 화면 */}
