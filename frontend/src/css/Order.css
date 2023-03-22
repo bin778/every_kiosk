@@ -50,13 +50,13 @@ body {
 }
 
 /* 선택한 메뉴 */
-.select {
+.active {
     background-color: #683a2f;
     color: white;
     filter: opacity(1);
 }
 
-.select > img {
+.active > img {
     filter: invert(100%);
 }
 
