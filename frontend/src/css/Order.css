@@ -64,7 +64,7 @@ body {
 .select-list {
     width: 100%;
     height: 600px;
-    position: relative;
+    position: sticky;
     text-align: left;
     overflow-y: scroll;
 }
@@ -84,6 +84,39 @@ body {
 
 .select-list::-webkit-scrollbar-track {
     background-color: #b08972;
+}
+
+/* 메뉴 카드 */
+.menu-card {
+    position: relative;
+    padding: 10px;
+    margin: 5px auto;
+    border: solid 2px #683a2f;
+    border-radius: 20px;
+    width: 95%;
+    height: 200px;
+    box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.menu-card > img {
+    position: absolute;
+    left: 10px;
+    top: 10%;
+    width: 230px;
+}
+
+.menu-text {
+    position: absolute;
+    left: 260px;
+    top: 20px;
+    font-size: 2.0rem;
+    font-weight: 700;
+}
+
+.position-down {
+    top: 60px;
 }
 
 /* 안내 버튼 */
