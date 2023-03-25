@@ -1,0 +1,62 @@
+.modal {
+    display: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalBox {
+    position: absolute;
+    background-color: #f2ebe6;
+    width: 500px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 안내문 */
+.modalBox > div {
+    margin-top: 5px;
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+/* 버튼 */
+.modal-button {
+    display: inline-block;
+    position: absolute;
+    width: calc(42% - 2px);
+    margin: 6px;
+    padding: 10px;
+    background-color: #683a2f;
+    border-radius: 30px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #d72300;
+}
+
+/* 버튼 위치 */
+.bottom {
+    bottom: 10px;
+}
+
+.left {
+    left: 10px;
+}
+
+.right {
+    right: 10px;
+}

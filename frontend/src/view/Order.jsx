@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Modal from "./Modal.jsx"
 
 import IMG_LOGO2 from "../images/logo2.png";
 import IMG_RECO from "../images/recommend.png";
@@ -24,6 +25,15 @@ import "../css/Order.css"
 
 export default function Order(props) {
   let [active, setActive] = useState('recommend');
+  let [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  }
 
   return (
     <div className="order-layer">
@@ -164,9 +174,11 @@ export default function Order(props) {
           </span>
         </ul>
         <div>
-          <span className="guide-button">주문 취소</span>
+          <span className="guide-button" onClick={openModal}>주문 취소</span>
           <span className="guide-button">직원 호출</span>
           <span className="guide-button order-button">결제하기</span>
+          {/* 모달 창 */}
+          <Modal open={modalOpen} close={closeModal}></Modal>
         </div>
       </div>
     </div>
