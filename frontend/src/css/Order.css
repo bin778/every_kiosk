@@ -104,7 +104,8 @@ body {
     position: absolute;
     left: 10px;
     top: 10%;
-    width: 230px;
+    width: 200px;
+    height: 200px;
 }
 
 .menu-text {
@@ -117,6 +118,11 @@ body {
 
 .position-down {
     top: 60px;
+}
+
+/* 메뉴 카드 숨기기 */
+.card-hidden {
+    display: none;
 }
 
 /* 안내 버튼 */

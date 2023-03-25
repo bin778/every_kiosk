@@ -16,9 +16,11 @@ import IMG_UP from "../images/up.png";
 import IMG_DOWN from "../images/down.png";
 
 import IMG_MENU1 from "../images/menu1.png";
+import IMG_MENU2 from "../images/menu2.png";
+import IMG_POTATO from "../images/potato.png";
+import IMG_COLA from "../images/cola.png";
 
 import "../css/Order.css"
-
 
 export default function Order(props) {
   let [active, setActive] = useState('recommend');
@@ -88,10 +90,40 @@ export default function Order(props) {
             <img src={IMG_UP} alt="" />
           </span>
           <ul>
-            <li className="menu-card">
+            {/* 추천 메뉴 */}
+            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
               <img src={IMG_MENU1} alt="" />
               <div className="menu-text">불고기버거세트</div>
               <div className="menu-text position-down red">6000원~</div>
+            </li>
+            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
+              <img src={IMG_MENU1} alt="" />
+              <div className="menu-text">더블불고기버거세트</div>
+              <div className="menu-text position-down red">8000원~</div>
+            </li>
+            {/* 세트 메뉴 */}
+            <li className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
+              <img src={IMG_MENU1} alt="" />
+              <div className="menu-text">더블불고기버거세트</div>
+              <div className="menu-text position-down red">8000원~</div>
+            </li>
+            {/* 단품 메뉴 */}
+            <li className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
+              <img src={IMG_MENU2} alt="" />
+              <div className="menu-text">모짜렐라베이컨슈퍼버거</div>
+              <div className="menu-text position-down red">8000원~</div>
+            </li>
+            {/* 사이드 메뉴 */}
+            <li className={(active === 'side' ? 'menu-card' : 'card-hidden')}>
+              <img src={IMG_POTATO} alt="" />
+              <div className="menu-text">감자튀김</div>
+              <div className="menu-text position-down red">1500원~</div>
+            </li>
+            {/* 음료 */}
+            <li className={(active === 'drink' ? 'menu-card' : 'card-hidden')}>
+              <img src={IMG_COLA} alt="" />
+              <div className="menu-text">코카콜라</div>
+              <div className="menu-text position-down red">1500원~</div>
             </li>
           </ul>
           <span className="btn-down">
