@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Modal from "./Modal.jsx"
+import ModalCancel from "./ModalCancel.jsx";
+import ModalStaff from "./ModalStaff.jsx";
 
 import IMG_LOGO2 from "../images/logo2.png";
 import IMG_RECO from "../images/recommend.png";
@@ -25,14 +26,25 @@ import "../css/Order.css"
 
 export default function Order(props) {
   let [active, setActive] = useState('recommend');
-  let [modalOpen, setModalOpen] = useState(false);
+  let [cancelModalOpen, setCancelModalOpen] = useState(false);
+  let [staffModalOpen, setStaffModalOpen] = useState(false);
 
-  const openModal = () => {
-    setModalOpen(true);
+  // 모달 취소창
+  const openModalCancel = () => {
+    setCancelModalOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeModalCancel = () => {
+    setCancelModalOpen(false);
+  }
+
+  // 모달 직원 호출창
+  const openModalStaff = () => {
+    setStaffModalOpen(true);
+  };
+
+  const closeModalStaff = () => {
+    setStaffModalOpen(false);
   }
 
   return (
@@ -174,11 +186,12 @@ export default function Order(props) {
           </span>
         </ul>
         <div>
-          <span className="guide-button" onClick={openModal}>주문 취소</span>
-          <span className="guide-button">직원 호출</span>
+          <span className="guide-button" onClick={openModalCancel}>주문 취소</span>
+          <span className="guide-button" onClick={openModalStaff}>직원 호출</span>
           <span className="guide-button order-button">결제하기</span>
           {/* 모달 창 */}
-          <Modal open={modalOpen} close={closeModal}></Modal>
+          <ModalCancel open={cancelModalOpen} close={closeModalCancel}></ModalCancel>
+          <ModalStaff open={staffModalOpen} close={closeModalStaff}></ModalStaff>
         </div>
       </div>
     </div>
