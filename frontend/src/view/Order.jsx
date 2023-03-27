@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import ModalCancel from "./ModalCancel.jsx";
 import ModalStaff from "./ModalStaff.jsx";
+import axios from 'axios';
 
 import IMG_LOGO2 from "../images/logo2.png";
 import IMG_RECO from "../images/recommend.png";
@@ -46,6 +47,11 @@ export default function Order(props) {
   const closeModalStaff = () => {
     setStaffModalOpen(false);
   }
+
+  // 직원 호출 요청
+  const staffCall = () => {
+    axios.get('/api/staff').then(response => console.log(response.data));
+  };
 
   return (
     <div className="order-layer">
@@ -187,7 +193,10 @@ export default function Order(props) {
         </ul>
         <div>
           <span className="guide-button" onClick={openModalCancel}>주문 취소</span>
-          <span className="guide-button" onClick={openModalStaff}>직원 호출</span>
+          <span className="guide-button" onClick={() => {
+            openModalStaff()
+            staffCall()
+          }}>직원 호출</span>
           <span className="guide-button order-button">결제하기</span>
           {/* 모달 창 */}
           <ModalCancel open={cancelModalOpen} close={closeModalCancel}></ModalCancel>
