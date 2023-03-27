@@ -15,3 +15,10 @@ const http = require("http").createServer(app);
 http.listen(5000, () => {
   console.log("server listen start : 5000");
 });
+
+// 직원 호출 요청
+app.get('/api/staff',(req, res) => {
+  let call = "직원 호출이 요청되었습니다."
+  res.send(call);
+  console.log(call);
+});
