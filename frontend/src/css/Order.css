@@ -130,8 +130,8 @@ body {
     position: absolute;
     background-color: #999999;
     cursor: pointer;
-    top: 10px;
-    left: 48%;
+    top: 235px;
+    left: 46%;
     padding: 7px;
     border-radius: 50px;
     opacity: 0.5;
@@ -142,8 +142,8 @@ body {
     position: absolute;
     background-color: #999999;
     cursor: pointer;
-    bottom: 10px;
-    left: 48%;
+    bottom: 370px;
+    left: 46%;
     padding: 7px;
     border-radius: 50px;
     opacity: 0.5;

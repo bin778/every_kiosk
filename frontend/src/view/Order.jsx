@@ -30,6 +30,10 @@ export default function Order(props) {
   let [cancelModalOpen, setCancelModalOpen] = useState(false);
   let [staffModalOpen, setStaffModalOpen] = useState(false);
 
+  // 메뉴(세트는 +1000원)
+  let menu1 = {name:"불고기버거", price:5000};
+  let menu2 = {name:"더불불고기버거", price:6000};
+
   // 모달 취소창
   const openModalCancel = () => {
     setCancelModalOpen(true);
@@ -114,49 +118,38 @@ export default function Order(props) {
         </div>
         {/* 음식 목록 선택하기 */}
         <div className="select-list">
-          <span className="btn-up">
-            <img src={IMG_UP} alt="" />
-          </span>
           <ul>
             {/* 추천 메뉴 */}
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
               <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">불고기버거세트</div>
-              <div className="menu-text position-down red">6000원~</div>
+              <div className="menu-text">{menu1.name}세트</div>
+              <div className="menu-text position-down red">{menu1.price + 1000}원~</div>
             </li>
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
               <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">더블불고기버거세트</div>
-              <div className="menu-text position-down red">8000원~</div>
+              <div className="menu-text">{menu2.name}세트</div>
+              <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
+            </li>
+            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
+              <img src={IMG_MENU1} alt="" />
+              <div className="menu-text">{menu2.name}세트</div>
+              <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
+            </li>
+            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
+              <img src={IMG_MENU1} alt="" />
+              <div className="menu-text">{menu2.name}세트</div>
+              <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
             </li>
             {/* 세트 메뉴 */}
             <li className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
               <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">더블불고기버거세트</div>
-              <div className="menu-text position-down red">8000원~</div>
+              <div className="menu-text">{menu2.name}세트</div>
+              <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
             </li>
             {/* 단품 메뉴 */}
-            <li className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_MENU2} alt="" />
-              <div className="menu-text">모짜렐라베이컨슈퍼버거</div>
-              <div className="menu-text position-down red">8000원~</div>
-            </li>
             {/* 사이드 메뉴 */}
-            <li className={(active === 'side' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_POTATO} alt="" />
-              <div className="menu-text">감자튀김</div>
-              <div className="menu-text position-down red">1500원~</div>
-            </li>
             {/* 음료 */}
-            <li className={(active === 'drink' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_COLA} alt="" />
-              <div className="menu-text">코카콜라</div>
-              <div className="menu-text position-down red">1500원~</div>
-            </li>
           </ul>
-          <span className="btn-down">
-            <img src={IMG_DOWN} alt="" />
-          </span>
         </div>
       </div>
       {/* 주문 내역 화면 */}
@@ -203,6 +196,13 @@ export default function Order(props) {
           <ModalStaff open={staffModalOpen} close={closeModalStaff}></ModalStaff>
         </div>
       </div>
+      {/* 메뉴 화살표 */}
+      <span className="btn-up">
+            <img src={IMG_UP} alt="" />
+        </span>
+        <span className="btn-down">
+            <img src={IMG_DOWN} alt="" />
+        </span>
     </div>
   );
 }
