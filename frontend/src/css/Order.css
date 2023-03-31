@@ -7,11 +7,11 @@ body {
 
 .order-layer {
     margin: 0 auto;
-    text-align: center;
 }
 
 .header {
     background: #b08972;
+    text-align: center;
 }
 
 .header > img {
@@ -21,6 +21,7 @@ body {
 
 .order-menu {
     background-color: white;
+    text-align: center;
 }
 
 /* 메뉴 목록 */
@@ -121,13 +122,26 @@ body {
 }
 
 /* 메뉴 카드 숨기기 */
-.card-hidden {
+.card-hidden, .search-hidden {
     display: none;
+}
+
+/* 검색 기능 */
+.menu-search {
+    width: 90%;
+    height: 50px;
+    border: 2px solid #683a2f;
+    border-radius: 25px;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+    color: #683a2f;
+    margin: 10px 0;
+    padding: 0 20px;
 }
 
 /* 안내 버튼 */
 .btn-up {
-    position: absolute;
+    position: fixed;
     background-color: #999999;
     cursor: pointer;
     top: 235px;
@@ -139,10 +153,10 @@ body {
 }
 
 .btn-down {
-    position: absolute;
+    position: fixed;
     background-color: #999999;
     cursor: pointer;
-    bottom: 370px;
+    bottom: 125px;
     left: 46%;
     padding: 7px;
     border-radius: 50px;
@@ -167,7 +181,7 @@ body {
 }
 
 .order-list > ul {
-    display: flex;
+    display: inline-flex;
 }
 
 /* 주문 내역 */
@@ -207,14 +221,13 @@ body {
 
 /* 주문 목록 카드 */
 .order-card {
-    display: flexbox;
-    position: relative;
+    position: sticky;
     border-radius: 10px;
     background-color: white;
     margin: 10px 20px;
     padding: 10px;
     box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
-    width: calc(42% - 5px);
+    width: 300px;
     height: 200px;
     overflow: hidden;
 }
@@ -292,6 +305,10 @@ body {
 }
 
 /* 안내 버튼 */
+.button-select1 {
+    text-align: center;
+}
+
 .guide-button {
     display: inline-block;
     width: calc(27% - 2px);

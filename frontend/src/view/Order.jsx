@@ -30,6 +30,18 @@ export default function Order(props) {
   let [cancelModalOpen, setCancelModalOpen] = useState(false);
   let [staffModalOpen, setStaffModalOpen] = useState(false);
 
+  // 검색 기능
+  const [userInput, setUserInput] = useState('');
+  const [name, setName] = useState([]);
+
+  const getValue = (e) => {
+    setUserInput(e.target.value);
+  }
+
+  const searched = name.filter((item) =>
+    item.name.includes(userInput)
+  );
+
   // 메뉴(세트는 +1000원)
   let menu1 = {name:"불고기버거", price:5000};
   let menu2 = {name:"더불불고기버거", price:6000};
@@ -56,6 +68,17 @@ export default function Order(props) {
   const staffCall = () => {
     axios.get('/api/staff').then(response => console.log(response.data));
   };
+
+  // 스크롤 이동
+  let element = document.getElementsByClassName("select-list")[0];
+
+  const scrollTop = () => {
+    element.scrollTo(0,0);
+  }
+
+  const scrollBottom = () => {
+    element.scrollTop = element.scrollHeight;
+  }
 
   return (
     <div className="order-layer">
@@ -115,10 +138,21 @@ export default function Order(props) {
               <div>검색</div>
             </span>
           </Link>
+          {/* 검색 하는 곳 */}
+          <div className={(active === 'search' ? '' : 'search-hidden')}>
+            <input onChange={getValue} type="text" name="search" className="menu-search" placeholder="원하는 메뉴를 검색하세요" />    
+          </div>
         </div>
         {/* 음식 목록 선택하기 */}
         <div className="select-list">
           <ul>
+            {/* 메뉴 화살표 */}
+            <span className="btn-up">
+              <img onClick={scrollTop} src={IMG_UP} alt="" />
+            </span>
+            <span className="btn-down">
+              <img onClick={scrollBottom} src={IMG_DOWN} alt="" />
+            </span>
             {/* 추천 메뉴 */}
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
               <img src={IMG_MENU1} alt="" />
@@ -147,6 +181,11 @@ export default function Order(props) {
               <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
             </li>
             {/* 단품 메뉴 */}
+            <li className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
+              <img src={IMG_MENU1} alt="" />
+              <div className="menu-text">{menu1.name}</div>
+              <div className="menu-text position-down red">{menu1.price}원~</div>
+            </li>
             {/* 사이드 메뉴 */}
             {/* 음료 */}
           </ul>
@@ -170,13 +209,6 @@ export default function Order(props) {
             <div className="card-text2 position-up">1개</div>
             <div className="card-text2 red">5,000원</div>
           </li>
-          <li className="order-card">
-            <div className="card-text1">불고기버거세트</div>
-            <img src={IMG_MENU1} className="ordered" alt="" />
-            <img src={IMG_CLOSE} className="btn-close" alt="" />
-            <div className="card-text2 position-up">1개</div>
-            <div className="card-text2 red">5,000원</div>
-          </li>
           <span className="btn-prev">
             <img src={IMG_PREV} alt="" />
           </span>
@@ -184,7 +216,7 @@ export default function Order(props) {
             <img src={IMG_NEXT} alt="" />
           </span>
         </ul>
-        <div>
+        <div className="button-select1">
           <span className="guide-button" onClick={openModalCancel}>주문 취소</span>
           <span className="guide-button" onClick={() => {
             openModalStaff()
@@ -196,13 +228,6 @@ export default function Order(props) {
           <ModalStaff open={staffModalOpen} close={closeModalStaff}></ModalStaff>
         </div>
       </div>
-      {/* 메뉴 화살표 */}
-      <span className="btn-up">
-            <img src={IMG_UP} alt="" />
-        </span>
-        <span className="btn-down">
-            <img src={IMG_DOWN} alt="" />
-        </span>
     </div>
   );
 }
