@@ -20,8 +20,8 @@ import IMG_DOWN from "../images/down.png";
 
 import IMG_MENU1 from "../images/menu1.png";
 import IMG_MENU2 from "../images/menu2.png";
-import IMG_POTATO from "../images/potato.png";
-import IMG_COLA from "../images/cola.png";
+// import IMG_POTATO from "../images/potato.png";
+// import IMG_COLA from "../images/cola.png";
 
 import "../css/Order.css"
 
@@ -30,21 +30,11 @@ export default function Order(props) {
   let [cancelModalOpen, setCancelModalOpen] = useState(false);
   let [staffModalOpen, setStaffModalOpen] = useState(false);
 
-  // 검색 기능
-  const [userInput, setUserInput] = useState('');
-  const [name, setName] = useState([]);
-
-  const getValue = (e) => {
-    setUserInput(e.target.value);
-  }
-
-  const searched = name.filter((item) =>
-    item.name.includes(userInput)
-  );
-
   // 메뉴(세트는 +1000원)
-  let menu1 = {name:"불고기버거", price:5000};
-  let menu2 = {name:"더불불고기버거", price:6000};
+  const menu = [
+    { name: '불고기버거', img: IMG_MENU1, price: 5000 },
+    { name: '통새우버거', img: IMG_MENU2, price: 6000 }
+  ];
 
   // 모달 취소창
   const openModalCancel = () => {
@@ -79,6 +69,17 @@ export default function Order(props) {
   const scrollBottom = () => {
     element.scrollTop = element.scrollHeight;
   }
+
+  // 검색 기능
+  const [userInput, setUserInput] = useState('');
+
+  const getSearchData = (e) => {
+    setUserInput(e.target.value.toLowerCase());
+  }
+  
+  const filterName = menu.filter((p) => {
+    return p.name.replace(" ","").toLocaleLowerCase().includes(userInput.toLocaleLowerCase());
+  })
 
   return (
     <div className="order-layer">
@@ -140,7 +141,7 @@ export default function Order(props) {
           </Link>
           {/* 검색 하는 곳 */}
           <div className={(active === 'search' ? '' : 'search-hidden')}>
-            <input onChange={getValue} type="text" name="search" className="menu-search" placeholder="원하는 메뉴를 검색하세요" />    
+            <input onChange={getSearchData} type="text" name="search" className="menu-search" placeholder="원하는 메뉴를 검색하세요" />    
           </div>
         </div>
         {/* 음식 목록 선택하기 */}
@@ -155,39 +156,39 @@ export default function Order(props) {
             </span>
             {/* 추천 메뉴 */}
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">{menu1.name}세트</div>
-              <div className="menu-text position-down red">{menu1.price + 1000}원~</div>
+              <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price + 1000} />
             </li>
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">{menu2.name}세트</div>
-              <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
+              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
             </li>
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">{menu2.name}세트</div>
-              <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
+              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
             </li>
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">{menu2.name}세트</div>
-              <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
+              <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price + 1000} />
+            </li>
+            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
+              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
+            </li>
+            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
+              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
             </li>
             {/* 세트 메뉴 */}
             <li className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">{menu2.name}세트</div>
-              <div className="menu-text position-down red">{menu2.price + 1000}원~</div>
+              <MenuCard name={menu[1].name + "스폐셜세트"} img={menu[1].img} price={menu[1].price + 2500} />
             </li>
             {/* 단품 메뉴 */}
             <li className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
-              <img src={IMG_MENU1} alt="" />
-              <div className="menu-text">{menu1.name}</div>
-              <div className="menu-text position-down red">{menu1.price}원~</div>
+              <MenuCard name={menu[0].name} img={menu[0].img} price={menu[0].price} />
             </li>
             {/* 사이드 메뉴 */}
             {/* 음료 */}
+            {/* 검색 */}
+            {filterName.map(menu =>
+                <li className={(active === 'search' ? 'menu-card' : 'card-hidden')}>
+                  <MenuCard name={menu.name} img={menu.img} price={menu.price} />
+                </li>
+            )}
           </ul>
         </div>
       </div>
@@ -229,5 +230,15 @@ export default function Order(props) {
         </div>
       </div>
     </div>
+  );
+}
+
+function MenuCard({ name, img, price }) {
+  return (
+    <>
+      <img src={img} alt="" />
+      <div className="menu-text">{name}</div>
+      <div className="menu-text position-down red">{price}원~</div>
+    </>
   );
 }
