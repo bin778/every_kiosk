@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import ModalCancel from "./ModalCancel.jsx";
 import ModalStaff from "./ModalStaff.jsx";
+import ModalQuantity from "./ModalQuantity.jsx";
 import axios from 'axios';
 
 import IMG_LOGO2 from "../images/logo2.png";
@@ -29,11 +30,12 @@ export default function Order(props) {
   let [active, setActive] = useState('recommend');
   let [cancelModalOpen, setCancelModalOpen] = useState(false);
   let [staffModalOpen, setStaffModalOpen] = useState(false);
+  let [quantityModalOpen, setQuantityModalOpen] = useState(false);
 
   // 메뉴(세트는 +1000원)
   const menu = [
-    { name: '불고기버거', img: IMG_MENU1, price: 5000 },
-    { name: '통새우버거', img: IMG_MENU2, price: 6000 }
+    { id: 0, name: '불고기버거', img: IMG_MENU1, price: 5000 },
+    { id: 1, name: '통새우버거', img: IMG_MENU2, price: 6000 }
   ];
 
   // 모달 취소창
@@ -52,6 +54,15 @@ export default function Order(props) {
 
   const closeModalStaff = () => {
     setStaffModalOpen(false);
+  }
+
+  // 모달 수량 선택
+  const openModalQuantity = () => {
+    setQuantityModalOpen(true);
+  };
+
+  const closeModalQuantity = () => {
+    setQuantityModalOpen(false);
   }
 
   // 직원 호출 요청
@@ -156,29 +167,20 @@ export default function Order(props) {
             </span>
             {/* 추천 메뉴 */}
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price + 1000} />
+              <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price} />
             </li>
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
+              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price} />
             </li>
-            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
-            </li>
-            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price + 1000} />
-            </li>
-            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
-            </li>
-            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
+            <li onClick={openModalQuantity} className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
+              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price} />
             </li>
             {/* 세트 메뉴 */}
             <li className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={menu[1].name + "스폐셜세트"} img={menu[1].img} price={menu[1].price + 2500} />
             </li>
             {/* 단품 메뉴 */}
-            <li className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
+            <li onClick={openModalQuantity} className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={menu[0].name} img={menu[0].img} price={menu[0].price} />
             </li>
             {/* 사이드 메뉴 */}
@@ -225,8 +227,9 @@ export default function Order(props) {
           }}>직원 호출</span>
           <span className="guide-button order-button">결제하기</span>
           {/* 모달 창 */}
-          <ModalCancel open={cancelModalOpen} close={closeModalCancel}></ModalCancel>
-          <ModalStaff open={staffModalOpen} close={closeModalStaff}></ModalStaff>
+          <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
+          <ModalStaff open={staffModalOpen} close={closeModalStaff} />
+          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} price={menu[0].price}/>
         </div>
       </div>
     </div>

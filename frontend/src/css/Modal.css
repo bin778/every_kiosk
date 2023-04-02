@@ -29,6 +29,11 @@
     font-weight: 700;
 }
 
+/* 수량 */
+.quantity {
+    font-size: 1.9rem;
+}
+
 /* 버튼 */
 .modal-button {
     display: inline-block;
@@ -46,6 +51,29 @@
 
 .cancel-button {
     background-color: #d72300;
+}
+
+.decrease-button, .increase-button {
+    position: absolute;
+    background-color: #999999;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 15px;
+    opacity: 1.0;
+    z-index: 1;
+}
+
+.decrease-button > img, .increase-button > img {
+    width: 30px;
+    height: 30px;
+}
+
+.decrease-button {
+    left: 35%;
+}
+
+.increase-button {
+    right: 35%;
 }
 
 /* 버튼 위치 */

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
 import "../css/Modal.css"
 
 const ModalStaff = (props) => {
@@ -8,8 +7,6 @@ const ModalStaff = (props) => {
 
     // 실제 컴포넌트가 사라지는 시점을 지연시키기 위한 값
     const [visible, setVisible] = useState(open);
-
-    const movePage = useNavigate();
 
     useEffect(() => {
         setVisible(open);
