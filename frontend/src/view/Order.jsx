@@ -71,13 +71,13 @@ export default function Order(props) {
   };
 
   // 스크롤 이동
-  let element = document.getElementsByClassName("select-list")[0];
-
   const scrollTop = () => {
+    const element = document.getElementsByClassName("select-list")[0];
     element.scrollTo(0,0);
   }
 
   const scrollBottom = () => {
+    const element = document.getElementsByClassName("select-list")[0];
     element.scrollTop = element.scrollHeight;
   }
 
@@ -158,13 +158,6 @@ export default function Order(props) {
         {/* 음식 목록 선택하기 */}
         <div className="select-list">
           <ul>
-            {/* 메뉴 화살표 */}
-            <span className="btn-up">
-              <img onClick={scrollTop} src={IMG_UP} alt="" />
-            </span>
-            <span className="btn-down">
-              <img onClick={scrollBottom} src={IMG_DOWN} alt="" />
-            </span>
             {/* 추천 메뉴 */}
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price} />
@@ -191,6 +184,13 @@ export default function Order(props) {
                   <MenuCard name={menu.name} img={menu.img} price={menu.price} />
                 </li>
             )}
+            {/* 메뉴 화살표 */}
+            <span className="btn-up">
+              <img onClick={scrollTop} src={IMG_UP} alt="" />
+            </span>
+            <span className="btn-down">
+              <img onClick={scrollBottom} src={IMG_DOWN} alt="" />
+            </span>
           </ul>
         </div>
       </div>
@@ -229,7 +229,7 @@ export default function Order(props) {
           {/* 모달 창 */}
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
-          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} price={menu[0].price}/>
+          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={menu}/>
         </div>
       </div>
     </div>

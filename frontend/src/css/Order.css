@@ -141,11 +141,12 @@ body {
 
 /* 안내 버튼 */
 .btn-up {
-    position: fixed;
+    display: inline-block;
+    position: sticky;
     background-color: #999999;
     cursor: pointer;
-    top: 235px;
-    left: 46%;
+    left: 48%;
+    bottom: 86%;
     padding: 7px;
     border-radius: 50px;
     opacity: 0.5;
@@ -153,11 +154,12 @@ body {
 }
 
 .btn-down {
-    position: fixed;
+    display: inline-block;
+    position: sticky;
     background-color: #999999;
     cursor: pointer;
-    bottom: 380px;
-    left: 46%;
+    left: 48%;
+    bottom: 1%;
     padding: 7px;
     border-radius: 50px;
     opacity: 0.5;

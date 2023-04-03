@@ -5,7 +5,7 @@ import IMG_MINUS from "../images/minus.png";
 
 const ModalQuantity = (props) => {
     // 열기, 닫기 텍스트를 부모로부터 받아옴
-    const {open, close, price} = props;
+    const {open, close, menu} = props;
 
     // 실제 컴포넌트가 사라지는 시점을 지연시키기 위한 값
     const [visible, setVisible] = useState(open);
@@ -40,7 +40,7 @@ const ModalQuantity = (props) => {
         <div className={open ? 'openModal modal' : 'modal'}>
             <div className='modalBox'>
                 <div>수량을 선택해주세요</div>
-                <div className='red'>{price * num} 원</div>
+                <div className='red'>{menu[0].price * num} 원</div>
                 <div>
                     <span className='decrease-button' onClick={decrease}>
                         <img src={IMG_MINUS} alt="" />
