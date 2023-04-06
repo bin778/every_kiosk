@@ -14,8 +14,6 @@ import IMG_DRINK from "../images/drink.png";
 import IMG_SEARCH from "../images/search.png";
 
 import IMG_CLOSE from "../images/close.png";
-import IMG_PREV from "../images/left.png";
-import IMG_NEXT from "../images/right.png";
 import IMG_UP from "../images/up.png";
 import IMG_DOWN from "../images/down.png";
 
@@ -204,21 +202,17 @@ export default function Order(props) {
           <span className="list-text">총 주문금액</span>
           <span className="list-text red">10,000원</span>
         </div>
-        <ul>
-          <li className="order-card">
-            <div className="card-text1">불고기버거세트</div>
-            <img src={IMG_MENU1} className="ordered" alt="" />
-            <img src={IMG_CLOSE} className="btn-close" alt="" />
-            <div className="card-text2 position-up">1개</div>
-            <div className="card-text2 red">5,000원</div>
-          </li>
-          <span className="btn-prev">
-            <img src={IMG_PREV} alt="" />
-          </span>
-          <span className="btn-next">
-            <img src={IMG_NEXT} alt="" />
-          </span>
-        </ul>
+        <div className="card-list">
+          <ul>
+            <li className="order-card">
+              <div className="card-text1">불고기버거세트</div>
+              <img src={IMG_MENU1} className="ordered" alt="" />
+              <img src={IMG_CLOSE} className="btn-close" alt="" />
+              <div className="card-text2 position-up">1개</div>
+              <div className="card-text2 red">5,000원</div>
+            </li>
+          </ul>
+        </div>
         <div className="button-select1">
           <span className="guide-button" onClick={openModalCancel}>주문 취소</span>
           <span className="guide-button" onClick={() => {

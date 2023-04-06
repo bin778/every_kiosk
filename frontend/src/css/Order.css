@@ -182,7 +182,11 @@ body {
     padding-bottom: 10px;
 }
 
-.order-list > ul {
+.card-list {
+    overflow-x: scroll;
+}
+
+.card-list > ul {
     display: inline-flex;
 }
 
@@ -275,35 +279,6 @@ body {
     padding: 7px;
     border-radius: 50px;
     opacity: 1.0;
-}
-
-.btn-prev {
-    position: absolute;
-    background-color: #999999;
-    cursor: pointer;
-    top: 40%;
-    left: 5px;
-    padding: 7px;
-    border-radius: 50px;
-    opacity: 1.0;
-    z-index: 1;
-}
-
-.btn-next {
-    position: absolute;
-    background-color: #999999;
-    cursor: pointer;
-    top: 40%;
-    right: 15px;
-    padding: 7px;
-    border-radius: 50px;
-    opacity: 1.0;
-    z-index: 1;
-}
-
-.btn-prev > img, .btn-next > img {
-    width: 30px;
-    height: 30px;
 }
 
 /* 안내 버튼 */
