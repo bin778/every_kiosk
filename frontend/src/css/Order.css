@@ -140,30 +140,25 @@ body {
 }
 
 /* 안내 버튼 */
-.btn-up {
+.btn-up, .btn-down {
     display: inline-block;
-    position: sticky;
+    position: fixed;
     background-color: #999999;
     cursor: pointer;
-    left: 48%;
-    bottom: 86%;
     padding: 7px;
     border-radius: 50px;
     opacity: 0.5;
     z-index: 1;
 }
 
+.btn-up {
+    left: 46%;
+    bottom: 75%;
+}
+
 .btn-down {
-    display: inline-block;
-    position: sticky;
-    background-color: #999999;
-    cursor: pointer;
-    left: 48%;
-    bottom: 1%;
-    padding: 7px;
-    border-radius: 50px;
-    opacity: 0.5;
-    z-index: 1;
+    left: 46%;
+    bottom: 32%;
 }
 
 .btn-up > img, .btn-down > img {
