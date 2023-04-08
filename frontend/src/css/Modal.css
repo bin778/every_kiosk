@@ -22,11 +22,21 @@
     box-shadow: 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+.modalBoxSet {
+    height: 300px;
+}
+
 /* 안내문 */
 .modalBox > div {
     margin-top: 5px;
     font-size: 1.7rem;
     font-weight: 700;
+}
+
+.default-text {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: 800;
 }
 
 /* 수량 */

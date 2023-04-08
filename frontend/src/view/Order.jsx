@@ -3,6 +3,7 @@ import { useState } from "react";
 import ModalCancel from "./ModalCancel.jsx";
 import ModalStaff from "./ModalStaff.jsx";
 import ModalQuantity from "./ModalQuantity.jsx";
+import ModalQuantitySet from "./ModalQuantitySet.jsx";
 import axios from 'axios';
 
 import IMG_LOGO2 from "../images/logo2.png";
@@ -29,6 +30,7 @@ export default function Order(props) {
   let [cancelModalOpen, setCancelModalOpen] = useState(false);
   let [staffModalOpen, setStaffModalOpen] = useState(false);
   let [quantityModalOpen, setQuantityModalOpen] = useState(false);
+  let [quantitySetModalOpen, setQuantitySetModalOpen] = useState(false);
 
   // 메뉴(세트는 +1000원)
   const menu = [
@@ -61,6 +63,15 @@ export default function Order(props) {
 
   const closeModalQuantity = () => {
     setQuantityModalOpen(false);
+  }
+
+  // 모달 수량 선택(세트)
+  const openModalQuantitySet = () => {
+    setQuantitySetModalOpen(true);
+  };
+
+  const closeModalQuantitySet = () => {
+    setQuantitySetModalOpen(false);
   }
 
   // 직원 호출 요청
@@ -163,7 +174,7 @@ export default function Order(props) {
             <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price} />
             </li>
-            <li onClick={openModalQuantity} className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
+            <li onClick={openModalQuantitySet} className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price} />
             </li>
             {/* 세트 메뉴 */}
@@ -224,6 +235,7 @@ export default function Order(props) {
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
           <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={menu}/>
+          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={menu}/>
         </div>
       </div>
     </div>
