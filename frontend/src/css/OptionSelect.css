@@ -1,0 +1,30 @@
+* { padding: 0; margin: 0; }
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.select-layer {
+    margin: 0 auto;
+}
+
+.header {
+    background: #b08972;
+    text-align: center;
+}
+
+.header > img {
+    width: 60px;
+    margin: 15px;
+}
+
+.option-menu {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: #f2ebe6;
+    padding: 5px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}

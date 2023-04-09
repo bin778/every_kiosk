@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import "../css/Modal.css"
 import IMG_PLUS from "../images/plus.png";
 import IMG_MINUS from "../images/minus.png";
@@ -21,6 +22,13 @@ const ModalQuantitySet = (props) => {
         if (num > 0) {
             setNum(num - 1);
         }
+    }
+
+    // 옵션 선택 화면으로 이동한다
+    const movePage = useNavigate();
+    
+    function moveSelect() {
+        movePage("/option_select");
     }
 
     useEffect(() => {
@@ -55,7 +63,7 @@ const ModalQuantitySet = (props) => {
                     <span className='modal-button center'>기본값 선택</span>
                 </div>
                 <span className='modal-button cancel-button bottom left' onClick={close}>아니요</span>
-                <span className='modal-button bottom right'>세트 선택</span>
+                <span className='modal-button bottom right' onClick={moveSelect}>세트 선택</span>
             </div>
         </div>
     );
