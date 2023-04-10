@@ -19,6 +19,15 @@ body {
     margin: 15px;
 }
 
+.option-title {
+    margin: 10px auto;
+    text-align: center;
+    padding: 3px;
+    font-size: 2.0rem;
+    font-weight: 700;
+    left: 20px;
+}
+
 .option-menu {
     position: relative;
     display: block;
@@ -27,4 +36,107 @@ body {
     padding: 5px;
     padding-top: 15px;
     padding-bottom: 10px;
+}
+
+/* 옵션 박스 */
+.option-box {
+    position: relative;
+    padding: 10px;
+    margin: 10px auto;
+    border: solid 2px #683a2f;
+    border-radius: 20px;
+    width: 95%;
+    height: 250px;
+    box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.option-number {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    width: 35px;
+    color: white;
+    border-radius: 50px;
+    background-color: #d72300;
+}
+
+.option-select1 {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 700;
+    left: 50px;
+}
+
+.option-box > img {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 180px;
+    height: 160px;
+}
+
+.option-name {
+    position: absolute;
+    font-size: 2.0rem;
+    font-weight: 700;
+    top: 50px;
+    left: 200px;
+}
+
+.option-engname {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 600;
+    top: 90px;
+    left: 200px;
+}
+
+.option-select2 {
+    position: absolute;
+    display: inline-block;
+    bottom: 5px;
+    left: 25px;
+    text-align: center;
+    width: 90%;
+    margin: 6px;
+    padding: 10px;
+    background-color: #683a2f;
+    border-radius: 30px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+
+/* header 메뉴 */
+.large-button {
+    position: relative;
+    right: 205px;
+    display: inline-block;
+    width: calc(35% - 2px);
+    margin: 6px;
+    padding: 10px;
+    border: 3px solid #d72300;
+    border-radius: 30px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: black;
+    cursor: pointer;
+}
+
+.option-price1 {
+    position: absolute;
+    top: 20px;
+    right: 160px;
+    font-size: 2.0rem;
+    font-weight: 700;
+}
+
+.option-price2 {
+    right: 30px;
+    color: #d72300;
 }
