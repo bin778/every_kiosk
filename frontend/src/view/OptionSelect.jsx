@@ -8,12 +8,18 @@ import IMG_SIDE from "../images/potato.png";
 import IMG_DRINK from "../images/cola.png";
 
 import ModalStaff from "./ModalStaff.jsx";
+import IngredientSelect from "./IngredientSelect.jsx";
+import SideSelect from "./SideSelect.jsx";
+import DrinkSelect from "./DrinkSelect.jsx";
 
 import "../css/OptionSelect.css"
 import "../css/Modal.css"
 
 export default function OptionSelect(props) {
   let [staffModalOpen, setStaffModalOpen] = useState(false);
+  let [ingredientSelectOpen, setIngredientSelectOpen] = useState(false);
+  let [sideSelectOpen, setSideSelectOpen] = useState(false);
+  let [drinkSelectOpen, setDrinkSelectOpen] = useState(false);
 
   const movePage = useNavigate();
 
@@ -29,6 +35,31 @@ export default function OptionSelect(props) {
 
   const closeModalStaff = () => {
     setStaffModalOpen(false);
+  }
+
+  // 모달 선택창
+  const openIngredientSelect = () => {
+    setIngredientSelectOpen(true);
+  };
+
+  const closeIngredientSelect = () => {
+    setIngredientSelectOpen(false);
+  }
+
+  const openSideSelect = () => {
+    setSideSelectOpen(true);
+  };
+
+  const closeSideSelect = () => {
+    setSideSelectOpen(false);
+  }
+
+  const openDrinkSelect = () => {
+    setDrinkSelectOpen(true);
+  };
+
+  const closeDrinkSelect = () => {
+    setDrinkSelectOpen(false);
   }
 
   // 직원 호출 요청
@@ -53,7 +84,7 @@ export default function OptionSelect(props) {
           <img src={IMG_MENU1} alt="" />
           <span className="option-name">새우 버거</span>
           <span className="option-engname">Shrimp Burger</span>
-          <span className="option-select2">재료 변경</span>
+          <span className="option-select2" onClick={openIngredientSelect}>재료 변경</span>
         </li>
         <li className="option-box">
           <div>
@@ -63,7 +94,7 @@ export default function OptionSelect(props) {
           <img src={IMG_SIDE} alt="" />
           <span className="option-name">감자튀김(中)</span>
           <span className="option-engname">French Fries(Middle)</span>
-          <span className="option-select2">사이드메뉴 변경</span>
+          <span className="option-select2" onClick={openSideSelect}>사이드메뉴 변경</span>
         </li>
         <li className="option-box">
           <div>
@@ -73,7 +104,7 @@ export default function OptionSelect(props) {
           <img src={IMG_DRINK} alt="" />
           <span className="option-name">코카콜라(中)</span>
           <span className="option-engname">Coca-Cola(Middle)</span>
-          <span className="option-select2">음료 변경</span>
+          <span className="option-select2" onClick={openDrinkSelect}>음료 변경</span>
         </li>
       </ul>
       {/* footer 화면 */}
@@ -90,6 +121,9 @@ export default function OptionSelect(props) {
             staffCall()}}>직원호출</span>
           <span className="guide-button order-button">담기</span>
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
+          <IngredientSelect open={ingredientSelectOpen} close={closeIngredientSelect} />
+          <SideSelect open={sideSelectOpen} close={closeSideSelect} />
+          <DrinkSelect open={drinkSelectOpen} close={closeDrinkSelect} />
         </div>
       </div>
     </div>

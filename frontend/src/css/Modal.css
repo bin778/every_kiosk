@@ -26,6 +26,29 @@
     height: 300px;
 }
 
+
+/* 선택 모달 창 */
+.modalSelect {
+    width: 600px;
+    height: 900px;
+}
+
+.SelectTitle {
+    font-size: 2.0rem !important;
+    margin-bottom: 15px;
+}
+
+.SelectDisplay {
+    display: inline-block;
+    width: 90%;
+    height: 82%;
+    background-color: #f2ebe6;
+    border-top: 3px solid #683a2f;
+    padding: 5px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
 /* 안내문 */
 .modalBox > div {
     margin-top: 5px;
