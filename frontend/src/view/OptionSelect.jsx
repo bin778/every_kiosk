@@ -121,6 +121,7 @@ export default function OptionSelect(props) {
             staffCall()}}>직원호출</span>
           <span className="guide-button order-button">담기</span>
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
+          {/* 메뉴 모달 창 */}
           <IngredientSelect open={ingredientSelectOpen} close={closeIngredientSelect} />
           <SideSelect open={sideSelectOpen} close={closeSideSelect} />
           <DrinkSelect open={drinkSelectOpen} close={closeDrinkSelect} />
