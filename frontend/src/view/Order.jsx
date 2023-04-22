@@ -168,18 +168,12 @@ export default function Order(props) {
         <div className="select-list">
           <ul>
             {/* 추천 메뉴 */}
-            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price} />
-            </li>
-            <li className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price} />
-            </li>
-            <li onClick={openModalQuantitySet} className={(active === 'recommend' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price} />
-            </li>
             {/* 세트 메뉴 */}
-            <li className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[1].name + "스폐셜세트"} img={menu[1].img} price={menu[1].price + 2500} />
+            <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
+              <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price + 1000} />
+            </li>
+            <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
+              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
             </li>
             {/* 단품 메뉴 */}
             <li onClick={openModalQuantity} className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
@@ -249,7 +243,7 @@ export default function Order(props) {
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
           <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={menu}/>
-          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={menu}/>
+          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={menu[1]}/>
         </div>
       </div>
     </div>

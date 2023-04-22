@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 
@@ -22,6 +22,10 @@ export default function OptionSelect(props) {
   let [drinkSelectOpen, setDrinkSelectOpen] = useState(false);
 
   const movePage = useNavigate();
+
+  const location = useLocation();
+  const price = location.state.price;
+  const price2 = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   // 홈 화면으로 이동한다
   function moveOrder() {
@@ -112,7 +116,7 @@ export default function OptionSelect(props) {
         <div className="button-select1">
           <span className="large-button">라지로 변경</span>
           <span className="option-price1">금액</span>
-          <span className="option-price1 option-price2"> 6,000원</span>
+          <span className="option-price1 option-price2"> {price2}원</span>
         </div>
         <div className="button-select1">
           <span className="guide-button" onClick={moveOrder}>주문 취소</span>

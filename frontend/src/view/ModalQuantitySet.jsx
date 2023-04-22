@@ -28,7 +28,7 @@ const ModalQuantitySet = (props) => {
     const movePage = useNavigate();
     
     function moveSelect() {
-        movePage("/option_select");
+        movePage("/option_select", { state: { price: ((menu.price + 1000) * num) } });
     }
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const ModalQuantitySet = (props) => {
         <div className={open ? 'openModal modal' : 'modal'}>
             <div className='modalBox modalBoxSet'>
                 <div>수량을 선택해주세요</div>
-                <div className='red'>{menu[1].price * num} 원</div>
+                <div className='red'>{(menu.price + 1000) * num} 원</div>
                 <div>
                     <span className='decrease-button' onClick={decrease}>
                         <img src={IMG_MINUS} alt="" />
