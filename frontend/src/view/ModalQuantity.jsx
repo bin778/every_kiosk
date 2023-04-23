@@ -40,7 +40,7 @@ const ModalQuantity = (props) => {
         <div className={open ? 'openModal modal' : 'modal'}>
             <div className='modalBox'>
                 <div>수량을 선택해주세요</div>
-                <div className='red'>{menu[0].price * num} 원</div>
+                <div className='red'>{menu.price * num} 원</div>
                 <div>
                     <span className='decrease-button' onClick={decrease}>
                         <img src={IMG_MINUS} alt="" />

@@ -242,7 +242,7 @@ export default function Order(props) {
           {/* 모달 창 */}
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
-          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={menu}/>
+          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={menu[0]}/>
           <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={menu[1]}/>
         </div>
       </div>
