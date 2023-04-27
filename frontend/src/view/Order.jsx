@@ -167,7 +167,7 @@ export default function Order(props) {
         {/* 음식 목록 선택하기 */}
         <div className="select-list">
           <ul>
-            {/* 추천 메뉴 */}
+            {/* 추천 메뉴 : OpenCV 메뉴 추천 */}
             {/* 세트 메뉴 */}
             <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price + 1000} />
