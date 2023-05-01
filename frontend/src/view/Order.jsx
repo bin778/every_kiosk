@@ -20,6 +20,7 @@ import IMG_DOWN from "../images/down.png";
 
 import IMG_MENU1 from "../images/menu1.png";
 import IMG_MENU2 from "../images/menu2.png";
+// 사이드 및 음료
 // import IMG_POTATO from "../images/potato.png";
 // import IMG_COLA from "../images/cola.png";
 
@@ -100,6 +101,8 @@ export default function Order(props) {
   const filterName = menu.filter((p) => {
     return p.name.replace(" ","").toLocaleLowerCase().includes(userInput.toLocaleLowerCase());
   })
+
+  // 장바구니 추가
 
   return (
     <div className="order-layer">
