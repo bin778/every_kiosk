@@ -212,6 +212,7 @@ export default function Order(props) {
         </div>
         <div className="card-list">
           <ul>
+            {/* 주문 가격 연계 예정 */}
             <li className="order-card">
               <div className="card-text1">불고기버거세트</div>
               <img src={IMG_MENU1} className="ordered" alt="" />
