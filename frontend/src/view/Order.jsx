@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import ModalCancel from "./ModalCancel.jsx";
 import ModalStaff from "./ModalStaff.jsx";
 import ModalQuantity from "./ModalQuantity.jsx";
@@ -103,21 +103,6 @@ export default function Order(props) {
   })
 
   // 장바구니 추가
-  const [orders, setOrders] = useState([]); // 주문 상품
-
-  const addToOrder = useCallback((id) => {
-    setOrders(orders => {
-      const find = orders.find(one => one.id === id)
-      if (find === undefined) {
-        return [...orders, {
-          id: id,
-          identify: 1
-        }] // 새로운 요소 추가
-      } else {
-        return orders.map(one => one.id === id ? { id, quantity: one.quantity + 1 } : one);
-      }
-    });
-  }, []);
 
   return (
     <div className="order-layer">
@@ -228,23 +213,22 @@ export default function Order(props) {
         <div className="card-list">
           <ul>
             {/* 주문 가격 연계 예정 */}
-            <li></li>
             <li className="order-card">
-              <div className="card-text1">불고기버거세트</div>
+              <div className="card-text1">불고기버거</div>
               <img src={IMG_MENU1} className="ordered" alt="" />
               <img src={IMG_CLOSE} className="btn-close" alt="" />
               <div className="card-text2 position-up">1개</div>
               <div className="card-text2 red">5,000원</div>
             </li>
             {/* <li className="order-card">
-              <div className="card-text1">불고기버거세트</div>
+              <div className="card-text1">불고기버거</div>
               <img src={IMG_MENU1} className="ordered" alt="" />
               <img src={IMG_CLOSE} className="btn-close" alt="" />
               <div className="card-text2 position-up">1개</div>
               <div className="card-text2 red">5,000원</div>
             </li>
             <li className="order-card">
-              <div className="card-text1">불고기버거세트</div>
+              <div className="card-text1">불고기버거</div>
               <img src={IMG_MENU1} className="ordered" alt="" />
               <img src={IMG_CLOSE} className="btn-close" alt="" />
               <div className="card-text2 position-up">1개</div>
