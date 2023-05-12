@@ -103,6 +103,9 @@ export default function Order(props) {
   })
 
   // 장바구니 추가
+  const addToCart = (itemId) => {
+
+  }
 
   return (
     <div className="order-layer">
