@@ -34,10 +34,18 @@ export default function Order(props) {
   let [quantitySetModalOpen, setQuantitySetModalOpen] = useState(false);
 
   // 메뉴(세트는 +1000원)
-  const menu = [
-    { id: 0, name: '불고기버거', img: IMG_MENU1, price: 5000 },
-    { id: 1, name: '통새우버거', img: IMG_MENU2, price: 6000 }
-  ];
+  const initialState = {
+    "items" : [
+      { id: 0, name: '불고기버거', img: IMG_MENU1, price: 5000 },
+      { id: 1, name: '통새우버거', img: IMG_MENU2, price: 6000 }
+    ],
+    "cartItems" : [
+        {
+          "itemId": 1,
+          "quantity": 1
+        }
+    ]
+  }
 
   // 모달 취소창
   const openModalCancel = () => {
@@ -98,13 +106,57 @@ export default function Order(props) {
     setUserInput(e.target.value.toLowerCase());
   }
   
-  const filterName = menu.filter((p) => {
+  const filterName = initialState.items.filter((p) => {
     return p.name.replace(" ","").toLocaleLowerCase().includes(userInput.toLocaleLowerCase());
   })
 
+  // 장바구니 state
+  const [items, setItems] = useState(initialState.items);
+  const [cartItems, setCartItems] = useState(initialState.cartItems);
+
   // 장바구니 추가
   const addToCart = (itemId) => {
+    const found = cartItems.filter((el) => el.itemId === itemId)[0]
 
+    // 이미 장바구니에 있는 상품을 추가하는 경우, 해당 요소의 quantity의 숫자를 1 올려주기
+    if (found) {
+      setQuantity(itemId, found.quantity + 1)
+    }
+    else { // 장바구니에 없는 상품을 추가할 경우, cartItems에 새로운 엘리먼트로 추가하기
+      setCartItems([...cartItems, {
+        itemId,
+        quantity: 1
+      }])
+    }
+    console.log();
+  }
+
+  // 이미 장바구니에 있는 상품의 cartItems의 quantity를 변경하는 메소드
+  const setQuantity = (itemId, quantity) => {
+    
+    // itemId로 배열에서 해당 상품을 찾고, 그것의 인덱스를 구하기
+    const found = cartItems.filter((el) => el.itemId === itemId)[0]
+    const idx = cartItems.indexOf(found)
+    
+    // 배열에 삽입할 객체 형태의 엘리먼트 선언하기
+    const cartItem = {
+      itemId,
+      quantity
+    }
+    
+    // quantity값이 변경되었으므로 기존의 엘리먼트를 삭제하고 새로운 엘리먼트 삽입
+    setCartItems([
+      ...cartItems.slice(0, idx),
+      cartItem,
+      ...cartItems.slice(idx + 1)
+    ])
+  }
+  
+  // 상품을 장바구니에서 삭제하는 메소드
+  const handleDelete = (itemId) => {
+    setCartItems(cartItems.filter((ele)=>{
+      return ele.itemId !== itemId
+    }))
   }
 
   return (
@@ -175,22 +227,22 @@ export default function Order(props) {
           <ul>
             {/* 추천 메뉴 : OpenCV 얼굴 비교 기능 */}
             {/* 세트 메뉴 */}
-            <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[0].name + "세트"} img={menu[0].img} price={menu[0].price + 1000} />
+            <li onClick={addToCart} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
+              <MenuCard name={initialState.items[0].name + "세트"} img={initialState.items[0].img} price={initialState.items[0].price + 1000} />
             </li>
             <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[1].name + "세트"} img={menu[1].img} price={menu[1].price + 1000} />
+              <MenuCard name={initialState.items[1].name + "세트"} img={initialState.items[1].img} price={initialState.items[1].price + 1000} />
             </li>
             {/* 단품 메뉴 */}
             <li onClick={openModalQuantity} className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={menu[0].name} img={menu[0].img} price={menu[0].price} />
+              <MenuCard name={initialState.items[0].name} img={initialState.items[0].img} price={initialState.items[0].price} />
             </li>
             {/* 사이드 메뉴 */}
             {/* 음료 */}
             {/* 검색 */}
-            {filterName.map(menu =>
+            {filterName.map(items =>
                 <li className={(active === 'search' ? 'menu-card' : 'card-hidden')}>
-                  <MenuCard name={menu.name} img={menu.img} price={menu.price} />
+                  <MenuCard name={items.name} img={items.img} price={items.price} />
                 </li>
             )}
             {/* 메뉴 화살표 */}
@@ -249,8 +301,8 @@ export default function Order(props) {
           {/* 모달 창 */}
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
-          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={menu[0]}/>
-          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={menu[1]}/>
+          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={initialState.items[0]}/>
+          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={initialState.items[1]}/>
         </div>
       </div>
     </div>
