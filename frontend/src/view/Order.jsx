@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ModalCancel from "./ModalCancel.jsx";
 import ModalStaff from "./ModalStaff.jsx";
@@ -41,7 +41,7 @@ export default function Order(props) {
     ],
     "cartItems" : [
         {
-          "itemId": 1,
+          "itemId": 0,
           "quantity": 1
         }
     ]
@@ -128,7 +128,7 @@ export default function Order(props) {
         quantity: 1
       }])
     }
-    console.log();
+    console.log(itemId);
   }
 
   // 이미 장바구니에 있는 상품의 cartItems의 quantity를 변경하는 메소드
@@ -158,6 +158,13 @@ export default function Order(props) {
       return ele.itemId !== itemId
     }))
   }
+
+  const movePage = useNavigate();
+
+    // 주문 확인 화면으로 이동한다
+    function moveCheck() {
+        movePage("/check");
+    }
 
   return (
     <div className="order-layer">
@@ -227,7 +234,7 @@ export default function Order(props) {
           <ul>
             {/* 추천 메뉴 : OpenCV 얼굴 비교 기능 */}
             {/* 세트 메뉴 */}
-            <li onClick={addToCart} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
+            <li onClick={() => addToCart(initialState.items[0].id)} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={initialState.items[0].name + "세트"} img={initialState.items[0].img} price={initialState.items[0].price + 1000} />
             </li>
             <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
@@ -271,7 +278,7 @@ export default function Order(props) {
             <li className="order-card">
               <div className="card-text1">불고기버거</div>
               <img src={IMG_MENU1} className="ordered" alt="" />
-              <img src={IMG_CLOSE} className="btn-close" alt="" />
+              <img src={IMG_CLOSE} className="btn-close" onClick={handleDelete} alt="" />
               <div className="card-text2 position-up">1개</div>
               <div className="card-text2 red">5,000원</div>
             </li>
@@ -297,7 +304,7 @@ export default function Order(props) {
             openModalStaff()
             staffCall()
           }}>직원 호출</span>
-          <span className="guide-button order-button">결제하기</span>
+          <span className="guide-button order-button" onClick={moveCheck}>결제하기</span>
           {/* 모달 창 */}
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />

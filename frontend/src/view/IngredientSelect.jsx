@@ -30,8 +30,8 @@ const IngredientSelect = (props) => {
                 <ul className='SelectDisplay'>
                     <li className='SelectChangeMenu'>
                         <img src={IMG_CHEESE} alt="" />
-                        <span>+200원</span>
                         <span>치즈</span>
+                        <span className='red SelectPrice'>+200원</span>
                     </li>
                 </ul>
                 <span className='modal-button cancel-button bottom left' onClick={close}>취소</span>

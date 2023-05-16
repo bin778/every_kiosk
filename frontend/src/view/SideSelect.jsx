@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import "../css/Modal.css"
 
+import IMG_POTATO from "../images/potato.png";
+
 const SideSelect = (props) => {
     // 열기, 닫기 텍스트를 부모로부터 받아옴
     const {open, close} = props;
@@ -25,9 +27,18 @@ const SideSelect = (props) => {
         <div className={open ? 'openModal modal' : 'modal'}>
             <div className='modalBox modalSelect'>
                 <div className='SelectTitle'>원하는 사이드를 선택해주세요</div>
-                <div className='SelectDisplay'>
-                    
-                </div>
+                <ul className='SelectDisplay'>
+                    <li className='SelectChangeMenu'>
+                        <img src={IMG_POTATO} alt="" />
+                        <span>감자튀김(小)</span>
+                        <span className='red SelectPrice'>+500원</span>
+                    </li>
+                    <li className='SelectChangeMenu'>
+                         <img src={IMG_POTATO} alt="" />
+                        <span>감자튀김(大)</span>
+                        <span className='red SelectPrice'>+1000원</span>
+                    </li>
+                </ul>
                 <span className='modal-button cancel-button bottom left' onClick={close}>취소</span>
                 <span className='modal-button bottom right'>선택</span>
             </div>

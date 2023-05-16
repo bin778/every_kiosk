@@ -47,6 +47,40 @@
     padding: 5px;
     padding-top: 15px;
     padding-bottom: 10px;
+    text-align: left;
+}
+
+.SelectChangeMenu {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    margin: 3px;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    cursor: pointer;
+    border: solid 2px #683a2f;
+    border-radius: 20px;
+}
+
+.SelectChangeMenu > img {
+    position: absolute;
+    left: 10px;
+    top: -5%;
+    width: 150px;
+    height: 120px;
+}
+
+.SelectChangeMenu > span {
+    position: absolute;
+    font-size: 1.2rem;
+    font-weight: 600;
+    top: 65%;
+    left: 15%;
+}
+
+.SelectPrice {
+    top: 80% !important;
 }
 
 /* 안내문 */
