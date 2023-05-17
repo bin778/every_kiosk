@@ -144,7 +144,7 @@ export default function Order(props) {
       quantity
     }
     
-    // quantity값이 변경되었으므로 기존의 엘리먼트를 삭제하고 새로운 엘리먼트 삽입
+    // quantity 값이 변경되었으므로 기존의 엘리먼트를 삭제하고 새로운 엘리먼트 삽입
     setCartItems([
       ...cartItems.slice(0, idx),
       cartItem,
