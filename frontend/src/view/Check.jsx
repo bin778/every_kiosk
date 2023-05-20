@@ -60,7 +60,6 @@ export default function Check(props) {
       </div>
       {/* 주문확인 목록 */}
       <div className="check-main">
-
       </div>
       {/* 총 주문금액 */}
       <div className="check-menu">
