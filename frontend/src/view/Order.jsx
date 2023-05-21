@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ModalCancel from "./ModalCancel.jsx";
 import ModalStaff from "./ModalStaff.jsx";
-import ModalQuantity from "./ModalQuantity.jsx";
+import ModalQuantity1 from "./ModalQuantity.jsx";
+import ModalQuantity2 from "./ModalQuantity.jsx";
 import ModalQuantitySet from "./ModalQuantitySet.jsx";
 import axios from 'axios';
 
@@ -30,7 +31,8 @@ export default function Order(props) {
   let [active, setActive] = useState('recommend');
   let [cancelModalOpen, setCancelModalOpen] = useState(false);
   let [staffModalOpen, setStaffModalOpen] = useState(false);
-  let [quantityModalOpen, setQuantityModalOpen] = useState(false);
+  let [quantityModalOpen1, setQuantityModalOpen1] = useState(false);
+  let [quantityModalOpen2, setQuantityModalOpen2] = useState(false);
   let [quantitySetModalOpen, setQuantitySetModalOpen] = useState(false);
 
   // 메뉴(세트는 +1000원)
@@ -66,12 +68,17 @@ export default function Order(props) {
   }
 
   // 모달 수량 선택
-  const openModalQuantity = () => {
-    setQuantityModalOpen(true);
+  const openModalQuantity1 = () => {
+    setQuantityModalOpen1(true);
+  };
+
+  const openModalQuantity2 = () => {
+    setQuantityModalOpen2(true);
   };
 
   const closeModalQuantity = () => {
-    setQuantityModalOpen(false);
+    setQuantityModalOpen1(false);
+    setQuantityModalOpen2(false);
   }
 
   // 모달 수량 선택(세트)
@@ -128,7 +135,6 @@ export default function Order(props) {
         quantity: 1
       }])
     }
-    console.log(itemId);
   }
 
   // 이미 장바구니에 있는 상품의 cartItems의 quantity를 변경하는 메소드
@@ -232,7 +238,6 @@ export default function Order(props) {
         {/* 음식 목록 선택하기 */}
         <div className="select-list">
           <ul>
-            {/* 추천 메뉴 : OpenCV 얼굴 비교 기능 */}
             {/* 세트 메뉴 */}
             <li onClick={() => addToCart(initialState.items[0].id)} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={initialState.items[0].name + "세트"} img={initialState.items[0].img} price={initialState.items[0].price + 1000} />
@@ -241,8 +246,11 @@ export default function Order(props) {
               <MenuCard name={initialState.items[1].name + "세트"} img={initialState.items[1].img} price={initialState.items[1].price + 1000} />
             </li>
             {/* 단품 메뉴 */}
-            <li onClick={openModalQuantity} className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
+            <li onClick={openModalQuantity1} className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={initialState.items[0].name} img={initialState.items[0].img} price={initialState.items[0].price} />
+            </li>
+            <li onClick={openModalQuantity2} className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
+              <MenuCard name={initialState.items[1].name} img={initialState.items[1].img} price={initialState.items[1].price} />
             </li>
             {/* 사이드 메뉴 */}
             {/* 음료 */}
@@ -308,7 +316,8 @@ export default function Order(props) {
           {/* 모달 창 */}
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
-          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={initialState.items[0]}/>
+          <ModalQuantity1 open={quantityModalOpen1} close={closeModalQuantity} menu={initialState.items[0]}/>
+          <ModalQuantity2 open={quantityModalOpen2} close={closeModalQuantity} menu={initialState.items[1]}/>
           <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={initialState.items[1]}/>
         </div>
       </div>
