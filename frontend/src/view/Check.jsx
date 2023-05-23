@@ -20,6 +20,11 @@ export default function Check(props) {
     movePage("/order");
   }
 
+  // 결제수단 선택 화면으로 이동한다.
+  function movePaySelect() {
+    movePage("/payment_select")
+  }
+
   // 모달 직원 호출창
   const openModalStaff = () => {
     setStaffModalOpen(true);
@@ -81,7 +86,7 @@ export default function Check(props) {
             <span className="guide-button" onClick={() => {
               openModalStaff()
               staffCall()}}>직원호출</span>
-            <span className="guide-button order-button">결제</span>
+            <span className="guide-button order-button" onClick={movePaySelect}>결제</span>
             <ModalStaff open={staffModalOpen} close={closeModalStaff} />
         </div>
       </div>

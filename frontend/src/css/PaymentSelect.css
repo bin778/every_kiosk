@@ -1,0 +1,105 @@
+* { padding: 0; margin: 0; }
+
+body {
+    overflow-y: scroll;
+}
+
+.check-layer {
+    margin: 0 auto;
+}
+
+.header {
+    background: #b08972;
+    text-align: center;
+}
+
+.header > img {
+    width: 60px;
+    margin: 15px;
+}
+
+.check-process {
+    background-color: white;
+    text-align: center;
+}
+
+.check-process > span {
+    display: inline-block;
+    width: calc(21% - 6px);
+    height: 100px;
+    margin: 10px 5px;
+    padding: 10px;
+    background-color: #683a2f;
+    border-radius: 20px;
+    text-align: left;
+}
+
+.check-process > span > div {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.process-red {
+    background-color: #d72300 !important;
+}
+
+/* 결제내역 안내 */
+.pay-text {
+    font-size: 4.0rem;
+    padding: 10px;
+    line-height: 100%;
+    font-weight: 800;
+    text-align: center;
+    color: #683a2f;
+}
+
+.center {
+    text-align: center;
+}
+
+.pay-up {
+    margin-top: 60px;
+}
+
+.pay-menu {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    width: calc(45% - 10px);
+    background-color: #f2ebe6;
+    padding: 5px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin: 20px;
+    margin-top: 50px;
+    margin-bottom: 300px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    cursor: pointer;
+    background-color: #683a2f;
+    color: white;
+}
+
+.pay-menu > img {
+    width: 150px;
+    filter: invert(100%);
+}
+
+.pay-menu > div {
+    font-size: 2.5rem;
+    padding: 10px;
+    line-height: 100%;
+    font-weight: 600;
+}
+
+/* 하위 메뉴 */
+.paymentselect-menu {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: #f2ebe6;
+    padding: 5px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}

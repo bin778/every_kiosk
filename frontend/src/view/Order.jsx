@@ -122,23 +122,26 @@ export default function Order(props) {
   const [cartItems, setCartItems] = useState(initialState.cartItems);
 
   // 장바구니 추가
-  const addToCart = (itemId) => {
+  const addToCart = (itemId, itemName, itemImg, itemPrice) => {
     const found = cartItems.filter((el) => el.itemId === itemId)[0]
 
     // 이미 장바구니에 있는 상품을 추가하는 경우, 해당 요소의 quantity의 숫자를 1 올려주기
     if (found) {
-      setQuantity(itemId, found.quantity + 1)
+      setQuantity(itemId, itemName, itemImg, itemPrice, found.quantity + 1)
     }
     else { // 장바구니에 없는 상품을 추가할 경우, cartItems에 새로운 엘리먼트로 추가하기
       setCartItems([...cartItems, {
         itemId,
+        itemName,
+        itemImg,
+        itemPrice,
         quantity: 1
       }])
     }
   }
 
   // 이미 장바구니에 있는 상품의 cartItems의 quantity를 변경하는 메소드
-  const setQuantity = (itemId, quantity) => {
+  const setQuantity = (itemId, itemName, itemImg, itemPrice, quantity) => {
     
     // itemId로 배열에서 해당 상품을 찾고, 그것의 인덱스를 구하기
     const found = cartItems.filter((el) => el.itemId === itemId)[0]
@@ -147,6 +150,9 @@ export default function Order(props) {
     // 배열에 삽입할 객체 형태의 엘리먼트 선언하기
     const cartItem = {
       itemId,
+      itemName,
+      itemImg,
+      itemPrice,
       quantity
     }
     
@@ -239,7 +245,7 @@ export default function Order(props) {
         <div className="select-list">
           <ul>
             {/* 세트 메뉴 */}
-            <li onClick={() => addToCart(initialState.items[0].id)} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
+            <li onClick={() => addToCart(initialState.items[0].id, initialState.items[0].name, initialState.items[0].img, initialState.items[0].price)} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={initialState.items[0].name + "세트"} img={initialState.items[0].img} price={initialState.items[0].price + 1000} />
             </li>
             <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
