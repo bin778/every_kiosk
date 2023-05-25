@@ -135,7 +135,7 @@ export default function Order(props) {
         itemName,
         itemImg,
         itemPrice,
-        quantity: 1
+        quantity: 0
       }])
     }
   }
