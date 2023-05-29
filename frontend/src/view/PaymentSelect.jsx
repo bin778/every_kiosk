@@ -26,6 +26,11 @@ export default function PaymentSelect(props) {
     movePage("/payment_select")
   }
 
+  // 결제수단 선택 화면으로 이동한다.
+  function movePayProgress() {
+    movePage("/payment_progress")
+  }
+
   // 모달 직원 호출창
   const openModalStaff = () => {
     setStaffModalOpen(true);
@@ -69,11 +74,11 @@ export default function PaymentSelect(props) {
       <div className="center">
         <div className="pay-up pay-text">결제 수단을</div>
         <div className="pay-text">선택해주세요</div>
-        <span className="pay-menu">
+        <span className="pay-menu" onClick={movePayProgress}>
           <img src={IMG_CARD} alt="" />
           <div>신용카드</div>
         </span>
-        <span className="pay-menu">
+        <span className="pay-menu" onClick={movePayProgress}>
           <img src={IMG_MONEY} alt="" />
           <div>현금</div>
         </span>
