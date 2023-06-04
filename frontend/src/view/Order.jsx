@@ -138,6 +138,7 @@ export default function Order(props) {
         quantity: 1
       }])
     }
+    console.log(cartItems)
   }
 
   // 이미 장바구니에 있는 상품의 cartItems의 quantity를 변경하는 메소드
