@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import "../css/Modal.css"
 import IMG_PLUS from "../images/plus.png";
 import IMG_MINUS from "../images/minus.png";
 
-const ModalQuantity = (props) => {
-    // 열기, 닫기 텍스트를 부모로부터 받아옴
-    const {open, close, menu} = props;
+// 메뉴 전달 타입
+type Menu = {
+    id: number;
+    name: string;
+    img: string;
+    price: number;
+  };
 
+interface ModalQuantitySetProps {
+    open: boolean;
+    close: () => void;
+    menu: Menu;
+}
+
+const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }) => {
     // 실제 컴포넌트가 사라지는 시점을 지연시키기 위한 값
     const [visible, setVisible] = useState(open);
 
@@ -21,6 +33,13 @@ const ModalQuantity = (props) => {
         if (num > 0) {
             setNum(num - 1);
         }
+    }
+
+    // 옵션 선택 화면으로 이동한다
+    const movePage = useNavigate();
+    
+    function moveSelect() {
+        movePage("/option_select", { state: { price: ((menu.price + 1000) * num) } });
     }
 
     useEffect(() => {
@@ -38,9 +57,9 @@ const ModalQuantity = (props) => {
 
     return (
         <div className={open ? 'openModal modal' : 'modal'}>
-            <div className='modalBox'>
+            <div className='modalBox modalBoxSet'>
                 <div>수량을 선택해주세요</div>
-                <div className='red'>{menu.price * num} 원</div>
+                <div className='red'>{(menu.price + 1000) * num} 원</div>
                 <div>
                     <span className='decrease-button' onClick={decrease}>
                         <img src={IMG_MINUS} alt="" />
@@ -50,11 +69,15 @@ const ModalQuantity = (props) => {
                         <img src={IMG_PLUS} alt="" />
                     </span>
                 </div>
+                <div>
+                    <div className='default-text'>주문이 복잡하시나요?</div>
+                    <span className='modal-button center'>기본값 선택</span>
+                </div>
                 <span className='modal-button cancel-button bottom left' onClick={close}>아니요</span>
-                <span className='modal-button bottom right'>예</span>
+                <span className='modal-button bottom right' onClick={moveSelect}>세트 선택</span>
             </div>
         </div>
     );
 };
 
-export default ModalQuantity;
+export default ModalQuantitySet;
