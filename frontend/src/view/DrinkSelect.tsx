@@ -3,10 +3,12 @@ import "../css/Modal.css"
 
 import IMG_COLA from "../images/cola.png";
 
-const DrinkSelect = (props) => {
-    // 열기, 닫기 텍스트를 부모로부터 받아옴
-    const {open, close} = props;
+interface DrinkSelectProps {
+    open: boolean;
+    close: () => void;
+}
 
+const DrinkSelect: React.FC<DrinkSelectProps> = ({open, close}) => {
     // 실제 컴포넌트가 사라지는 시점을 지연시키기 위한 값
     const [visible, setVisible] = useState(open);
 

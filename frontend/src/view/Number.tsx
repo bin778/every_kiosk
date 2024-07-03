@@ -3,7 +3,7 @@ import IMG_NUMBER from "../images/number.png";
 import "../css/Number.css"
 import "../css/Modal.css"
 
-export default function PaymentProgress(props) {
+const Number: React.FC = () => {
   return (
     <div className="check-layer">
       {/* header 화면 */}
@@ -39,3 +39,5 @@ export default function PaymentProgress(props) {
     </div>
   )
 }
+
+export default Number;

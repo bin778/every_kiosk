@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 
 import IMG_MENU1 from "../images/menu1.png";
 import IMG_LOGO2 from "../images/logo2.png";
 
-import ModalStaff from "./ModalStaff.jsx";
+import ModalStaff from "./ModalStaff";
 
 import "../css/Check.css"
 import "../css/Modal.css"
 
-export default function Check(props) {
+const Check: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);
 
   const movePage = useNavigate();
@@ -66,13 +66,13 @@ export default function Check(props) {
       </div>
       {/* 주문확인 목록 */}
       <ul className="check-main">
-        <li class="check-card">
+        <li className="check-card">
           <img src={IMG_MENU1} alt="" />
-          <div class="check-text">불고기버거세트</div>
-          <div class="check-text check-option">치즈 추가</div>
-          <div class="check-text check-side">감자튀김(中), 코카콜라(中)</div>
-          <div class="check-text check-quantity">2개</div>
-          <div class="check-text check-price red">6,500원</div>
+          <div className="check-text">불고기버거세트</div>
+          <div className="check-text check-option">치즈 추가</div>
+          <div className="check-text check-side">감자튀김(中), 코카콜라(中)</div>
+          <div className="check-text check-quantity">2개</div>
+          <div className="check-text check-price red">6,500원</div>
         </li>
       </ul>
       {/* 총 주문금액 */}
@@ -93,3 +93,5 @@ export default function Check(props) {
     </div>
   )
 }
+
+export default Check;

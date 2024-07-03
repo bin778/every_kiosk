@@ -3,10 +3,12 @@ import "../css/Modal.css"
 
 import IMG_POTATO from "../images/potato.png";
 
-const SideSelect = (props) => {
-    // 열기, 닫기 텍스트를 부모로부터 받아옴
-    const {open, close} = props;
+interface SideSelectProps {
+    open: boolean;
+    close: () => void;
+}
 
+const SideSelect: React.FC<SideSelectProps> = ({open, close}) => {
     // 실제 컴포넌트가 사라지는 시점을 지연시키기 위한 값
     const [visible, setVisible] = useState(open);
 

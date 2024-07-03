@@ -57,7 +57,6 @@ const Order: React.FC = () => {
   const [quantityModalOpen2, setQuantityModalOpen2] = useState<boolean>(false);
   const [quantitySetModalOpen, setQuantitySetModalOpen] = useState<boolean>(false);
   const [userInput, setUserInput] = useState<string>('');
-  const [items, setItems] = useState<Item[]>(initialState.items);
   const [cartItems, setCartItems] = useState<CartItem[]>(initialState.cartItems);
 
   const navigate = useNavigate();
