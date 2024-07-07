@@ -21,6 +21,8 @@
       {
         "html-has-lang": "off"
       }
-    ]
+    ],
+    "typescript-config/consistent-casing": "off",
+    "typescript-config/is-valid": "off"
   }
 }
