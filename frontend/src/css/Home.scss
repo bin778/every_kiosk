@@ -1,32 +1,32 @@
 * { padding: 0; margin: 0; }
-
-body {
+  
+  body {
     overflow-y: scroll;
-}
-
-.home-layer {
+  }
+  
+  .home-layer {
     margin: 0 auto;
     text-align: center;
-}
-
-.home {
+  }
+  
+  .home {
     background: #f2ebe6;
-}
-
-.logo-image {
+  }
+  
+  .logo-image {
     width: 400px;
     margin: 30px;
     margin-top: 60px;
-}
-
-.logo-title {
+  }
+  
+  .logo-title {
     font-size: 3rem;
     line-height: 100%;
     font-family: Georgia;
     font-weight: 800;
-}
-
-.home-button {
+  }
+  
+  .home-button {
     display: inline-block;
     margin: 100px 50px;
     width: 250px;
@@ -34,54 +34,55 @@ body {
     color: #683a2f;
     border-radius: 10px;
     background: white;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    box-shadow: 0 2px 4px rgb(0, 0, 0 / 10%), 0 8px 16px rgb(0, 0, 0 / 10%);
     cursor: pointer;
-}
-
-.home-button > div {
-    margin-top: 20px;
-    font-size: 2rem;
-    line-height: 100%;
-    font-family: Georgia;
-    font-weight: 800;
-}
-
-.home-button > div > img {
-    width: 150px;
-    color: #683a2f;
-    filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
-}
-
-.footer {
+  
+    > div {
+      margin-top: 20px;
+      font-size: 2rem;
+      line-height: 100%;
+      font-family: Georgia;
+      font-weight: 800;
+  
+      > img {
+        width: 150px;
+        color: #683a2f;
+        filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
+      }
+    }
+  }
+  
+  .footer {
     background: #683a2f;
     color: white;
     padding: 20px;
-}
-
-.footer-text1 {
+  }
+  
+  .footer-text1 {
     margin-top: 30px;
     margin-bottom: 10px;
     font-size: 1.7rem;
     line-height: 100%;
     font-family: Georgia;
     font-weight: 600;
-}
-
-.footer-text2 {
+  }
+  
+  .footer-text2 {
     margin: 15px;
     font-size: 1.3rem;
     line-height: 100%;
     font-weight: 600;
-}
-
-.language {
+  }
+  
+  .language {
     display: inline-block;
     margin-top: 10px;
     font-size: 15px;
     font-weight: bold;
-}
-
-.language > div > img {
-    width: 60px;
-    cursor: pointer;
-}
+  
+    > div > img {
+      width: 60px;
+      cursor: pointer;
+    }
+  }
+  

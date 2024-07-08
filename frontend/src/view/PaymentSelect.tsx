@@ -8,8 +8,8 @@ import IMG_MONEY from "../images/money.png";
 
 import ModalStaff from "./ModalStaff";
 
-import "../css/PaymentSelect.css"
-import "../css/Modal.css"
+import "../css/PaymentSelect.scss"
+import "../css/Modal.scss"
 
 const PaymentSelect: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);

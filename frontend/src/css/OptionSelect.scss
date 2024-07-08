@@ -1,34 +1,34 @@
 * { padding: 0; margin: 0; }
-
-body {
+  
+  body {
     overflow-x: hidden;
     overflow-y: scroll;
-}
-
-.select-layer {
+  }
+  
+  .select-layer {
     margin: 0 auto;
-}
-
-.header {
+  }
+  
+  .header {
     background: #b08972;
     text-align: center;
-}
-
-.header > img {
-    width: 60px;
-    margin: 15px;
-}
-
-.option-title {
+  
+    > img {
+      width: 60px;
+      margin: 15px;
+    }
+  }
+  
+  .option-title {
     margin: 10px auto;
     text-align: center;
     padding: 3px;
     font-size: 2.0rem;
     font-weight: 700;
     left: 20px;
-}
-
-.option-menu {
+  }
+  
+  .option-menu {
     position: relative;
     display: block;
     width: 100%;
@@ -36,10 +36,10 @@ body {
     padding: 5px;
     padding-top: 15px;
     padding-bottom: 10px;
-}
-
-/* 옵션 박스 */
-.option-box {
+  }
+  
+  /* 옵션 박스 */
+  .option-box {
     position: relative;
     padding: 10px;
     margin: 10px auto;
@@ -49,9 +49,9 @@ body {
     height: 250px;
     box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-}
-
-.option-number {
+  }
+  
+  .option-number {
     display: inline-block;
     position: absolute;
     left: 10px;
@@ -62,40 +62,40 @@ body {
     color: white;
     border-radius: 50px;
     background-color: #d72300;
-}
-
-.option-select1 {
+  }
+  
+  .option-select1 {
     position: absolute;
     font-size: 1.5rem;
     font-weight: 700;
     left: 50px;
-}
-
-.option-box > img {
+  }
+  
+  .option-box > img {
     position: absolute;
     top: 50px;
     left: 10px;
     width: 180px;
     height: 160px;
-}
-
-.option-name {
+  }
+  
+  .option-name {
     position: absolute;
     font-size: 2.0rem;
     font-weight: 700;
     top: 50px;
     left: 200px;
-}
-
-.option-engname {
+  }
+  
+  .option-engname {
     position: absolute;
     font-size: 1.5rem;
     font-weight: 600;
     top: 90px;
     left: 200px;
-}
-
-.option-select2 {
+  }
+  
+  .option-select2 {
     position: absolute;
     display: inline-block;
     bottom: 5px;
@@ -110,10 +110,10 @@ body {
     font-weight: 700;
     color: white;
     cursor: pointer;
-}
-
-/* header 메뉴 */
-.large-button {
+  }
+  
+  /* header 메뉴 */
+  .large-button {
     position: relative;
     right: 205px;
     display: inline-block;
@@ -126,17 +126,17 @@ body {
     font-weight: 700;
     color: black;
     cursor: pointer;
-}
-
-.option-price1 {
+  }
+  
+  .option-price1 {
     position: absolute;
     top: 20px;
     right: 190px;
     font-size: 2.0rem;
     font-weight: 700;
-}
-
-.option-price2 {
+  }
+  
+  .option-price2 {
     right: 30px;
     color: #d72300;
-}
+  }

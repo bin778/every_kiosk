@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/Modal.css";
+import "../css/Modal.scss";
 
 interface ModalCancelProps {
   open: boolean;

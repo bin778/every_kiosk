@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/Modal.css";
+import "../css/Modal.scss";
 import IMG_PLUS from "../images/plus.png";
 import IMG_MINUS from "../images/minus.png";
 

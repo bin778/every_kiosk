@@ -1,0 +1,56 @@
+* { padding: 0; margin: 0; }
+
+body {
+  overflow-y: scroll;
+}
+
+.check-layer {
+  margin: 0 auto;
+}
+
+.header {
+  background: #b08972;
+  text-align: center;
+
+  > img {
+    width: 60px;
+    margin: 15px;
+  }
+}
+
+.check-process {
+  background-color: white;
+  text-align: center;
+}
+
+.text-red {
+  color: #d72300;
+}
+
+.pay-text2 {
+  font-size: 2.0rem;
+  padding: 10px;
+  line-height: 100%;
+  font-weight: 600;
+  text-align: center;
+}
+
+.pay-card {
+  margin-bottom: 20px;
+  filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
+}
+
+/* 하위 메뉴 */
+.paymentprogress-menu {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: #f2ebe6;
+  padding: 5px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.guide-button2 {
+  width: 45%;
+}

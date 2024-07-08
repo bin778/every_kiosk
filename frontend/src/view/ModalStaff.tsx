@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../css/Modal.css";
+import "../css/Modal.scss";
 
 interface ModalStaffProps {
   open: boolean;

@@ -22,7 +22,7 @@ import IMG_DOWN from "../images/down.png";
 import IMG_MENU1 from "../images/menu1.png";
 import IMG_MENU2 from "../images/menu2.png";
 
-import "../css/Order.css";
+import "../css/Order.scss";
 
 interface Item {
   id: number;

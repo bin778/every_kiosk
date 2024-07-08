@@ -12,8 +12,8 @@ import IngredientSelect from "./IngredientSelect";
 import SideSelect from "./SideSelect";
 import DrinkSelect from "./DrinkSelect";
 
-import "../css/OptionSelect.css";
-import "../css/Modal.css";
+import "../css/OptionSelect.scss";
+import "../css/Modal.scss";
 
 const OptionSelect: React.FC = () => {
   {

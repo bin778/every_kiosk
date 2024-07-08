@@ -8,7 +8,7 @@ import IMG_JAPAN from "../images/Japan.png";
 import IMG_SHOP from "../images/Shop.png";
 import IMG_TAKE_OUT from "../images/TakeOut.png";
 
-import "../css/Home.css"
+import "../css/Home.scss"
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import IMG_LOGO2 from "../images/logo2.png";
 import IMG_NUMBER from "../images/number.png";
-import "../css/Number.css"
-import "../css/Modal.css"
+import "../css/Number.scss"
+import "../css/Modal.scss"
 
 const Number: React.FC = () => {
   return (

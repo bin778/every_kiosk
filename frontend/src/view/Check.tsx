@@ -7,8 +7,8 @@ import IMG_LOGO2 from "../images/logo2.png";
 
 import ModalStaff from "./ModalStaff";
 
-import "../css/Check.css"
-import "../css/Modal.css"
+import "../css/Check.scss"
+import "../css/Modal.scss"
 
 const Check: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);

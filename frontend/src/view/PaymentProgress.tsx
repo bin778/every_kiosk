@@ -7,8 +7,8 @@ import IMG_PAYMENT from "../images/payment.png";
 
 import ModalStaff from "./ModalStaff";
 
-import "../css/PaymentProgress.css"
-import "../css/Modal.css"
+import "../css/PaymentProgress.scss"
+import "../css/Modal.scss"
 
 const PaymentProgress: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);

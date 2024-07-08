@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../css/Modal.css"
+import "../css/Modal.scss"
 
 import IMG_POTATO from "../images/potato.png";
 
