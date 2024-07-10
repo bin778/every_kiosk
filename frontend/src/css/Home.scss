@@ -1,88 +1,206 @@
-* { padding: 0; margin: 0; }
-  
-  body {
-    overflow-y: scroll;
-  }
-  
-  .home-layer {
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .home {
-    background: #f2ebe6;
-  }
-  
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.home-layer {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home {
+  background: #f2ebe6;
+  min-height: 90vh; /* Ensures minimum height is the full height of the viewport */
+}
+
+.logo-image {
+  width: 100%;
+  max-width: 400px; /* Ensures the image does not exceed 400px width */
+  margin: 30px 0;
+  margin-top: 60px;
+}
+
+.logo-title {
+  font-size: 3rem;
+  line-height: 100%;
+  font-family: Georgia;
+  font-weight: 800;
+}
+
+.home-button {
+  display: inline-block;
+  margin: 100px 50px;
+  width: 100%;
+  max-width: 250px;
+  height: 250px;
+  color: #683a2f;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 4px rgb(0, 0, 0 / 10%), 0 8px 16px rgb(0, 0, 0 / 10%);
+  cursor: pointer;
+}
+
+.home-button > div {
+  margin-top: 20px;
+  font-size: 2rem;
+  line-height: 100%;
+  font-family: Georgia;
+  font-weight: 800;
+}
+
+.home-button > div > img {
+  width: 150px;
+  color: #683a2f;
+  filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
+}
+
+.footer {
+  background: #683a2f;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  text-align: center; /* Centers text inside the footer */
+}
+
+.footer-text1 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 1.7rem;
+  line-height: 100%;
+  font-family: Georgia;
+  font-weight: 600;
+}
+
+.footer-text2 {
+  margin: 15px;
+  font-size: 1.3rem;
+  line-height: 100%;
+  font-weight: 600;
+}
+
+.language {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.language > div > img {
+  width: 60px;
+  cursor: pointer;
+}
+
+/* 태블릿 반응형 웹 */
+@media (max-width: 1023px) {
   .logo-image {
-    width: 400px;
-    margin: 30px;
-    margin-top: 60px;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 40px;
   }
-  
+
   .logo-title {
-    font-size: 3rem;
-    line-height: 100%;
-    font-family: Georgia;
-    font-weight: 800;
+    font-size: 2.5rem;
   }
-  
+
   .home-button {
-    display: inline-block;
-    margin: 100px 50px;
-    width: 250px;
-    height: 250px;
-    color: #683a2f;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 0 2px 4px rgb(0, 0, 0 / 10%), 0 8px 16px rgb(0, 0, 0 / 10%);
-    cursor: pointer;
-  
-    > div {
-      margin-top: 20px;
-      font-size: 2rem;
-      line-height: 100%;
-      font-family: Georgia;
-      font-weight: 800;
-  
-      > img {
-        width: 150px;
-        color: #683a2f;
-        filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
-      }
-    }
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    margin: 80px 40px;
+  }
+
+  .home-button > div {
+    margin-top: 20px;
+    font-size: 1.7rem;
   }
   
+  .home-button > div > img {
+    width: 100px;
+  }
+
+  .footer {
+    padding: 15px;
+  }
+
+  .footer-text1 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+  }
+
+  .footer-text2 {
+    margin-top: 0px;
+    font-size: 1.2rem;
+  }
+
+  .language {
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .language > div > img {
+    width: 50px;
+    cursor: pointer;
+  }
+}
+
+/* 모바일 반응형 웹 */
+@media (max-width: 640px) {
+  .logo-image {
+    width: 100%;
+    max-width: 230px;
+    margin-top: 30px;
+  }
+
+  .logo-title {
+    font-size: 1.7rem;
+  }
+
+  .home-button {
+    width: 100%;
+    max-width: 110px;
+    height: 120px;
+    margin: 50px 25px;
+  }
+
+  .home-button > div {
+    margin-top: 15px;
+    font-size: 1.1rem;
+  }
+
+  .home-button > div > img {
+    width: 60px;
+  }
+
   .footer {
     background: #683a2f;
     color: white;
-    padding: 20px;
+    padding: 10px;
   }
-  
+
   .footer-text1 {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    font-size: 1.7rem;
-    line-height: 100%;
-    font-family: Georgia;
-    font-weight: 600;
-  }
-  
-  .footer-text2 {
-    margin: 15px;
+    margin-top: 5px;
     font-size: 1.3rem;
-    line-height: 100%;
-    font-weight: 600;
   }
-  
+
+  .footer-text2 {
+    margin-top: 0px;
+    font-size: 1.0rem;
+  }
+
   .language {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 15px;
+    margin-top: 3px;
+    font-size: 10px;
     font-weight: bold;
-  
-    > div > img {
-      width: 60px;
-      cursor: pointer;
-    }
   }
   
+  .language > div > img {
+    width: 40px;
+    cursor: pointer;
+  }
+}

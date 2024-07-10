@@ -5,8 +5,8 @@ import IMG_KOREA from "../images/Korea.png";
 import IMG_USA from "../images/USA.png";
 import IMG_CHINA from "../images/China.png";
 import IMG_JAPAN from "../images/Japan.png";
-import IMG_SHOP from "../images/Shop.png";
-import IMG_TAKE_OUT from "../images/TakeOut.png";
+import IMG_GENERAL from "../images/general.png";
+import IMG_EASY from "../images/easy.png";
 
 import "../css/Home.scss"
 
@@ -22,14 +22,14 @@ const Home: React.FC = () => {
       {/* body 화면 */}
       <div className="home">
         <img className="logo-image" src={IMG_LOGO1} alt="Logo" />
-        <h1 className="logo-title">어디서 드실건가요?</h1>
+        <h1 className="logo-title">주문 타입 선택</h1>
         <span className="home-button" onClick={moveOrder}>
-          <div><img src={IMG_SHOP} alt="Shop" /></div>
-          <div>매장 식사</div>
+          <div><img src={IMG_GENERAL} alt="Shop" /></div>
+          <div>일반 주문</div>
         </span>
         <span className="home-button" onClick={moveOrder}>
-          <div><img src={IMG_TAKE_OUT} alt="Take Out" /></div>
-          <div>포장 주문</div>
+          <div><img src={IMG_EASY} alt="Take Out" /></div>
+          <div>간편 주문</div>
         </span>
       </div>
       {/* footer 화면 */}
