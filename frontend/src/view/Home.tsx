@@ -27,7 +27,7 @@ const Home: React.FC = () => {
           <div><img src={IMG_GENERAL} alt="Shop" /></div>
           <div>일반 주문</div>
         </span>
-        <span className="home-button" onClick={moveOrder}>
+        <span className="home-button">
           <div><img src={IMG_EASY} alt="Take Out" /></div>
           <div>간편 주문</div>
         </span>

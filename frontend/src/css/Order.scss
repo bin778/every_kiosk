@@ -9,16 +9,6 @@ body {
   margin: 0 auto;
 }
 
-.header {
-  background: #b08972;
-  text-align: center;
-
-  > img {
-    width: 60px;
-    margin: 15px;
-  }
-}
-
 .order-menu {
   background-color: white;
   text-align: center;
@@ -34,22 +24,20 @@ body {
   color: #683a2f;
   filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
   cursor: pointer;
-}
 
-.first {
-  border: none;
-}
-
-.menu-button1 > {
-  img {
+  > img {
     margin: 10px;
     width: 60px;
   }
 
-  div {
-    font-size: 1.2rem;
+  > div {
+    font-size: 1.3rem;
     font-weight: 600;
   }
+}
+
+.first {
+  border: none;
 }
 
 /* 선택한 메뉴 */
@@ -66,13 +54,13 @@ body {
 /* 음식 목록 선택하기 */
 .select-list {
   width: 100%;
-  height: 600px;
+  height: 65vh;
   position: sticky;
   text-align: left;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: 30px;
+    width: 20px;
     height: 10px;
     background-color: #b08972;
     border-radius: 5px;
@@ -88,7 +76,6 @@ body {
   }
 }
 
-/* 스크롤 디자인 */
 /* 메뉴 카드 */
 .menu-card {
   position: relative;
@@ -141,33 +128,6 @@ body {
   padding: 0 20px;
 }
 
-/* 안내 버튼 */
-.btn-up, .btn-down {
-  display: inline-block;
-  position: fixed;
-  background-color: #999999;
-  cursor: pointer;
-  padding: 7px;
-  border-radius: 50px;
-  opacity: 0.5;
-  z-index: 1;
-}
-
-.btn-up {
-  left: 46%;
-  bottom: 75%;
-}
-
-.btn-down {
-  left: 46%;
-  bottom: 32%;
-}
-
-.btn-up > img, .btn-down > img {
-  width: 50px;
-  height: 50px;
-}
-
 /* 주문 내역 */
 .order-list {
   position: relative;
@@ -182,8 +142,12 @@ body {
 .card-list {
   overflow-x: scroll;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   > ul {
-    display: inline-flex;
+    display: flex;
   }
 }
 
@@ -218,9 +182,6 @@ body {
   background-color: #d72300;
 }
 
-.red {
-  color: #d72300;
-}
 
 /* 주문 목록 카드 */
 .order-card {
@@ -230,7 +191,7 @@ body {
   margin: 10px 20px;
   padding: 10px;
   box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  min-width: 300px;
   height: 200px;
   overflow: hidden;
 }
@@ -284,7 +245,7 @@ body {
 
 .guide-button {
   display: inline-block;
-  width: calc(27% - 2px);
+  width: calc(30% - 10px);
   margin: 6px;
   padding: 10px;
   background-color: #683a2f;
@@ -297,4 +258,267 @@ body {
 
 .order-button {
   background-color: #d72300;
+}
+
+// 빨강색 글씨 적용
+.red {
+  color: #d72300;
+}
+
+
+/* 태블릿 반응형 웹 */
+@media (max-width: 1023px) {
+  // 메뉴 목록
+  .menu-button1 {
+    padding: 3px;
+    border-left: 3px solid;
+  
+    > img {
+      margin: 7px;
+      width: 50px;
+    }
+  
+    > div {
+      font-size: 1.0rem;
+    }
+  }
+
+  .first {
+    border: none;
+  }
+
+  // 음식 목록 선택하기
+  .select-list {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  // 메뉴 카드
+  .menu-card {
+    padding: 7px;
+    border: none;
+    border-radius: 0;
+    border-top: 2px solid #999999;
+    border-bottom: 2px solid #999999;
+    height: 150px;
+    box-shadow: none;
+  
+    > img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  
+  .menu-text {
+    position: absolute;
+    left: 180px;
+    top: 10px;
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+  
+  .position-down {
+    top: 45px;
+  }
+
+  // 검색 기능
+  .menu-search {
+    width: 90%;
+    height: 40px;
+    font-size: 1.3rem;
+    margin: 7px 0;
+    padding: 0 15px;
+  }
+
+  // 주문 내역
+  .list {
+    padding-left: 20px;
+  }
+
+  // 총 주문 금액
+  .amount {
+    padding-right: 20px;
+  }
+
+  .list-text {
+    padding: 7px;
+    font-size: 1.3rem;
+  }
+
+  .list-count {
+    font-size: 1.1rem;
+    width: 40px;
+    color: white;
+  }
+
+  // 주문 카드
+  .order-card {
+    min-width: 250px;
+    height: 170px;
+    margin: 10px 10px;
+  }
+
+  .card-text1 {
+    font-size: 1.3rem;
+  }
+
+  .card-text2 {
+    font-size: 1.3rem;
+    bottom: 15px;
+  }
+  
+  .btn-close {
+    top: 15px;
+    right: 15px;
+    width: 15px;
+    padding: 5px;
+  }
+
+  .ordered {
+    position: absolute;
+    display: inline-block;
+    width: 150px;
+    left: 10px;
+    bottom: 7px;
+  }
+
+  .position-up {
+    bottom: 45px;
+  }
+
+  // 하단 버튼
+  .guide-button {
+    margin: 4px;
+    padding: 7px;
+    font-size: 1.1rem;
+  }
+}
+
+/* 모바일 반응형 웹 */
+@media (max-width: 639px) {
+  // 메뉴 목록
+  .menu-button1 {
+    padding: 2px;
+    margin: 2px 0;
+    border-left: 2px solid;
+    width: calc(30% - 2px);
+  
+    > img {
+      margin: 10px;
+      width: 40px;
+    }
+  }
+
+  .right {
+    border-right: 2px solid;
+  }
+
+  // 음식 목록 선택하기
+  .select-list {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  // 메뉴 카드
+  .menu-card {
+    padding: 5px;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    width: 95%;
+    height: 100px;
+    box-shadow: none;
+    > img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  .menu-text {
+    position: absolute;
+    left: 110px;
+    top: 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  
+  .position-down {
+    top: 30px;
+  }
+
+  // 검색 기능
+  .menu-search {
+    width: 90%;
+    height: 30px;
+    border: 1px solid #683a2f;
+    font-size: 1.0rem;
+    margin: 5px 0;
+    padding: 0 10px;
+  }
+
+  // 주문 내역
+  .list {
+    padding-left: 10px;
+  }
+
+  // 총 주문 금액
+  .amount {
+    padding-right: 10px;
+  }
+
+  .list-text {
+    padding: 5px;
+    font-size: 1.0rem;
+  }
+
+  .list-count {
+    font-size: 1.0rem;
+    width: 30px;
+    color: white;
+  }
+
+  // 주문 카드
+  .order-card {
+    min-width: 175px;
+    height: 120px;
+    margin: 7px 5px;
+  }
+
+  .card-text1 {
+    font-size: 1.1rem;
+    left: 10px;
+    top: 5px;
+  }
+
+  .card-text2 {
+    font-size: 1.1rem;
+    bottom: 10px;
+  }
+  
+  .btn-close {
+    top: 10px;
+    right: 13px;
+    width: 13px;
+    padding: 5px;
+  }
+
+  .ordered {
+    position: absolute;
+    display: inline-block;
+    width: 100px;
+    left: 5px;
+    bottom: 5px;
+  }
+
+  .position-up {
+    bottom: 35px;
+  }
+
+  // 하단 버튼
+  .guide-button {
+    margin: 3px;
+    padding: 5px;
+    font-size: 1.0rem;
+  }
 }

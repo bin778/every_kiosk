@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 import IMG_MENU1 from "../images/menu1.png";
-import IMG_LOGO2 from "../images/logo2.png";
 
 import ModalStaff from "./ModalStaff";
 
+// SCSS 파일
 import "../css/Check.scss"
 import "../css/Modal.scss"
+
+// 헤더 파일
+import Header from "./Component/Header";
 
 const Check: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);
@@ -42,9 +45,7 @@ const Check: React.FC = () => {
   return (
     <div className="check-layer">
       {/* header 화면 */}
-      <div className="header">
-        <img src={IMG_LOGO2} alt="" />
-      </div>
+      <Header />
       {/* 진행 화면 */}
       <div className="check-process">
         <span className="process-red ">

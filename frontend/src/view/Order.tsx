@@ -7,7 +7,6 @@ import ModalQuantity2 from "./ModalQuantity";
 import ModalQuantitySet from "./ModalQuantitySet";
 import axios from 'axios';
 
-import IMG_LOGO2 from "../images/logo2.png";
 import IMG_RECO from "../images/recommend.png";
 import IMG_SINGLE from "../images/hamburger.png";
 import IMG_SET from "../images/hamburger_set.png";
@@ -16,13 +15,15 @@ import IMG_DRINK from "../images/drink.png";
 import IMG_SEARCH from "../images/search.png";
 
 import IMG_CLOSE from "../images/close.png";
-import IMG_UP from "../images/up.png";
-import IMG_DOWN from "../images/down.png";
 
 import IMG_MENU1 from "../images/menu1.png";
 import IMG_MENU2 from "../images/menu2.png";
 
+// SCSS 파일
 import "../css/Order.scss";
+
+// 헤더 파일
+import Header from "./Component/Header";
 
 interface Item {
   id: number;
@@ -101,17 +102,7 @@ const Order: React.FC = () => {
   const staffCall = () => {
     axios.get('/api/staff').then(response => console.log(response.data));
   };
-
-  const scrollTop = () => {
-    const element = document.getElementsByClassName("select-list")[0];
-    element.scrollTo(0, 0);
-  };
-
-  const scrollBottom = () => {
-    const element = document.getElementsByClassName("select-list")[0];
-    element.scrollTop = element.scrollHeight;
-  };
-
+  
   const getSearchData = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value.toLowerCase());
   };
@@ -159,9 +150,7 @@ const Order: React.FC = () => {
 
   return (
     <div className="order-layer">
-      <div className="header">
-        <img src={IMG_LOGO2} alt="Logo" />
-      </div>
+      <Header />
       <div className="order-menu">
         <div>
           <Link to="/order" onClick={() => setActive('recommend')}>
@@ -177,7 +166,7 @@ const Order: React.FC = () => {
             </span>
           </Link>
           <Link to="/order" onClick={() => setActive('single')}>
-            <span className={"menu-button1" + (active === 'single' ? ' active' : '')}>
+            <span className={"menu-button1 right" + (active === 'single' ? ' active' : '')}>
               <img src={IMG_SINGLE} alt="Single" />
               <div>햄버거 단품</div>
             </span>
@@ -195,7 +184,7 @@ const Order: React.FC = () => {
             </span>
           </Link>
           <Link to="/order" onClick={() => setActive('search')}>
-            <span className={"menu-button1" + (active === 'search' ? ' active' : '')}>
+            <span className={"menu-button1 right" + (active === 'search' ? ' active' : '')}>
               <img src={IMG_SEARCH} alt="Search" />
               <div>검색</div>
             </span>
@@ -223,12 +212,6 @@ const Order: React.FC = () => {
                 <MenuCard name={items.name} img={items.img} price={items.price} />
               </li>
             )}
-            <span className="btn-up">
-              <img onClick={scrollTop} src={IMG_UP} alt="Scroll Up" />
-            </span>
-            <span className="btn-down">
-              <img onClick={scrollBottom} src={IMG_DOWN} alt="Scroll Down" />
-            </span>
           </ul>
         </div>
       </div>

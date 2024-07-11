@@ -2,14 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 
-import IMG_LOGO2 from "../images/logo2.png";
 import IMG_CARD from "../images/card.png";
 import IMG_MONEY from "../images/money.png";
 
 import ModalStaff from "./ModalStaff";
 
+// SCSS 파일
 import "../css/PaymentSelect.scss"
 import "../css/Modal.scss"
+
+// 헤더 파일
+import Header from "./Component/Header";
 
 const PaymentSelect: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);
@@ -48,9 +51,7 @@ const PaymentSelect: React.FC = () => {
   return (
     <div className="check-layer">
       {/* header 화면 */}
-      <div className="header">
-        <img src={IMG_LOGO2} alt="" />
-      </div>
+      <Header />
       {/* 진행 화면 */}
       <div className="check-process">
         <span>

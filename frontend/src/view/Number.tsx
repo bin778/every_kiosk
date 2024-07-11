@@ -1,14 +1,18 @@
-import IMG_LOGO2 from "../images/logo2.png";
 import IMG_NUMBER from "../images/number.png";
+
+// SCSS 파일
 import "../css/Number.scss"
 import "../css/Modal.scss"
+
+// 헤더 파일
+import Header from "./Component/Header";
 
 const Number: React.FC = () => {
   return (
     <div className="check-layer">
       {/* header 화면 */}
       <div className="header">
-        <img src={IMG_LOGO2} alt="" />
+        <Header />
       </div>
       {/* 진행 화면 */}
       <div className="check-process">
