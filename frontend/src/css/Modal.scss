@@ -1,5 +1,4 @@
 .modal {
-  display: 0;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -20,16 +19,19 @@
   padding: 10px;
   border-radius: 15px;
   box-shadow: 2px 5px rgba(0, 0, 0, 0.3);
-}
 
-.modalBoxSet {
-  height: 300px;
+  /* 안내문 */
+  > div {
+    margin-top: 5px;
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
 }
 
 /* 선택 모달 창 */
 .modalSelect {
-  width: 600px;
-  height: 900px;
+  width: 550px;
+  height: 800px;
 }
 
 .SelectTitle {
@@ -40,7 +42,7 @@
 .SelectDisplay {
   display: inline-block;
   width: 90%;
-  height: 82%;
+  height: 80%;
   background-color: #f2ebe6;
   border-top: 3px solid #683a2f;
   padding: 5px;
@@ -54,41 +56,31 @@
   position: relative;
   padding: 10px;
   margin: 3px;
-  width: 150px;
-  height: 150px;
+  width: 135px;
+  height: 135px;
   overflow: hidden;
   cursor: pointer;
-  border: solid 2px #683a2f;
-  border-radius: 20px;
-
   > {
     img {
       position: absolute;
-      left: 10px;
-      top: -5%;
-      width: 150px;
-      height: 120px;
+      left: 15px;
+      top: 0%;
+      width: 120px;
+      height: 80px;
     }
 
     span {
       position: absolute;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      top: 65%;
-      left: 15%;
+      top: 55%;
+      left: 10%;
     }
   }
 }
 
 .SelectPrice {
-  top: 80% !important;
-}
-
-/* 안내문 */
-.modalBox > div {
-  margin-top: 5px;
-  font-size: 1.7rem;
-  font-weight: 700;
+  top: 70% !important;
 }
 
 .default-text {
@@ -126,14 +118,14 @@
   background-color: #999999;
   cursor: pointer;
   padding: 7px;
-  border-radius: 15px;
+  border-radius: 25px;
   opacity: 1;
   z-index: 1;
-}
 
-.decrease-button > img, .increase-button > img {
-  width: 30px;
-  height: 30px;
+  > img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .decrease-button {
@@ -156,4 +148,139 @@
 } 
 .center {
   left: 25%;
+}
+
+/* 태블릿 반응형 웹 */
+@media (max-width: 1023px) {
+  .modalBox {
+    width: 400px;
+    height: 170px;
+    padding: 7px;
+
+    > div {
+      margin-top: 4px;
+      font-size: 1.5rem;
+    }
+  }
+
+  // 옵션 선택 창
+  .modalSelect {
+    width: 430px;
+    height: 650px;
+  }
+
+  .SelectTitle {
+    font-size: 1.7rem !important;
+    margin-bottom: 13px;
+  }
+
+  .SelectDisplay {
+    border-top: 2px solid #683a2f;
+  }
+
+  .SelectChangeMenu {
+    padding: 7px;
+    margin: 2px;
+    width: 110px;
+    height: 110px;
+    border: none;
+  
+    > {
+      img {
+        top: 0%;
+        width: 100px;
+        height: 70px;
+      }
+  
+      span {
+        font-size: 1.0rem;
+        top: 55%;
+      }
+    }
+  }
+  
+  .SelectPrice {
+    top: 75% !important;
+  }
+
+  // 모달 버튼
+  .modal-button {
+    margin: 4px;
+    padding: 7px;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  // 수량
+  .decrease-button, .increase-button {
+    padding: 5px;
+
+    > img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .decrease-button {
+    left: 37%;
+  }
+
+  .increase-button {
+    right: 37%;
+  }
+
+  .quantity {
+    font-size: 1.7rem;
+  }
+}
+
+/* 모바일 반응형 웹 */
+@media (max-width: 639px) {
+  .modalBox {
+    width: 300px;
+    height: 140px;
+    padding: 5px;
+
+    > div {
+      margin-top: 3px;
+      font-size: 1.2rem;
+    }
+  }
+
+  // 옵션 선택 창
+  .modalSelect {
+    width: 300px;
+    height: 500px;
+  }
+
+  .SelectTitle {
+    font-size: 1.3rem !important;
+    margin-bottom: 10px;
+  }
+
+  .SelectDisplay {
+    border-top: 1px solid #683a2f;
+  }
+
+  // 모달 버튼
+  .modal-button {
+    margin: 3px;
+    padding: 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  // 수량
+  .decrease-button, .increase-button {
+    padding: 3px;
+
+    > img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .quantity {
+    font-size: 1.5rem;
+  }
 }

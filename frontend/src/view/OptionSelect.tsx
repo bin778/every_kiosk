@@ -80,7 +80,7 @@ const OptionSelect: React.FC = () => {
       <Header />
       {/* main 화면 */}
       <div className="option-title">선택한 옵션을 확인하세요</div>
-      <ul>
+      <ul className="option-board">
         <li className="option-box">
           <div>
             <span className="option-number">1</span>

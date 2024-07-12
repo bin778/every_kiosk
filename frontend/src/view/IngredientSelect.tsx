@@ -36,9 +36,19 @@ const IngredientSelect: React.FC<IngredientSelectProps> = ({open, close}) => {
                         <span>치즈</span>
                         <span className='red SelectPrice'>+200원</span>
                     </li>
+                    <li className='SelectChangeMenu'>
+                        <img src={IMG_CHEESE} alt="" />
+                        <span>치즈</span>
+                        <span className='red SelectPrice'>+200원</span>
+                    </li>
+                    <li className='SelectChangeMenu'>
+                        <img src={IMG_CHEESE} alt="" />
+                        <span>치즈</span>
+                        <span className='red SelectPrice'>+200원</span>
+                    </li>
                 </ul>
                 <span className='modal-button cancel-button bottom left' onClick={close}>취소</span>
-                <span className='modal-button bottom right'>선택</span>
+                <span className='modal-button bottom right'>추가</span>
             </div>
         </div>
     );

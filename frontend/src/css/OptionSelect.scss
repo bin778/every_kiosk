@@ -29,6 +29,10 @@
   }
   
   /* 옵션 박스 */
+  .option-board {
+    min-height: 80vh;
+  }
+
   .option-box {
     position: relative;
     padding: 10px;
@@ -105,9 +109,9 @@
   /* header 메뉴 */
   .large-button {
     position: relative;
-    right: 205px;
-    display: inline-block;
-    width: calc(35% - 2px);
+    left: 30px;
+    display: flow;
+    width: calc(33% - 10px);
     margin: 6px;
     padding: 10px;
     border: 3px solid #d72300;
@@ -130,3 +134,159 @@
     right: 30px;
     color: #d72300;
   }
+  
+/* 태블릿 반응형 웹 */
+@media (max-width: 1023px) {
+  .option-title {
+    margin: 7px auto;
+    font-size: 1.7rem;
+  }
+
+  // 옵션 박스
+  .option-box {
+    padding: 7px;
+    margin: 7px auto;
+    border-radius: 0;
+    border: none;
+    border-top: 2px solid #999999;
+    border-bottom: 2px solid #999999;
+    height: 200px;
+    box-shadow: none;
+    overflow: hidden;
+
+    > img {
+      top: 50px;
+      left: 10px;
+      width: 130px;
+      height: 110px;
+    }
+  }
+
+  .option-number {
+    left: 7px;
+    font-size: 1.3rem;
+    width: 27px;
+    color: white;
+  }
+
+  .option-select1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    left: 40px;
+  }
+
+  .option-name {
+    font-size: 1.7rem;
+    top: 40px;
+    left: 150px;
+  }
+
+  .option-engname {
+    font-size: 1.4rem;
+    top: 75px;
+    left: 150px;
+  }
+
+  .option-select2 {
+    margin: 7px;
+    padding: 7px;
+    background-color: #683a2f;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  // header 메뉴
+  .large-button {
+    left: 20px;
+    width: calc(32% - 10px);
+    margin: 5px;
+    padding: 7px;
+    font-size: 1.2rem;
+  }
+
+  .option-price1 {
+    right: 190px;
+    font-size: 1.7rem;
+  }
+
+  .option-price2 {
+    right: 30px;
+  }
+}
+
+/* 모바일 반응형 웹 */
+@media (max-width: 639px) {
+  .option-title {
+    margin: 5px auto;
+    font-size: 1.5rem;
+  }
+
+  // 옵션 박스
+  .option-box {
+    padding: 5px;
+    margin: 5px auto;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    height: 170px;
+    box-shadow: none;
+    overflow: hidden;
+
+    > img {
+      top: 40px;
+      width: 110px;
+      height: 100px;
+    }
+  }
+
+  .option-number {
+    left: 5px;
+    font-size: 1.0rem;
+    width: 20px;
+    color: white;
+  }
+
+  .option-select1 {
+    position: absolute;
+    font-size: 1.0rem;
+    font-weight: 700;
+    left: 30px;
+  }
+
+  .option-name {
+    font-size: 1.5rem;
+    top: 30px;
+    left: 120px;
+  }
+
+  .option-engname {
+    font-size: 1.1rem;
+    top: 60px;
+    left: 120px;
+  }
+
+  .option-select2 {
+    margin: 3px;
+    padding: 3px;
+    background-color: #683a2f;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  // header 메뉴
+  .large-button {
+    left: 10px;
+    width: calc(31% - 10px);
+    margin: 3px;
+    padding: 5px;
+    font-size: 1.0rem;
+  }
+
+  .option-price1 {
+    right: 130px;
+    font-size: 1.3rem;
+  }
+
+  .option-price2 {
+    right: 20px;
+  }
+}

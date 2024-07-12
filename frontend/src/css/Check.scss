@@ -14,7 +14,7 @@ body {
 
   > span {
     display: inline-block;
-    width: calc(21% - 6px);
+    width: calc(22% - 6px);
     height: 100px;
     margin: 10px 5px;
     padding: 10px;
@@ -37,7 +37,7 @@ body {
 /* 음식 목록 선택하기 */
 .check-main {
   width: 100%;
-  height: 810px;
+  height: 80vh;
   position: sticky;
   text-align: left;
   overflow-y: scroll;
@@ -73,13 +73,14 @@ body {
 .check-price1 {
   position: relative;
   left: 20px;
+  bottom: 5px;
   margin: 10px;
-  font-size: 2rem;
+  font-size: 2.0rem;
   font-weight: 700;
 }
 
 .check-price2 {
-  left: 450px;
+  left: 30px;
   color: #d72300;
 }
 
@@ -126,4 +127,136 @@ body {
 
 .check-price {
   top: 200px;
+}
+
+/* 태블릿 반응형 웹 */
+@media (max-width: 1023px) {
+  .check-process {
+    > span {
+      height: 80px;
+      margin: 7px 4px;
+      padding: 7px;
+      background-color: #683a2f;
+
+      > div {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  .check-main {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .check-card {
+    padding: 7px;
+    border: none;
+    border-radius: 0;
+    border-top: 2px solid #999999;
+    border-bottom: 2px solid #999999;
+    height: 200px;
+    box-shadow: none;
+
+    > img {
+      left: 10px;
+      top: 10%;
+      width: 200px;
+      height: 180px;
+    }
+  }
+
+  .check-text {
+    top: 15px;
+    right: 15px;
+    font-size: 1.7rem;
+  }
+
+  .check-option {
+    top: 50px;
+  }
+  
+  .check-side {
+    top: 85px;
+  }
+  
+  .check-quantity {
+    top: 120px;
+  }
+  
+  .check-price {
+    top: 155px;
+  }
+
+  .check-price1 {
+    left: 15px;
+    font-size: 1.7rem;
+  }
+  
+  .check-price2 {
+    left: 20px;
+  }
+}
+
+/* 모바일 반응형 웹 */
+@media (max-width: 639px) {
+  .check-process {
+    > span {
+      height: 70px;
+      margin: 5px 3px;
+      padding: 3px;
+      background-color: #683a2f;
+
+      > div {
+        font-size: 1.0rem;
+      }
+    }
+  }
+
+  .check-card {
+    padding: 5px;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    height: 150px;
+    box-shadow: none;
+
+    > img {
+      left: 10px;
+      top: 10%;
+      width: 150px;
+      height: 140px;
+    }
+  }
+
+  .check-text {
+    top: 10px;
+    right: 10px;
+    font-size: 1.1rem;
+  }
+
+  .check-option {
+    top: 35px;
+  }
+  
+  .check-side {
+    top: 60px;
+  }
+  
+  .check-quantity {
+    top: 85px;
+  }
+  
+  .check-price {
+    top: 110px;
+  }
+
+  .check-price1 {
+    left: 10px;
+    font-size: 1.3rem;
+  }
+  
+  .check-price2 {
+    left: 10px;
+  }
 }

@@ -14,7 +14,7 @@ body {
 
   > span {
     display: inline-block;
-    width: calc(21% - 6px);
+    width: calc(22% - 6px);
     height: 100px;
     margin: 10px 5px;
     padding: 10px;
@@ -94,4 +94,42 @@ body {
   padding: 5px;
   padding-top: 15px;
   padding-bottom: 10px;
+}
+
+/* 태블릿 반응형 웹 */
+@media (max-width: 1023px) {
+  .check-process {
+    > span {
+      height: 80px;
+      margin: 7px 4px;
+      padding: 7px;
+      background-color: #683a2f;
+
+      > div {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+/* 모바일 반응형 웹 */
+@media (max-width: 639px) {
+  .check-process {
+    > span {
+      height: 60px;
+      margin: 5px 3px;
+      padding: 3px;
+      background-color: #683a2f;
+
+      > div {
+        font-size: 1.0rem;
+      }
+    }
+  }
+
+  .check-main {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
