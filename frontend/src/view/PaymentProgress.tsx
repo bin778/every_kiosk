@@ -61,7 +61,7 @@ const PaymentProgress: React.FC = () => {
         </span>
       </div>
       {/* 결제 진행 화면 */}
-      <div className="center">
+      <div className="payment-center">
         <div className="pay-up pay-text text-red">신용 카드를</div>
         <div className="pay-text">투입구에 꽂아주세요</div>
         <div className="pay-text2">결제 오류시 마그네틱을 아래로 향하게 긁어주세요</div>

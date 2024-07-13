@@ -72,7 +72,7 @@ const PaymentSelect: React.FC = () => {
         </span>
       </div>
       {/* 결제수단 안내 */}
-      <div className="center">
+      <div className="payment-center">
         <div className="pay-up pay-text">결제 수단을</div>
         <div className="pay-text">선택해주세요</div>
         <span className="pay-menu" onClick={movePayProgress}>
@@ -91,12 +91,11 @@ const PaymentSelect: React.FC = () => {
           <span className="check-price1 check-price2">5,000원</span>
         </div>
         <div className="button-select1">
-            <span className="guide-button" onClick={moveOrder}>결제취소</span>
-            <span className="guide-button" onClick={() => {
+            <span className="guide-button paymentselect-button" onClick={moveOrder}>결제취소</span>
+            <span className="guide-button paymentselect-button" onClick={() => {
               openModalStaff()
               staffCall()
             }}>직원호출</span>
-            <span className="guide-button order-button" onClick={movePaySelect}>결제 진행</span>
             <ModalStaff open={staffModalOpen} close={closeModalStaff} />
         </div>
       </div>

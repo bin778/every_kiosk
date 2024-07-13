@@ -28,6 +28,7 @@ body {
 .pay-card {
   margin-bottom: 20px;
   filter: opacity(0.5) drop-shadow(0 0 0 #683a2f);
+  width: 500px;
 }
 
 /* 하위 메뉴 */
@@ -39,8 +40,35 @@ body {
   padding: 5px;
   padding-top: 15px;
   padding-bottom: 10px;
+  margin-top: 200px;
 }
 
 .guide-button2 {
   width: 45%;
+}
+
+/* 태블릿 반응형 웹 */
+@media (max-width: 1023px) {
+  .pay-text2 {
+    font-size: 1.7rem;
+    padding: 7px;
+  }
+
+  .pay-card {
+    margin-bottom: 15px;
+    width: 400px;
+  }
+}
+
+/* 모바일 반응형 웹 */
+@media (max-width: 639px) {
+  .pay-text2 {
+    font-size: 1.3rem;
+    padding: 5px;
+  }
+
+  .pay-card {
+    margin-bottom: 10px;
+    width: 300px;
+  }
 }
