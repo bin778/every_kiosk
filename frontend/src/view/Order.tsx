@@ -6,23 +6,16 @@ import ModalQuantity1 from "./ModalQuantity";
 import ModalQuantity2 from "./ModalQuantity";
 import ModalQuantitySet from "./ModalQuantitySet";
 import axios from 'axios';
-
 import IMG_RECO from "../images/recommend.png";
 import IMG_SINGLE from "../images/hamburger.png";
 import IMG_SET from "../images/hamburger_set.png";
 import IMG_SIDE from "../images/side.png";
 import IMG_DRINK from "../images/drink.png";
 import IMG_SEARCH from "../images/search.png";
-
 import IMG_CLOSE from "../images/close.png";
-
 import IMG_MENU1 from "../images/menu1.png";
 import IMG_MENU2 from "../images/menu2.png";
-
-// SCSS 파일
 import "../css/Order.scss";
-
-// 헤더 파일
 import Header from "./Component/Header";
 
 interface Item {
@@ -99,15 +92,14 @@ const Order: React.FC = () => {
     setQuantitySetModalOpen(false);
   };
 
-  const staffCall = () => {
-    axios.get('/api/staff').then(response => console.log(response.data));
+  const staffCall = (reason: string) => {
+    axios.post('/api/staff', { reason }).then(response => console.log(response.data));
   };
-  
+
   const getSearchData = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value.toLowerCase());
   };
 
-  // 유니코드 한글 범위 내에서 초성 추출
   const getInitialConsonants = (str: string): string => {
     const CHO: string[] = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
     let result: string = "";
@@ -124,15 +116,13 @@ const Order: React.FC = () => {
     return result;
   }
 
-  // 검색 함수
   const filterName = initialState.items.filter((item): boolean => {
-    // 입력값이 없으면 false 반환
     if (!userInput.trim())
       return false;
 
     const userInitials: string = getInitialConsonants(userInput.replace(" ", "").toLocaleLowerCase());
     const itemInitials: string = getInitialConsonants(item.name.replace(" ", "").toLocaleLowerCase());
-    return itemInitials.includes(userInitials); // 일치하면 true, 아니면 false
+    return itemInitials.includes(userInitials);
   });
 
   const addToCart = (itemId: number, itemName: string, itemImg: string, itemPrice: number) => {
@@ -270,7 +260,7 @@ const Order: React.FC = () => {
           <span className="guide-button" onClick={openModalCancel}>주문 취소</span>
           <span className="guide-button" onClick={() => {
             openModalStaff();
-            staffCall();
+            staffCall("고객 호출");
           }}>직원 호출</span>
           <span className="guide-button order-button" onClick={moveCheck}>결제하기</span>
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />

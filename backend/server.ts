@@ -1,10 +1,13 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
 import { createServer } from 'http';
+import { Server } from 'socket.io';
 import api from './src/api/index';
 import db from './src/api/db';
 
 const app = express();
+const server = createServer(app);
+const io = new Server(server);
 
 // 미들웨어 설정
 app.use(express.json());
@@ -29,16 +32,26 @@ app.get("/api/test-db", async (req: Request, res: Response) => {
   }
 });
 
+// 직원 호출 요청
+app.post("/api/staff", (req: Request, res: Response) => {
+  const { reason } = req.body;
+  const call = `직원 호출이 요청되었습니다. 사유: ${reason}`;
+  res.send(call);
+  io.emit('staffCall', call);
+  console.log(call);
+});
+
 // 서버 시작
-const server = createServer(app);
 server.listen(5000, () => {
   console.log("server listen start : 5000");
 });
 
-// 직원 호출 요청
-app.get("/api/staff", (req: Request, res: Response) => {
-  const call = "직원 호출이 요청되었습니다.";
-  res.send(call);
-  console.log(call);
+// WebSocket 연결
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
 });
 
