@@ -40,7 +40,7 @@ interface CartItem {
 const initialState = {
   items: [
     { id: 0, name: '불고기버거', img: IMG_MENU1, price: 5000 },
-    { id: 1, name: '통새우버거', img: IMG_MENU2, price: 6000 }
+    { id: 1, name: '통새우버거', img: IMG_MENU2, price: 6000 },
   ],
   cartItems: [
     {
@@ -107,8 +107,32 @@ const Order: React.FC = () => {
     setUserInput(e.target.value.toLowerCase());
   };
 
-  const filterName = initialState.items.filter((p) => {
-    return p.name.replace(" ", "").toLocaleLowerCase().includes(userInput.toLocaleLowerCase());
+  // 유니코드 한글 범위 내에서 초성 추출
+  const getInitialConsonants = (str: string): string => {
+    const CHO: string[] = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+    let result: string = "";
+
+    for (let i = 0; i < str.length; i++) {
+      const code: number = str.charCodeAt(i) - 0xAC00;
+
+      if (code >= 0 && code <= 11172) {
+        result += CHO[Math.floor(code / 588)];
+      } else {
+        result += str.charAt(i);
+      }
+    }
+    return result;
+  }
+
+  // 검색 함수
+  const filterName = initialState.items.filter((item): boolean => {
+    // 입력값이 없으면 false 반환
+    if (!userInput.trim())
+      return false;
+
+    const userInitials: string = getInitialConsonants(userInput.replace(" ", "").toLocaleLowerCase());
+    const itemInitials: string = getInitialConsonants(item.name.replace(" ", "").toLocaleLowerCase());
+    return itemInitials.includes(userInitials); // 일치하면 true, 아니면 false
   });
 
   const addToCart = (itemId: number, itemName: string, itemImg: string, itemPrice: number) => {
