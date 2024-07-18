@@ -100,29 +100,42 @@ const Order: React.FC = () => {
     setUserInput(e.target.value.toLowerCase());
   };
 
-  const getInitialConsonants = (str: string): string => {
-    const CHO: string[] = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
-    let result: string = "";
+  const decomposeHangul = (s: string) => {
+    const initial = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+    const medial = ["ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅘ", "ㅙ", "ㅚ", "ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ", "ㅣ"];
+    const final = ["", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ", "ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
 
-    for (let i = 0; i < str.length; i++) {
-      const code: number = str.charCodeAt(i) - 0xAC00;
+    let result = "";
 
-      if (code >= 0 && code <= 11172) {
-        result += CHO[Math.floor(code / 588)];
+    for (let i = 0; i < s.length; i++) {
+      const code = s.charCodeAt(i);
+
+      if (code >= 0xAC00 && code <= 0xD7A3) {
+        const syllable = code - 0xAC00;
+        const chosungIndex = Math.floor(syllable / 588);
+        const jungsungIndex = Math.floor((syllable - (chosungIndex * 588)) / 28);
+        const jongsungIndex = syllable % 28;
+
+        result += initial[chosungIndex] + medial[jungsungIndex] + final[jongsungIndex];
       } else {
-        result += str.charAt(i);
+        result += s.charAt(i);
       }
     }
+
     return result;
-  }
+  };
+
+  const getJamo = (str: string): string => {
+    return decomposeHangul(str.replace(" ", "").toLowerCase());
+  };
 
   const filterName = initialState.items.filter((item): boolean => {
     if (!userInput.trim())
       return false;
 
-    const userInitials: string = getInitialConsonants(userInput.replace(" ", "").toLocaleLowerCase());
-    const itemInitials: string = getInitialConsonants(item.name.replace(" ", "").toLocaleLowerCase());
-    return itemInitials.includes(userInitials);
+    const userJamo: string = getJamo(userInput);
+    const itemJamo: string = getJamo(item.name);
+    return itemJamo.includes(userJamo);
   });
 
   const addToCart = (itemId: number, itemName: string, itemImg: string, itemPrice: number) => {
