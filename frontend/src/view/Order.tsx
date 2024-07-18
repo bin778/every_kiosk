@@ -100,38 +100,38 @@ const Order: React.FC = () => {
     setUserInput(e.target.value.toLowerCase());
   };
 
-  const decomposeHangul = (s: string) => {
+  const decomposeHangul = (s: string): string => {
     const initial = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
     const medial = ["ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅘ", "ㅙ", "ㅚ", "ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ", "ㅣ"];
     const final = ["", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ", "ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
-
+  
     let result = "";
-
+  
     for (let i = 0; i < s.length; i++) {
       const code = s.charCodeAt(i);
-
+  
       if (code >= 0xAC00 && code <= 0xD7A3) {
         const syllable = code - 0xAC00;
         const chosungIndex = Math.floor(syllable / 588);
         const jungsungIndex = Math.floor((syllable - (chosungIndex * 588)) / 28);
         const jongsungIndex = syllable % 28;
-
+  
         result += initial[chosungIndex] + medial[jungsungIndex] + final[jongsungIndex];
       } else {
         result += s.charAt(i);
       }
     }
-
+  
     return result;
   };
-
+  
   const extractInitials = (str: string): string => {
     const initial = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
     let result = "";
-
+  
     for (let i = 0; i < str.length; i++) {
       const code = str.charCodeAt(i);
-
+  
       if (code >= 0xAC00 && code <= 0xD7A3) {
         const syllable = code - 0xAC00;
         const chosungIndex = Math.floor(syllable / 588);
@@ -140,28 +140,33 @@ const Order: React.FC = () => {
         result += str.charAt(i);
       }
     }
-
+  
     return result;
   };
-
+  
   const getJamo = (str: string): string => {
-    return decomposeHangul(str.replace(" ", "").toLowerCase());
+    return decomposeHangul(str.replace(/\s/g, "").toLowerCase());
   };
-
+  
   const getInitials = (str: string): string => {
-    return extractInitials(str.replace(" ", "").toLowerCase());
+    return extractInitials(str.replace(/\s/g, "").toLowerCase());
   };
-
+  
   const filterName = initialState.items.filter((item): boolean => {
     if (!userInput.trim()) return false;
-
+  
     const userJamo: string = getJamo(userInput);
     const itemJamo: string = getJamo(item.name);
     const userInitials: string = getInitials(userInput);
     const itemInitials: string = getInitials(item.name);
 
-    return itemJamo.includes(userJamo) || itemInitials.includes(userInitials);
+    const nameMatch = item.name.toLowerCase().includes(userInput.toLowerCase());
+    const jamoMatch = itemJamo === userJamo;
+    const initialsMatch = itemInitials === userInitials;
+  
+    return nameMatch || jamoMatch || initialsMatch;
   });
+  
 
   const addToCart = (itemId: number, itemName: string, itemImg: string, itemPrice: number) => {
     const found = cartItems.filter((el) => el.itemId === itemId)[0];
