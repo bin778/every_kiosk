@@ -125,17 +125,42 @@ const Order: React.FC = () => {
     return result;
   };
 
+  const extractInitials = (str: string): string => {
+    const initial = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+    let result = "";
+
+    for (let i = 0; i < str.length; i++) {
+      const code = str.charCodeAt(i);
+
+      if (code >= 0xAC00 && code <= 0xD7A3) {
+        const syllable = code - 0xAC00;
+        const chosungIndex = Math.floor(syllable / 588);
+        result += initial[chosungIndex];
+      } else {
+        result += str.charAt(i);
+      }
+    }
+
+    return result;
+  };
+
   const getJamo = (str: string): string => {
     return decomposeHangul(str.replace(" ", "").toLowerCase());
   };
 
+  const getInitials = (str: string): string => {
+    return extractInitials(str.replace(" ", "").toLowerCase());
+  };
+
   const filterName = initialState.items.filter((item): boolean => {
-    if (!userInput.trim())
-      return false;
+    if (!userInput.trim()) return false;
 
     const userJamo: string = getJamo(userInput);
     const itemJamo: string = getJamo(item.name);
-    return itemJamo.includes(userJamo);
+    const userInitials: string = getInitials(userInput);
+    const itemInitials: string = getInitials(item.name);
+
+    return itemJamo.includes(userJamo) || itemInitials.includes(userInitials);
   });
 
   const addToCart = (itemId: number, itemName: string, itemImg: string, itemPrice: number) => {
