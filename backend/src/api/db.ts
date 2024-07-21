@@ -12,18 +12,4 @@ const pool = mysql.createPool(conn);
 
 const db: { [key: string]: () => Promise<unknown> } = {};
 
-db.TestDB = () => {
-  return new Promise(async (resolve, reject) => {
-    const sql = 'SELECT * FROM test'; // SQL 쿼리
-
-    pool.query(sql, (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(results);
-      }
-    });
-  });
-};
-
 export default db;
