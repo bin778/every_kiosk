@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../css/Modal.scss"
 
-import IMG_POTATO from "../images/potato.png";
-
 interface SideSelectProps {
     open: boolean;
     close: () => void;
@@ -31,12 +29,12 @@ const SideSelect: React.FC<SideSelectProps> = ({open, close}) => {
                 <div className='SelectTitle'>원하는 사이드를 선택해주세요</div>
                 <ul className='SelectDisplay'>
                     <li className='SelectChangeMenu'>
-                        <img src={IMG_POTATO} alt="" />
+                        <img src={`${process.env.PUBLIC_URL}/Item/potato.png`} alt="" />
                         <span>감자튀김(小)</span>
                         <span className='red SelectPrice'>+500원</span>
                     </li>
                     <li className='SelectChangeMenu'>
-                         <img src={IMG_POTATO} alt="" />
+                         <img src={`${process.env.PUBLIC_URL}/Item/potato.png`} alt="" />
                         <span>감자튀김(大)</span>
                         <span className='red SelectPrice'>+1000원</span>
                     </li>

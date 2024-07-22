@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from 'axios';
 
-import IMG_MENU1 from "../images/menu1.png";
-
 import ModalStaff from "./ModalStaff";
 
 // SCSS 파일
@@ -68,7 +66,7 @@ const Check: React.FC = () => {
       {/* 주문확인 목록 */}
       <ul className="check-main">
         <li className="check-card">
-          <img src={IMG_MENU1} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/Item/bulgogi_set.png`} alt="" />
           <div className="check-text">불고기버거세트</div>
           <div className="check-text check-option">치즈 추가</div>
           <div className="check-text check-side">감자튀김(中), 코카콜라(中)</div>

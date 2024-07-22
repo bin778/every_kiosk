@@ -2,10 +2,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-import IMG_MENU1 from "../images/menu1.png";
-import IMG_SIDE from "../images/potato.png";
-import IMG_DRINK from "../images/cola.png";
-
 import ModalStaff from "./ModalStaff";
 import IngredientSelect from "./IngredientSelect";
 import SideSelect from "./SideSelect";
@@ -86,7 +82,7 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">1</span>
             <span className="option-select1">재료 변경</span>
           </div>
-          <img src={IMG_MENU1} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/Item/bulgogi_set.png`} alt="" />
           <span className="option-name">새우 버거</span>
           <span className="option-engname">Shrimp Burger</span>
           <span className="option-select2" onClick={openIngredientSelect}>재료 변경</span>
@@ -96,7 +92,7 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">2</span>
             <span className="option-select1">사이드메뉴 변경</span>
           </div>
-          <img src={IMG_SIDE} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/Item/potato.png`} alt="" />
           <span className="option-name">감자튀김(中)</span>
           <span className="option-engname">French Fries(Middle)</span>
           <span className="option-select2" onClick={openSideSelect}>사이드메뉴 변경</span>
@@ -106,7 +102,7 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">3</span>
             <span className="option-select1">음료 변경</span>
           </div>
-          <img src={IMG_DRINK} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/Item/bulgogi.png`} alt="" />
           <span className="option-name">코카콜라(中)</span>
           <span className="option-engname">Coca-Cola(Middle)</span>
           <span className="option-select2" onClick={openDrinkSelect}>

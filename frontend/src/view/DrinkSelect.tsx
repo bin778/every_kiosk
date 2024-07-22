@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../css/Modal.scss"
 
-import IMG_COLA from "../images/cola.png";
-
 interface DrinkSelectProps {
     open: boolean;
     close: () => void;
@@ -31,12 +29,12 @@ const DrinkSelect: React.FC<DrinkSelectProps> = ({open, close}) => {
                 <div className='SelectTitle'>원하는 음료를 선택해주세요</div>
                     <ul className='SelectDisplay'>
                         <li className='SelectChangeMenu'>
-                            <img src={IMG_COLA} alt="" />
+                            <img src={`${process.env.PUBLIC_URL}/Item/cola.png`} alt="" />
                             <span>코카콜라(中)</span>
                             <span className='red SelectPrice'>+500원</span>
                         </li>
                         <li className='SelectChangeMenu'>
-                            <img src={IMG_COLA} alt="" />
+                            <img src={`${process.env.PUBLIC_URL}/Item/cola.png`} alt="" />
                             <span>코카콜라(大)</span>
                             <span className='red SelectPrice'>+1000원</span>
                         </li>

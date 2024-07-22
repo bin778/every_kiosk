@@ -13,8 +13,6 @@ import IMG_SIDE from "../images/side.png";
 import IMG_DRINK from "../images/drink.png";
 import IMG_SEARCH from "../images/search.png";
 import IMG_CLOSE from "../images/close.png";
-import IMG_MENU1 from "../images/menu1.png";
-import IMG_MENU2 from "../images/menu2.png";
 import "../css/Order.scss";
 import Header from "./Component/Header";
 
@@ -32,8 +30,8 @@ interface CartItem {
 
 const initialState = {
   items: [
-    { id: 0, name: '불고기버거', img: IMG_MENU1, price: 5000 },
-    { id: 1, name: '통새우버거', img: IMG_MENU2, price: 6000 },
+    { id: 0, name: '불고기버거', img: `${process.env.PUBLIC_URL}/Item/bulgogi.png`, price: 5000 },
+    { id: 1, name: '통새우버거', img: `${process.env.PUBLIC_URL}/Item/shrimp.png`, price: 6000 },
   ],
   cartItems: [
     {
@@ -280,15 +278,8 @@ const Order: React.FC = () => {
           <ul>
             <li className="order-card">
               <div className="card-text1">불고기버거</div>
-              <img src={IMG_MENU1} className="ordered" alt="Ordered Item" />
+              <img src={`${process.env.PUBLIC_URL}/Item/bulgogi.png`} className="ordered" alt="Ordered Item" />
               <img src={IMG_CLOSE} className="btn-close" onClick={() => handleDelete(0)} alt="Close" />
-              <div className="card-text2 position-up">1개</div>
-              <div className="card-text2 red">{5000}원</div>
-            </li>
-            <li className="order-card">
-              <div className="card-text1">불고기버거</div>
-              <img src={IMG_MENU1} className="ordered" alt="Ordered Item" />
-              <img src={IMG_CLOSE} className="btn-close" onClick={() => handleDelete(1)} alt="Close" />
               <div className="card-text2 position-up">1개</div>
               <div className="card-text2 red">{5000}원</div>
             </li>
