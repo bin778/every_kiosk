@@ -31,12 +31,17 @@ const SideSelect: React.FC<SideSelectProps> = ({open, close}) => {
                     <li className='SelectChangeMenu'>
                         <img src={`${process.env.PUBLIC_URL}/Item/potato.png`} alt="" />
                         <span>감자튀김(小)</span>
-                        <span className='red SelectPrice'>+500원</span>
+                        <span className='red SelectPrice'>+1000원</span>
                     </li>
                     <li className='SelectChangeMenu'>
                          <img src={`${process.env.PUBLIC_URL}/Item/potato.png`} alt="" />
                         <span>감자튀김(大)</span>
-                        <span className='red SelectPrice'>+1000원</span>
+                        <span className='red SelectPrice'>+1500원</span>
+                    </li>
+                    <li className='SelectChangeMenu'>
+                         <img src={`${process.env.PUBLIC_URL}/Item/cheesestick.png`} alt="" />
+                        <span>치즈스틱</span>
+                        <span className='red SelectPrice'>+2000원</span>
                     </li>
                 </ul>
                 <span className='modal-button cancel-button bottom left' onClick={close}>취소</span>

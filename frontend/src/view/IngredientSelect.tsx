@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../css/Modal.scss"
 
-import IMG_CHEESE from "../images/cheese.png";
-
 interface IngredientSelectProps {
     open: boolean;
     close: () => void;
@@ -32,19 +30,19 @@ const IngredientSelect: React.FC<IngredientSelectProps> = ({open, close}) => {
                 <div className='SelectTitle'>원하는 재료를 선택해주세요</div>
                 <ul className='SelectDisplay'>
                     <li className='SelectChangeMenu'>
-                        <img src={IMG_CHEESE} alt="" />
+                        <img src={`${process.env.PUBLIC_URL}/Item/cheese.png`} alt="" />
                         <span>치즈</span>
-                        <span className='red SelectPrice'>+200원</span>
+                        <span className='red SelectPrice'>+1000원</span>
                     </li>
                     <li className='SelectChangeMenu'>
-                        <img src={IMG_CHEESE} alt="" />
-                        <span>치즈</span>
-                        <span className='red SelectPrice'>+200원</span>
+                        <img src={`${process.env.PUBLIC_URL}/Item/bacon.png`} alt="" />
+                        <span>베이컨</span>
+                        <span className='red SelectPrice'>+2000원</span>
                     </li>
                     <li className='SelectChangeMenu'>
-                        <img src={IMG_CHEESE} alt="" />
-                        <span>치즈</span>
-                        <span className='red SelectPrice'>+200원</span>
+                        <img src={`${process.env.PUBLIC_URL}/Item/patty.png`} alt="" />
+                        <span>패티</span>
+                        <span className='red SelectPrice'>+3000원</span>
                     </li>
                 </ul>
                 <span className='modal-button cancel-button bottom left' onClick={close}>취소</span>

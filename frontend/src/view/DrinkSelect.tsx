@@ -31,12 +31,22 @@ const DrinkSelect: React.FC<DrinkSelectProps> = ({open, close}) => {
                         <li className='SelectChangeMenu'>
                             <img src={`${process.env.PUBLIC_URL}/Item/cola.png`} alt="" />
                             <span>코카콜라(中)</span>
-                            <span className='red SelectPrice'>+500원</span>
+                            <span className='red SelectPrice'>+1000원</span>
                         </li>
                         <li className='SelectChangeMenu'>
                             <img src={`${process.env.PUBLIC_URL}/Item/cola.png`} alt="" />
                             <span>코카콜라(大)</span>
+                            <span className='red SelectPrice'>+1500원</span>
+                        </li>
+                        <li className='SelectChangeMenu'>
+                            <img src={`${process.env.PUBLIC_URL}/Item/sprite.png`} alt="" />
+                            <span>스프라이트(中)</span>
                             <span className='red SelectPrice'>+1000원</span>
+                        </li>
+                        <li className='SelectChangeMenu'>
+                            <img src={`${process.env.PUBLIC_URL}/Item/sprite.png`} alt="" />
+                            <span>스프라이트(大)</span>
+                            <span className='red SelectPrice'>+1500원</span>
                         </li>
                     </ul>
                 <span className='modal-button cancel-button bottom left' onClick={close}>취소</span>
