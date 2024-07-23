@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ModalCancel from "./ModalCancel";
 import ModalStaff from "./ModalStaff";
@@ -6,6 +6,8 @@ import ModalQuantity1 from "./ModalQuantity";
 import ModalQuantity2 from "./ModalQuantity";
 import ModalQuantitySet from "./ModalQuantitySet";
 import axios from 'axios';
+
+// 이미지 파일
 import IMG_RECO from "../images/recommend.png";
 import IMG_SINGLE from "../images/hamburger.png";
 import IMG_SET from "../images/hamburger_set.png";
@@ -13,6 +15,8 @@ import IMG_SIDE from "../images/side.png";
 import IMG_DRINK from "../images/drink.png";
 import IMG_SEARCH from "../images/search.png";
 import IMG_CLOSE from "../images/close.png";
+
+// CSS 파일, Header 컴포넌트
 import "../css/Order.scss";
 import Header from "./Component/Header";
 
@@ -53,6 +57,57 @@ const Order: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // DB 목록 State
+  let [Item, setItem] = useState([]);
+  let [RecommendItem, setRecommendItem] = useState([]);
+  let [HamburgerItem, setHamburgerItem] = useState([]);
+  let [SideItem, setSideItem] = useState([]);
+  let [DrinkItem, setDrinkItem] = useState([]);
+
+  // 전체 아이템 DB 가져오기
+  useEffect(() => {
+    // 전체 아이템 DB 가져오기
+    axios.get("/api/item").then((res) => {
+      const itemData = res.data.result;
+      setItem(itemData);
+    }).catch((error) => {
+      console.log('데이터 가져오기 실패: ', error);
+    });
+
+    // 추천 아이템 DB 가져오기
+    axios.get("/api/recommenditem").then((res) => {
+      const recommendItemData = res.data.result;
+      setRecommendItem(recommendItemData);
+    }).catch((error) => {
+      console.log('데이터 가져오기 실패: ', error);
+    });
+
+    // 햄버거 아이템 DB 가져오기
+    axios.get("/api/hamburgeritem").then((res) => {
+      const hamburgerItemData = res.data.result;
+      setHamburgerItem(hamburgerItemData);
+    }).catch((error) => {
+      console.log('데이터 가져오기 실패: ', error);
+    });
+
+    // 사이드 아이템 DB 가져오기
+    axios.get("/api/sideitem").then((res) => {
+      const sideItemData = res.data.result;
+      setSideItem(sideItemData);
+    }).catch((error) => {
+      console.log('데이터 가져오기 실패: ', error);
+    });
+
+    // 음료 아이템 DB 가져오기
+    axios.get("/api/drinkitem").then((res) => {
+      const drinkItemData = res.data.result;
+      setDrinkItem(drinkItemData);
+    }).catch((error) => {
+      console.log('데이터 가져오기 실패: ', error);
+    });
+  }, []);
+
+  // 모달 창 열기 및 닫기
   const openModalCancel = () => {
     setCancelModalOpen(true);
   };
