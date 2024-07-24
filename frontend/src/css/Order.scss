@@ -414,6 +414,10 @@ body {
     border-right: 2px solid;
   }
 
+  .first {
+    border-left: 2px solid;
+  }
+
   // 음식 목록 선택하기
   .select-list {
     &::-webkit-scrollbar {

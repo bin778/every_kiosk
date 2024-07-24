@@ -2,8 +2,7 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ModalCancel from "./ModalCancel";
 import ModalStaff from "./ModalStaff";
-import ModalQuantity1 from "./ModalQuantity";
-import ModalQuantity2 from "./ModalQuantity";
+import ModalQuantity from "./ModalQuantity";
 import ModalQuantitySet from "./ModalQuantitySet";
 import axios from 'axios';
 
@@ -21,10 +20,12 @@ import "../css/Order.scss";
 import Header from "./Component/Header";
 
 interface Item {
-  id: number;
-  name: string;
-  img: string;
-  price: number;
+  item_id: number;
+  itemgroup_id: number;
+  item_title: string;
+  item_image: string;
+  item_price: number;
+  item_recommend: boolean;
 }
 
 interface CartItem {
@@ -32,6 +33,7 @@ interface CartItem {
   quantity: number;
 }
 
+// 테스트용 데이터
 const initialState = {
   items: [
     { id: 0, name: '불고기버거', img: `${process.env.PUBLIC_URL}/Item/bulgogi.png`, price: 5000 },
@@ -49,8 +51,7 @@ const Order: React.FC = () => {
   const [active, setActive] = useState<string>('recommend');
   const [cancelModalOpen, setCancelModalOpen] = useState<boolean>(false);
   const [staffModalOpen, setStaffModalOpen] = useState<boolean>(false);
-  const [quantityModalOpen1, setQuantityModalOpen1] = useState<boolean>(false);
-  const [quantityModalOpen2, setQuantityModalOpen2] = useState<boolean>(false);
+  const [quantityModalOpen, setQuantityModalOpen] = useState<boolean>(false);
   const [quantitySetModalOpen, setQuantitySetModalOpen] = useState<boolean>(false);
   const [userInput, setUserInput] = useState<string>('');
   const [cartItems, setCartItems] = useState<CartItem[]>(initialState.cartItems);
@@ -124,17 +125,12 @@ const Order: React.FC = () => {
     setStaffModalOpen(false);
   };
 
-  const openModalQuantity1 = () => {
-    setQuantityModalOpen1(true);
-  };
-
-  const openModalQuantity2 = () => {
-    setQuantityModalOpen2(true);
+  const openModalQuantity = () => {
+    setQuantityModalOpen(true);
   };
 
   const closeModalQuantity = () => {
-    setQuantityModalOpen1(false);
-    setQuantityModalOpen2(false);
+    setQuantityModalOpen(false);
   };
 
   const openModalQuantitySet = () => {
@@ -157,45 +153,45 @@ const Order: React.FC = () => {
     const initial = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
     const medial = ["ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅘ", "ㅙ", "ㅚ", "ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ", "ㅣ"];
     const final = ["", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ", "ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
-
+  
     let result = "";
-
+  
     for (let i = 0; i < s.length; i++) {
       const code = s.charCodeAt(i);
-
+  
       if (code >= 0xAC00 && code <= 0xD7A3) {
         const syllable = code - 0xAC00;
         const chosungIndex = Math.floor(syllable / 588);
         const jungsungIndex = Math.floor((syllable - (chosungIndex * 588)) / 28);
         const jongsungIndex = syllable % 28;
-
+  
         result += initial[chosungIndex] + medial[jungsungIndex] + final[jongsungIndex];
       } else {
         result += s.charAt(i);
       }
     }
-
+  
     return result;
   };
 
   const extractInitials = (str: string): string => {
-    const initial = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
-    let result = "";
+  const initial = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+  let result = "";
 
-    for (let i = 0; i < str.length; i++) {
-      const code = str.charCodeAt(i);
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i);
 
-      if (code >= 0xAC00 && code <= 0xD7A3) {
-        const syllable = code - 0xAC00;
-        const chosungIndex = Math.floor(syllable / 588);
-        result += initial[chosungIndex];
-      } else {
-        result += str.charAt(i);
-      }
+    if (code >= 0xAC00 && code <= 0xD7A3) {
+      const syllable = code - 0xAC00;
+      const chosungIndex = Math.floor(syllable / 588);
+      result += initial[chosungIndex];
+    } else {
+      result += str.charAt(i);
     }
+  }
 
-    return result;
-  };
+  return result;
+};
 
   const getJamo = (str: string): string => {
     return decomposeHangul(str.replace(" ", "").toLowerCase());
@@ -205,13 +201,13 @@ const Order: React.FC = () => {
     return extractInitials(str.replace(" ", "").toLowerCase());
   };
 
-  const filterName = initialState.items.filter((item): boolean => {
+  const filterName = Item.filter((item: Item): boolean => {
     if (!userInput.trim()) return false;
 
     const userJamo: string = getJamo(userInput);
-    const itemJamo: string = getJamo(item.name);
+    const itemJamo: string = getJamo(item.item_title);
     const userInitials: string = getInitials(userInput);
-    const itemInitials: string = getInitials(item.name);
+    const itemInitials: string = getInitials(item.item_title);
 
     return itemJamo.includes(userJamo) || itemInitials.includes(userInitials);
   });
@@ -253,47 +249,50 @@ const Order: React.FC = () => {
     navigate("/check");
   };
 
+  interface CatalogueProps {
+    type: string;
+    border: string;
+    image: string;
+    title: string;
+  }
+
+  // 목록 컴포넌트
+  const CatalogueComponent = ({ type, border, image, title }: CatalogueProps) => {
+    return (
+      <Link to="/order" onClick={() => setActive(type)}>
+        <span className={"menu-button1" + border + (active === type ? ' active' : '')}>
+          <img src={image} alt={type} />
+          <div>{title}</div>
+        </span>
+      </Link>
+    )
+  }
+
+  interface MenuProps {
+    items: Item;
+    type: string;
+  }
+
+  // 메뉴 컴포넌트
+  const MenuComponent = ({ items, type }: MenuProps) => {
+    return (
+      <li onClick={openModalQuantity} key={items.item_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
+        <MenuCard name={items.item_title} img={items.item_image} price={items.item_price} />
+      </li>
+    )
+  }
+
   return (
     <div className="order-layer">
       <Header />
       <div className="order-menu">
         <div>
-          <Link to="/order" onClick={() => setActive('recommend')}>
-            <span className={"menu-button1 first" + (active === 'recommend' ? ' active' : '')}>
-              <img src={IMG_RECO} alt="Recommend" />
-              <div>추천 메뉴</div>
-            </span>
-          </Link>
-          <Link to="/order" onClick={() => setActive('set')}>
-            <span className={"menu-button1" + (active === 'set' ? ' active' : '')}>
-              <img src={IMG_SET} alt="Set" />
-              <div>햄버거 세트</div>
-            </span>
-          </Link>
-          <Link to="/order" onClick={() => setActive('single')}>
-            <span className={"menu-button1 right" + (active === 'single' ? ' active' : '')}>
-              <img src={IMG_SINGLE} alt="Single" />
-              <div>햄버거 단품</div>
-            </span>
-          </Link>
-          <Link to="/order" onClick={() => setActive('side')}>
-            <span className={"menu-button1" + (active === 'side' ? ' active' : '')}>
-              <img src={IMG_SIDE} alt="Side" />
-              <div>사이드메뉴</div>
-            </span>
-          </Link>
-          <Link to="/order" onClick={() => setActive('drink')}>
-            <span className={"menu-button1" + (active === 'drink' ? ' active' : '')}>
-              <img src={IMG_DRINK} alt="Drink" />
-              <div>음료수</div>
-            </span>
-          </Link>
-          <Link to="/order" onClick={() => setActive('search')}>
-            <span className={"menu-button1 right" + (active === 'search' ? ' active' : '')}>
-              <img src={IMG_SEARCH} alt="Search" />
-              <div>검색</div>
-            </span>
-          </Link>
+          <CatalogueComponent type={'recommend'} border={' first'} image={IMG_RECO} title={'추천 메뉴'} />
+          <CatalogueComponent type={'set'} border={''} image={IMG_SET} title={'햄버거 세트'} />
+          <CatalogueComponent type={'hamburger'} border={' right'} image={IMG_SINGLE} title={'햄버거 단품'} />
+          <CatalogueComponent type={'side'} border={''} image={IMG_SIDE} title={'사이드메뉴'} />
+          <CatalogueComponent type={'drink'} border={''} image={IMG_DRINK} title={'음료수'} />
+          <CatalogueComponent type={'search'} border={' right'} image={IMG_SEARCH} title={'검색'} />
           <div className={(active === 'search' ? '' : 'search-hidden')}>
             <input onChange={getSearchData} type="text" name="search" className="menu-search" placeholder="원하는 메뉴를 검색하세요" />
           </div>
@@ -306,17 +305,16 @@ const Order: React.FC = () => {
             <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
               <MenuCard name={initialState.items[1].name + "세트"} img={initialState.items[1].img} price={initialState.items[1].price + 1000} />
             </li>
-            <li onClick={openModalQuantity1} className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={initialState.items[0].name} img={initialState.items[0].img} price={initialState.items[0].price} />
-            </li>
-            <li onClick={openModalQuantity2} className={(active === 'single' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={initialState.items[1].name} img={initialState.items[1].img} price={initialState.items[1].price} />
-            </li>
-            {filterName.map(items =>
-              <li key={items.id} className={(active === 'search' ? 'menu-card' : 'card-hidden')}>
-                <MenuCard name={items.name} img={items.img} price={items.price} />
-              </li>
-            )}
+            {/* 추천 메뉴 */}
+            {RecommendItem.map((Item: Item) => <MenuComponent items={Item} type={'recommend'} />)}
+            {/* 단품 메뉴 */}
+            {HamburgerItem.map((Item: Item) => <MenuComponent items={Item} type={'hamburger'} />)}
+            {/* 사이드 메뉴 */}
+            {SideItem.map((Item: Item) => <MenuComponent items={Item} type={'side'} />)}
+            {/* 음료 메뉴 */}
+            {DrinkItem.map((Item: Item) => <MenuComponent items={Item} type={'drink'} />)}
+            {/* 모든 메뉴 */}
+            {filterName.map((Item: Item) => <MenuComponent items={Item} type={'search'} />)}
           </ul>
         </div>
       </div>
@@ -349,8 +347,7 @@ const Order: React.FC = () => {
           <span className="guide-button order-button" onClick={moveCheck}>결제하기</span>
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
-          <ModalQuantity1 open={quantityModalOpen1} close={closeModalQuantity} menu={initialState.items[0]} />
-          <ModalQuantity2 open={quantityModalOpen2} close={closeModalQuantity} menu={initialState.items[1]} />
+          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={initialState.items[0]} />
           <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={initialState.items[1]} />
         </div>
       </div>
