@@ -5,10 +5,12 @@ import IMG_MINUS from "../images/minus.png";
 
 // 메뉴 전달 타입
 type Menu = {
-  id: number;
-  name: string;
-  img: string;
-  price: number;
+  item_id: number;
+  itemgroup_id: number;
+  item_title: string;
+  item_image: string;
+  item_price: number;
+  item_recommend: boolean;
 };
 
 interface ModalQuantityProps {
@@ -40,6 +42,7 @@ const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
     // open 값이 true -> false 가 되는 것을 감지 (즉, 모달창을 닫을 때)
     if (visible && !open) {
       return () => {
+        setNum(1);
         setVisible(false);
       };
     }
@@ -51,7 +54,7 @@ const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
     <div className={open ? "openModal modal" : "modal"}>
       <div className="modalBox">
         <div>수량을 선택해주세요</div>
-        <div className="red">{menu.price * num} 원</div>
+        <div className="red">{menu.item_price * num} 원</div>
         <div>
           <span className="decrease-button" onClick={decrease}>
             <img src={IMG_MINUS} alt="" />

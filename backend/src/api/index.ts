@@ -11,6 +11,14 @@ router.get("/item", async (req: Request, res: Response) => {
   res.send({ result: Item });
 });
 
+// /api/sets GET 데이터를 전달받는다.
+router.get("/sets", async (req: Request, res: Response) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
+  const Sets = await db.selectSets();
+  res.send({ result: Sets });
+});
+
 // /api/recommenditem GET 데이터를 전달받는다.
 router.get("/recommenditem", async (req: Request, res: Response) => {
   res.header("Access-Control-Allow-Origin", "*");

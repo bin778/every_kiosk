@@ -28,6 +28,13 @@ interface Item {
   item_recommend: boolean;
 }
 
+interface Sets {
+  sets_id: number;
+  sets_title: string;
+  sets_image: string;
+  sets_price: number;
+}
+
 interface CartItem {
   itemId: number;
   quantity: number;
@@ -60,6 +67,7 @@ const Order: React.FC = () => {
 
   // DB 목록 State
   let [Item, setItem] = useState([]);
+  let [Sets, setsItem] = useState([]);
   let [RecommendItem, setRecommendItem] = useState([]);
   let [HamburgerItem, setHamburgerItem] = useState([]);
   let [SideItem, setSideItem] = useState([]);
@@ -73,6 +81,14 @@ const Order: React.FC = () => {
       setItem(itemData);
     }).catch((error) => {
       console.log('데이터 가져오기 실패: ', error);
+    });
+
+    // 세트 아이템 DB 가져오기
+    axios.get("/api/sets").then((res) => {
+      const SetsData = res.data.result;
+      setsItem(SetsData);
+    }).catch((error) => {
+      console.error('데이터 가져오기 실패: ', error.response ? error.response.data : error.message);
     });
 
     // 추천 아이템 DB 가져오기
@@ -212,35 +228,6 @@ const Order: React.FC = () => {
     return itemJamo.includes(userJamo) || itemInitials.includes(userInitials);
   });
 
-  const addToCart = (itemId: number, itemName: string, itemImg: string, itemPrice: number) => {
-    const found = cartItems.filter((el) => el.itemId === itemId)[0];
-
-    if (found) {
-      setQuantity(itemId, itemName, itemImg, itemPrice, found.quantity + 1);
-    } else {
-      setCartItems([...cartItems, {
-        itemId,
-        quantity: 1
-      }]);
-    }
-  };
-
-  const setQuantity = (itemId: number, itemName: string, itemImg: string, itemPrice: number, quantity: number) => {
-    const found = cartItems.filter((el) => el.itemId === itemId)[0];
-    const idx = cartItems.indexOf(found);
-
-    const cartItem = {
-      itemId,
-      quantity
-    };
-
-    setCartItems([
-      ...cartItems.slice(0, idx),
-      cartItem,
-      ...cartItems.slice(idx + 1)
-    ]);
-  };
-
   const handleDelete = (itemId: number) => {
     setCartItems(cartItems.filter((ele) => ele.itemId !== itemId));
   };
@@ -268,17 +255,35 @@ const Order: React.FC = () => {
     )
   }
 
+  // 메뉴 컴포넌트
   interface MenuProps {
     items: Item;
     type: string;
   }
 
-  // 메뉴 컴포넌트
   const MenuComponent = ({ items, type }: MenuProps) => {
     return (
-      <li onClick={openModalQuantity} key={items.item_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
-        <MenuCard name={items.item_title} img={items.item_image} price={items.item_price} />
-      </li>
+      <>
+        <li onClick={openModalQuantity} key={items.item_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
+          <MenuCard name={items.item_title} img={items.item_image} price={items.item_price} />
+        </li>
+      </>
+    )
+  }
+
+  // 세트 컴포넌트
+  interface SetsProps {
+    sets: Sets;
+    type: string;
+  }
+
+  const SetComponent = ({ sets, type }: SetsProps) => {
+    return (
+      <>
+        <li onClick={openModalQuantitySet} key={sets.sets_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
+            <MenuCard name={sets.sets_title} img={sets.sets_image} price={sets.sets_price} />
+        </li>
+      </>
     )
   }
 
@@ -288,7 +293,7 @@ const Order: React.FC = () => {
       <div className="order-menu">
         <div>
           <CatalogueComponent type={'recommend'} border={' first'} image={IMG_RECO} title={'추천 메뉴'} />
-          <CatalogueComponent type={'set'} border={''} image={IMG_SET} title={'햄버거 세트'} />
+          <CatalogueComponent type={'sets'} border={''} image={IMG_SET} title={'햄버거 세트'} />
           <CatalogueComponent type={'hamburger'} border={' right'} image={IMG_SINGLE} title={'햄버거 단품'} />
           <CatalogueComponent type={'side'} border={''} image={IMG_SIDE} title={'사이드메뉴'} />
           <CatalogueComponent type={'drink'} border={''} image={IMG_DRINK} title={'음료수'} />
@@ -299,22 +304,17 @@ const Order: React.FC = () => {
         </div>
         <div className="select-list">
           <ul>
-            <li onClick={() => addToCart(initialState.items[0].id, initialState.items[0].name, initialState.items[0].img, initialState.items[0].price)} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={initialState.items[0].name + "세트"} img={initialState.items[0].img} price={initialState.items[0].price + 1000} />
-            </li>
-            <li onClick={openModalQuantitySet} className={(active === 'set' ? 'menu-card' : 'card-hidden')}>
-              <MenuCard name={initialState.items[1].name + "세트"} img={initialState.items[1].img} price={initialState.items[1].price + 1000} />
-            </li>
+            {Sets.map((Sets: Sets) => <SetComponent sets={Sets} key={Sets.sets_id} type={'sets'} />)}
             {/* 추천 메뉴 */}
-            {RecommendItem.map((Item: Item) => <MenuComponent items={Item} type={'recommend'} />)}
+            {RecommendItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'recommend'} />)}
             {/* 단품 메뉴 */}
-            {HamburgerItem.map((Item: Item) => <MenuComponent items={Item} type={'hamburger'} />)}
+            {HamburgerItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'hamburger'} />)}
             {/* 사이드 메뉴 */}
-            {SideItem.map((Item: Item) => <MenuComponent items={Item} type={'side'} />)}
+            {SideItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'side'} />)}
             {/* 음료 메뉴 */}
-            {DrinkItem.map((Item: Item) => <MenuComponent items={Item} type={'drink'} />)}
+            {DrinkItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'drink'} />)}
             {/* 모든 메뉴 */}
-            {filterName.map((Item: Item) => <MenuComponent items={Item} type={'search'} />)}
+            {filterName.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'search'} />)}
           </ul>
         </div>
       </div>
@@ -347,8 +347,8 @@ const Order: React.FC = () => {
           <span className="guide-button order-button" onClick={moveCheck}>결제하기</span>
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
-          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={initialState.items[0]} />
-          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={initialState.items[1]} />
+          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={Item[0]} />
+          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={Sets[0]} />
         </div>
       </div>
     </div>

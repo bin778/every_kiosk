@@ -1,11 +1,13 @@
+import dotenv from 'dotenv'; // DB 계정 환경변수 설정
 import mysql from 'mysql2';  // mysql 모듈 로드
+dotenv.config();
 
 const conn: mysql.ConnectionOptions = {  // mysql 접속 설정
-  host: '127.0.0.1', // DB 호스트 설정
-  port: 3306, // DB 포트번호 설정
-  user: 'everykiosk', // DB 유저 설정
-  password: '1234', // DB 비밀번호 설정
-  database: 'everykiosk' // DB 스키마 설정
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  user: process.env.DB_USER,
+  password: process.env.DB_PW,
+  database: process.env.DB_NAME,
 };
 
 const pool = mysql.createPool(conn);
@@ -33,6 +35,16 @@ const queryFunc = (sql: string) => {
 db.selectItem = () => {
   return new Promise(async (resolve, reject) => {
     const sql = `select * from item;`;
+
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
+// Sets DB 목록 가져오기
+db.selectSets = () => {
+  return new Promise(async (resolve, reject) => {
+    const sql = `select * from sets;`;
 
     const result = await queryFunc(sql);
     resolve(result);

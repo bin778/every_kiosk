@@ -6,10 +6,10 @@ import IMG_MINUS from "../images/minus.png";
 
 // 메뉴 전달 타입
 type Menu = {
-  id: number;
-  name: string;
-  img: string;
-  price: number;
+  sets_id: number;
+  sets_name: string;
+  sets_image: string;
+  sets_price: number;
 };
 
 interface ModalQuantitySetProps {
@@ -39,7 +39,7 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
   const movePage = useNavigate();
 
   function moveSelect() {
-    movePage("/option_select", { state: { price: (menu.price + 1000) * num } });
+    movePage("/option_select", { state: { price: menu.sets_price * num } });
   }
 
   useEffect(() => {
@@ -48,6 +48,7 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
     // open 값이 true -> false 가 되는 것을 감지 (즉, 모달창을 닫을 때)
     if (visible && !open) {
       return () => {
+        setNum(1);
         setVisible(false);
       };
     }
@@ -59,7 +60,7 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
     <div className={open ? "openModal modal" : "modal"}>
       <div className="modalBox">
         <div>수량을 선택해주세요</div>
-        <div className="red">{(menu.price + 1000) * num} 원</div>
+        <div className="red">{menu.sets_price * num} 원</div>
         <div>
           <span className="decrease-button" onClick={decrease}>
             <img src={IMG_MINUS} alt="" />

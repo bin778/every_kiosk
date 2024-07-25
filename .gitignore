@@ -6,3 +6,6 @@ package-lock.json
 
 # Ignore package.json file
 package.json
+
+# Ignore .env file
+.env
