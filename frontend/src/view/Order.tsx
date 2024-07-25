@@ -73,6 +73,10 @@ const Order: React.FC = () => {
   let [SideItem, setSideItem] = useState([]);
   let [DrinkItem, setDrinkItem] = useState([]);
 
+  // 메뉴 State
+  const [selectedMenu, setSelectedMenu] = useState<Item | null>(null);
+  const [selectedSets, setSelectedSets] = useState<Sets | null>(null);
+
   // 전체 아이템 DB 가져오기
   useEffect(() => {
     // 전체 아이템 DB 가져오기
@@ -141,20 +145,24 @@ const Order: React.FC = () => {
     setStaffModalOpen(false);
   };
 
-  const openModalQuantity = () => {
+  const openModalQuantity = (item: Item) => {
+    setSelectedMenu(item);
     setQuantityModalOpen(true);
   };
 
   const closeModalQuantity = () => {
     setQuantityModalOpen(false);
+    setSelectedMenu(null);
   };
 
-  const openModalQuantitySet = () => {
+  const openModalQuantitySet = (sets: Sets) => {
+    setSelectedSets(sets);
     setQuantitySetModalOpen(true);
   };
 
   const closeModalQuantitySet = () => {
     setQuantitySetModalOpen(false);
+    setSelectedSets(null);
   };
 
   const staffCall = (reason: string) => {
@@ -264,7 +272,7 @@ const Order: React.FC = () => {
   const MenuComponent = ({ items, type }: MenuProps) => {
     return (
       <>
-        <li onClick={openModalQuantity} key={items.item_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
+        <li onClick={() => openModalQuantity(items)} key={items.item_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
           <MenuCard name={items.item_title} img={items.item_image} price={items.item_price} />
         </li>
       </>
@@ -280,7 +288,7 @@ const Order: React.FC = () => {
   const SetComponent = ({ sets, type }: SetsProps) => {
     return (
       <>
-        <li onClick={openModalQuantitySet} key={sets.sets_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
+        <li onClick={() => openModalQuantitySet(sets)} key={sets.sets_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
             <MenuCard name={sets.sets_title} img={sets.sets_image} price={sets.sets_price} />
         </li>
       </>
@@ -304,9 +312,10 @@ const Order: React.FC = () => {
         </div>
         <div className="select-list">
           <ul>
-            {Sets.map((Sets: Sets) => <SetComponent sets={Sets} key={Sets.sets_id} type={'sets'} />)}
             {/* 추천 메뉴 */}
             {RecommendItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'recommend'} />)}
+            {/* 세트 메뉴 */}
+            {Sets.map((Sets: Sets) => <SetComponent sets={Sets} key={Sets.sets_id} type={'sets'} />)}
             {/* 단품 메뉴 */}
             {HamburgerItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'hamburger'} />)}
             {/* 사이드 메뉴 */}
@@ -347,8 +356,8 @@ const Order: React.FC = () => {
           <span className="guide-button order-button" onClick={moveCheck}>결제하기</span>
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
-          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={Item[0]} />
-          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={Sets[0]} />
+          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={selectedMenu} />
+          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={selectedSets} />
         </div>
       </div>
     </div>

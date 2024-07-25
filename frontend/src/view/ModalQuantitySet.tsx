@@ -4,10 +4,10 @@ import "../css/Modal.scss";
 import IMG_PLUS from "../images/plus.png";
 import IMG_MINUS from "../images/minus.png";
 
-// 메뉴 전달 타입
-type Menu = {
+// 세트 메뉴 전달 타입
+type Sets = {
   sets_id: number;
-  sets_name: string;
+  sets_title: string;
   sets_image: string;
   sets_price: number;
 };
@@ -15,14 +15,11 @@ type Menu = {
 interface ModalQuantitySetProps {
   open: boolean;
   close: () => void;
-  menu: Menu;
+  menu: Sets | null;
 }
 
 const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }) => {
-  // 실제 컴포넌트가 사라지는 시점을 지연시키기 위한 값
   const [visible, setVisible] = useState(open);
-
-  // 숫자 감소/증가
   const [num, setNum] = useState(1);
 
   const increase = () => {
@@ -30,22 +27,22 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
   };
 
   const decrease = () => {
-    if (num > 0) {
+    if (num > 1) {
       setNum(num - 1);
     }
   };
 
-  // 옵션 선택 화면으로 이동한다
   const movePage = useNavigate();
 
   function moveSelect() {
-    movePage("/option_select", { state: { price: menu.sets_price * num } });
+    if (menu) {
+      movePage("/option_select", { state: { price: menu.sets_price * num } });
+    }
   }
 
   useEffect(() => {
     setVisible(open);
 
-    // open 값이 true -> false 가 되는 것을 감지 (즉, 모달창을 닫을 때)
     if (visible && !open) {
       return () => {
         setNum(1);
@@ -54,7 +51,7 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
     }
   }, [visible, open]);
 
-  if (!visible) return null;
+  if (!visible || !menu) return null;
 
   return (
     <div className={open ? "openModal modal" : "modal"}>

@@ -16,7 +16,7 @@ type Menu = {
 interface ModalQuantityProps {
   open: boolean;
   close: () => void;
-  menu: Menu;
+  menu: Menu | null;
 }
 
 const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
@@ -31,7 +31,7 @@ const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
   };
 
   const decrease = () => {
-    if (num > 0) {
+    if (num > 1) {
       setNum(num - 1);
     }
   };
@@ -48,7 +48,7 @@ const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
     }
   }, [visible, open]);
 
-  if (!visible) return null;
+  if (!visible || !menu) return null;
 
   return (
     <div className={open ? "openModal modal" : "modal"}>
@@ -57,11 +57,11 @@ const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
         <div className="red">{menu.item_price * num} 원</div>
         <div>
           <span className="decrease-button" onClick={decrease}>
-            <img src={IMG_MINUS} alt="" />
+            <img src={IMG_MINUS} alt="-" />
           </span>
           <span className="quantity">{num}</span>
           <span className="increase-button" onClick={increase}>
-            <img src={IMG_PLUS} alt="" />
+            <img src={IMG_PLUS} alt="+" />
           </span>
         </div>
         <span className="modal-button cancel-button bottom left" onClick={close}>아니요</span>
