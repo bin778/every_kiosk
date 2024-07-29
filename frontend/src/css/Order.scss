@@ -141,6 +141,7 @@ body {
 
 .card-list {
   overflow-x: scroll;
+  height: 250px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -220,7 +221,7 @@ body {
 .ordered {
   position: absolute;
   display: inline-block;
-  width: 180px;
+  width: 160px;
   left: 20px;
   bottom: 10px;
 }

@@ -31,7 +31,7 @@ const queryFunc = (sql: string) => {
   });
 };
 
-// Item DB 목록 가져오기
+// 메뉴 DB 목록 가져오기
 db.selectItem = () => {
   return new Promise(async (resolve, reject) => {
     const sql = `select * from item;`;
@@ -41,7 +41,7 @@ db.selectItem = () => {
   });
 };
 
-// Sets DB 목록 가져오기
+// 햄버거세트 DB 목록 가져오기
 db.selectSets = () => {
   return new Promise(async (resolve, reject) => {
     const sql = `select * from sets;`;
@@ -51,7 +51,7 @@ db.selectSets = () => {
   });
 };
 
-// RecommendItem DB 목록 가져오기
+// 추천 메뉴 DB 목록 가져오기
 db.selectRecommendItem = () => {
   return new Promise(async (resolve, reject) => {
     const sql = `select * from item where item_recommend = TRUE;`;
@@ -61,7 +61,7 @@ db.selectRecommendItem = () => {
   });
 };
 
-// HamburgerItem DB 목록 가져오기
+// 햄버거단품 DB 목록 가져오기
 db.selectHamburgerItem = () => {
   return new Promise(async (resolve, reject) => {
     const sql = `select * from item JOIN itemgroup ON item.itemgroup_id = itemgroup.itemgroup_id WHERE itemgroup_name = "hamburger";`;
@@ -71,7 +71,7 @@ db.selectHamburgerItem = () => {
   });
 };
 
-// SideItem DB 목록 가져오기
+// 사이드 DB 목록 가져오기
 db.selectSideItem = () => {
   return new Promise(async (resolve, reject) => {
     const sql = `select * from item JOIN itemgroup ON item.itemgroup_id = itemgroup.itemgroup_id WHERE itemgroup_name = "side";`;
@@ -81,7 +81,7 @@ db.selectSideItem = () => {
   });
 };
 
-// DrinkItem DB 목록 가져오기
+// 음료 DB 목록 가져오기
 db.selectDrinkItem = () => {
   return new Promise(async (resolve, reject) => {
     const sql = `select * from item JOIN itemgroup ON item.itemgroup_id = itemgroup.itemgroup_id WHERE itemgroup_name = "drink";`;
@@ -90,5 +90,15 @@ db.selectDrinkItem = () => {
     resolve(result);
   });
 };
+
+// 장바구니 DB 목록 가져오기
+db.selectCart = () => {
+  return new Promise(async (resolve, reject) => {
+    const sql = `SELECT * FROM ORDERS;`
+
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+}
 
 export default db;

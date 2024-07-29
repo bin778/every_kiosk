@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ModalCancel from "./ModalCancel";
 import ModalStaff from "./ModalStaff";
@@ -35,12 +35,31 @@ interface Sets {
   sets_price: number;
 }
 
+interface Cart {
+  orders_id: number;
+  orders_title: string;
+  orders_image: string;
+  orders_quantity: number;
+  orders_price: number;
+  sets_ingredient: string;
+  sets_side: string;
+  sets_drink: string;
+}
+
+interface TotalQuantity {
+  orders_count: number;
+}
+
+interface TotalPrice {
+  total_price: number;
+}
+
+// 테스트용 데이터
 interface CartItem {
   itemId: number;
   quantity: number;
 }
 
-// 테스트용 데이터
 const initialState = {
   items: [
     { id: 0, name: '불고기버거', img: `${process.env.PUBLIC_URL}/Item/bulgogi.png`, price: 5000 },
@@ -76,6 +95,11 @@ const Order: React.FC = () => {
   // 메뉴 State
   const [selectedMenu, setSelectedMenu] = useState<Item | null>(null);
   const [selectedSets, setSelectedSets] = useState<Sets | null>(null);
+
+  // DB 주문 State
+  let [Cart, setCart] = useState([]);
+  let [CartQuantity, setCartQuantity] = useState<TotalQuantity>({ orders_count: 0 });
+  let [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
 
   // 전체 아이템 DB 가져오기
   useEffect(() => {
@@ -126,7 +150,26 @@ const Order: React.FC = () => {
     }).catch((error) => {
       console.log('데이터 가져오기 실패: ', error);
     });
+
+    // fetch 함수 목록
+    fetchCart();
   }, []);
+
+  // 장바구니 목록을 불러온다.
+  const fetchCart = () => {
+    axios.get("/api/cart").then((res) => {
+      const cartData = res.data.result;
+      setCart(cartData);
+
+      // 장바구니 총 개수 및 총 가격을 여기서 계산
+      const totalQuantity = cartData.length;
+      const totalPrice = cartData.reduce((acc: number, item: Cart) => acc + (item.orders_price * item.orders_quantity), 0);
+      setCartQuantity({ orders_count: totalQuantity });
+      setCartPrice({ total_price: totalPrice });
+    }).catch((error) => {
+      console.log('데이터 가져오기 실패: ', error);
+    });
+  };
 
   // 모달 창 열기 및 닫기
   const openModalCancel = () => {
@@ -244,6 +287,7 @@ const Order: React.FC = () => {
     navigate("/check");
   };
 
+  // 목록 컴포넌트
   interface CatalogueProps {
     type: string;
     border: string;
@@ -251,7 +295,6 @@ const Order: React.FC = () => {
     title: string;
   }
 
-  // 목록 컴포넌트
   const CatalogueComponent = ({ type, border, image, title }: CatalogueProps) => {
     return (
       <Link to="/order" onClick={() => setActive(type)}>
@@ -330,21 +373,23 @@ const Order: React.FC = () => {
       <div className="order-list">
         <div className="list">
           <span className="list-text">주문 내역</span>
-          <span className="list-count">2</span>
+          <span className="list-count">{CartQuantity.orders_count}</span>
         </div>
         <div className="amount">
           <span className="list-text">총 주문금액</span>
-          <span className="list-text red">{10000}원</span>
+          <span className="list-text red">{String(CartPrice.total_price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
         </div>
         <div className="card-list">
           <ul>
-            <li className="order-card">
-              <div className="card-text1">불고기버거</div>
-              <img src={`${process.env.PUBLIC_URL}/Item/bulgogi.png`} className="ordered" alt="Ordered Item" />
-              <img src={IMG_CLOSE} className="btn-close" onClick={() => handleDelete(0)} alt="Close" />
-              <div className="card-text2 position-up">1개</div>
-              <div className="card-text2 red">{5000}원</div>
-            </li>
+            {Cart.map((Cart: Cart) => (
+              <li key={Cart.orders_id} className="order-card">
+                <div className="card-text1">{Cart.orders_title}</div>
+                <img src={Cart.orders_image} className="ordered" alt="Ordered Item" />
+                <img src={IMG_CLOSE} className="btn-close" onClick={() => handleDelete(0)} alt="Close" />
+                <div className="card-text2 position-up">{Cart.orders_quantity}개</div>
+                <div className="card-text2 red">{String(Cart.orders_price * Cart.orders_quantity).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="button-select1">
