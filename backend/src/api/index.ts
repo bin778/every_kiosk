@@ -51,6 +51,14 @@ router.get("/drinkitem", async (req: Request, res: Response) => {
   res.send({ result: DrinkItem });
 });
 
+// /api/ingredientitem GET 데이터를 전달받는다.
+router.get("/ingredientitem",async (req: Request, res: Response) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
+  const IngredientItem = await db.selectIngredientItem();
+  res.send({ result: IngredientItem })
+});
+
 // /api/cart GET 데이터를 전달받는다.
 router.get("/cart", async (req: Request, res: Response) => {
   res.header("Access-Control-Allow-Origin", "*");

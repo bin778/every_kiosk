@@ -113,15 +113,12 @@ const OptionSelect: React.FC = () => {
       {/* footer 화면 */}
       <div className="option-menu">
         <div className="button-select1">
-          <span className="large-button">라지로 변경</span>
           <span className="option-price1">금액</span>
           <span className="option-price1 option-price2"> {price2}원</span>
         </div>
-        <div className="button-select1">
+        <div className="button-select1 botton-button">
           <span className="guide-button" onClick={moveOrder}>주문 취소</span>
-          <span
-            className="guide-button"
-            onClick={() => {openModalStaff(); staffCall();}}>직원호출</span>
+          <span className="guide-button" onClick={() => {openModalStaff(); staffCall();}}>직원호출</span>
           <span className="guide-button order-button">담기</span>
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
           {/* 메뉴 모달 창 */}

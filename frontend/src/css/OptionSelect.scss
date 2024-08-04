@@ -22,6 +22,7 @@
     position: relative;
     display: block;
     width: 100%;
+    height: 110px;
     background-color: #f2ebe6;
     padding: 5px;
     padding-top: 15px;
@@ -124,7 +125,7 @@
   
   .option-price1 {
     position: absolute;
-    top: 20px;
+    top: 15px;
     right: 190px;
     font-size: 2.0rem;
     font-weight: 700;
@@ -133,6 +134,10 @@
   .option-price2 {
     right: 30px;
     color: #d72300;
+  }
+
+  .botton-button {
+    margin-top: 50px;
   }
   
 /* 태블릿 반응형 웹 */
@@ -160,6 +165,10 @@
       width: 130px;
       height: 110px;
     }
+  }
+
+  .option-menu {
+    height: 75px;
   }
 
   .option-number {
@@ -205,12 +214,17 @@
   }
 
   .option-price1 {
+    top: 7px;
     right: 190px;
     font-size: 1.7rem;
   }
 
   .option-price2 {
     right: 30px;
+  }
+
+  .botton-button {
+    margin-top: 30px;
   }
 }
 
@@ -236,6 +250,10 @@
       width: 110px;
       height: 100px;
     }
+  }
+
+  .option-menu {
+    height: 55px;
   }
 
   .option-number {
@@ -282,11 +300,16 @@
   }
 
   .option-price1 {
+    top: 5px;
     right: 130px;
     font-size: 1.3rem;
   }
 
   .option-price2 {
     right: 20px;
+  }
+
+  .botton-button {
+    margin-top: 20px;
   }
 }

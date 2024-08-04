@@ -91,6 +91,16 @@ db.selectDrinkItem = () => {
   });
 };
 
+// 재료 DB 목록 가져오기
+db.selectIngredientItem = () => {
+  return new Promise(async (resolve, reject) => {
+    const sql = `select * from ingredient;`;
+
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+};
+
 // 장바구니 DB 목록 가져오기
 db.selectCart = () => {
   return new Promise(async (resolve, reject) => {
