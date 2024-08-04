@@ -1,7 +1,7 @@
-import express, { Request, Response } from "express";
-import db from "./db"; // db 모듈을 default로 가져옴
+import { Router, Request, Response } from "express";
+import db, { insertCart, deleteCart } from "./db"; // db 모듈을 default로 가져옴
 
-const router = express.Router();
+const router = Router();
 
 // /api/item GET 데이터를 전달받는다.
 router.get("/item", async (req: Request, res: Response) => {
@@ -52,11 +52,27 @@ router.get("/drinkitem", async (req: Request, res: Response) => {
 });
 
 // /api/cart GET 데이터를 전달받는다.
-router.get("/cart", async (req, res) => {
+router.get("/cart", async (req: Request, res: Response) => {
   res.header("Access-Control-Allow-Origin", "*");
 
   const Cart = await db.selectCart();
   res.send({ result: Cart });
+});
+
+// /api/addcart POST 데이터를 전달받는다.
+router.post("/addcart", async (req: Request, res: Response) => {
+  const { title, image, quantity, price } = req.body;
+
+  const AddCart = await insertCart(title, image, quantity, price);
+  res.send({ result: AddCart });
+});
+
+// /api/deletecart DELETE 데이터를 전달받는다.
+router.delete("/deletecart/:id", async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const DeleteCart = await deleteCart(Number(id));
+  res.send({ result: DeleteCart });
 });
 
 export default router;

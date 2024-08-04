@@ -54,25 +54,6 @@ interface TotalPrice {
   total_price: number;
 }
 
-// 테스트용 데이터
-interface CartItem {
-  itemId: number;
-  quantity: number;
-}
-
-const initialState = {
-  items: [
-    { id: 0, name: '불고기버거', img: `${process.env.PUBLIC_URL}/Item/bulgogi.png`, price: 5000 },
-    { id: 1, name: '통새우버거', img: `${process.env.PUBLIC_URL}/Item/shrimp.png`, price: 6000 },
-  ],
-  cartItems: [
-    {
-      itemId: 0,
-      quantity: 1
-    }
-  ]
-};
-
 const Order: React.FC = () => {
   const [active, setActive] = useState<string>('recommend');
   const [cancelModalOpen, setCancelModalOpen] = useState<boolean>(false);
@@ -80,7 +61,6 @@ const Order: React.FC = () => {
   const [quantityModalOpen, setQuantityModalOpen] = useState<boolean>(false);
   const [quantitySetModalOpen, setQuantitySetModalOpen] = useState<boolean>(false);
   const [userInput, setUserInput] = useState<string>('');
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialState.cartItems);
 
   const navigate = useNavigate();
 
@@ -279,8 +259,12 @@ const Order: React.FC = () => {
     return itemJamo.includes(userJamo) || itemInitials.includes(userInitials);
   });
 
-  const handleDelete = (itemId: number) => {
-    setCartItems(cartItems.filter((ele) => ele.itemId !== itemId));
+  const DeleteCart = (id: number) => {
+    axios.delete(`/api/deletecart/${id}`).then((res) => {
+      fetchCart();
+    }).catch((error) => {
+      console.error("데이터를 삭제하는 중 오류 발생: ", error);
+    })
   };
 
   const moveCheck = () => {
@@ -385,7 +369,7 @@ const Order: React.FC = () => {
               <li key={Cart.orders_id} className="order-card">
                 <div className="card-text1">{Cart.orders_title}</div>
                 <img src={Cart.orders_image} className="ordered" alt="Ordered Item" />
-                <img src={IMG_CLOSE} className="btn-close" onClick={() => handleDelete(0)} alt="Close" />
+                <img src={IMG_CLOSE} className="btn-close" onClick={() => DeleteCart(Cart.orders_id)} alt="Close" />
                 <div className="card-text2 position-up">{Cart.orders_quantity}개</div>
                 <div className="card-text2 red">{String(Cart.orders_price * Cart.orders_quantity).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
               </li>
@@ -401,7 +385,7 @@ const Order: React.FC = () => {
           <span className="guide-button order-button" onClick={moveCheck}>결제하기</span>
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
-          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={selectedMenu} />
+          <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={selectedMenu} fetchCart={fetchCart} />
           <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={selectedSets} />
         </div>
       </div>

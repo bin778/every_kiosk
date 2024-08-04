@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/Modal.scss";
 import IMG_PLUS from "../images/plus.png";
 import IMG_MINUS from "../images/minus.png";
+import axios from "axios";
 
 // 메뉴 전달 타입
 type Menu = {
@@ -17,9 +18,10 @@ interface ModalQuantityProps {
   open: boolean;
   close: () => void;
   menu: Menu | null;
+  fetchCart: () => void;
 }
 
-const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
+const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu, fetchCart }) => {
   // 실제 컴포넌트가 사라지는 시점을 지연시키기 위한 값
   const [visible, setVisible] = useState(open);
 
@@ -50,6 +52,16 @@ const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
 
   if (!visible || !menu) return null;
 
+  // 상품을 장바구니에 추가하기
+  const onClickAddCart = (title: string, image: string, quantity: number, price: number) => {
+    const data = { title, image, quantity, price };
+    axios.post("/api/addcart", data).then((res) => {
+      fetchCart();
+    }).catch((error) => {
+      console.error('데이터를 추가하는 중 오류 발생: ', error);
+    });
+  }
+
   return (
     <div className={open ? "openModal modal" : "modal"}>
       <div className="modalBox">
@@ -65,7 +77,10 @@ const ModalQuantity: React.FC<ModalQuantityProps> = ({ open, close, menu }) => {
           </span>
         </div>
         <span className="modal-button cancel-button bottom left" onClick={close}>아니요</span>
-        <span className="modal-button bottom right">예</span>
+        <span className="modal-button bottom right" onClick={() => {
+          onClickAddCart(menu.item_title, menu.item_image, num, menu.item_price);
+          close();
+          }}>예</span>
       </div>
     </div>
   );

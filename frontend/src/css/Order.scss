@@ -353,6 +353,10 @@ body {
     color: white;
   }
 
+  .card-list {
+    height: 220px;
+  }
+
   // 주문 카드
   .order-card {
     min-width: 250px;
@@ -424,6 +428,10 @@ body {
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .card-list {
+    height: 160px;
   }
 
   // 메뉴 카드
