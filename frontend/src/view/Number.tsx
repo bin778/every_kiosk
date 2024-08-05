@@ -1,4 +1,4 @@
-import IMG_NUMBER from "../images/number.png";
+import IMG_NUMBER from "../images/number.webp";
 
 // SCSS 파일
 import "../css/Number.scss"

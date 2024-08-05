@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/Modal.scss";
-import IMG_PLUS from "../images/plus.png";
-import IMG_MINUS from "../images/minus.png";
+import IMG_PLUS from "../images/plus.webp";
+import IMG_MINUS from "../images/minus.webp";
 import axios from "axios";
 
 // 메뉴 전달 타입

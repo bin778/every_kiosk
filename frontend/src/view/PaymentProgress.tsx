@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 
-import IMG_PAYMENT from "../images/payment.png";
+import IMG_PAYMENT from "../images/payment.webp";
 
 import ModalStaff from "./ModalStaff";
 

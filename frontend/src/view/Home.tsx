@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import IMG_LOGO1 from "../images/logo1.png";
-import IMG_KOREA from "../images/Korea.png";
-import IMG_USA from "../images/USA.png";
-import IMG_CHINA from "../images/China.png";
-import IMG_JAPAN from "../images/Japan.png";
-import IMG_GENERAL from "../images/general.png";
-import IMG_EASY from "../images/easy.png";
+import IMG_LOGO1 from "../images/logo1.webp";
+import IMG_KOREA from "../images/Korea.webp";
+import IMG_USA from "../images/USA.webp";
+import IMG_CHINA from "../images/China.webp";
+import IMG_JAPAN from "../images/Japan.webp";
+import IMG_GENERAL from "../images/general.webp";
+import IMG_EASY from "../images/easy.webp";
 
 import "../css/Home.scss"
 

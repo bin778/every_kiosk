@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 
-import IMG_CARD from "../images/card.png";
-import IMG_MONEY from "../images/money.png";
+import IMG_CARD from "../images/card.webp";
+import IMG_MONEY from "../images/money.webp";
 
 import ModalStaff from "./ModalStaff";
 

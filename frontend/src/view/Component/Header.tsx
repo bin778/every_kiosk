@@ -1,7 +1,7 @@
 import React from "react";
 
 // 로고 이미지
-import IMG_LOGO2 from "../../images/logo2.png";
+import IMG_LOGO2 from "../../images/logo2.webp";
 
 // SCSS 파일
 import "../../css/Header.scss"

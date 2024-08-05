@@ -7,13 +7,13 @@ import ModalQuantitySet from "./ModalQuantitySet";
 import axios from 'axios';
 
 // 이미지 파일
-import IMG_RECO from "../images/recommend.png";
-import IMG_SINGLE from "../images/hamburger.png";
-import IMG_SET from "../images/hamburger_set.png";
-import IMG_SIDE from "../images/side.png";
-import IMG_DRINK from "../images/drink.png";
-import IMG_SEARCH from "../images/search.png";
-import IMG_CLOSE from "../images/close.png";
+import IMG_RECO from "../images/recommend.webp";
+import IMG_SINGLE from "../images/hamburger.webp";
+import IMG_SET from "../images/hamburger_set.webp";
+import IMG_SIDE from "../images/side.webp";
+import IMG_DRINK from "../images/drink.webp";
+import IMG_SEARCH from "../images/search.webp";
+import IMG_CLOSE from "../images/close.webp";
 
 // CSS 파일, Header 컴포넌트
 import "../css/Order.scss";

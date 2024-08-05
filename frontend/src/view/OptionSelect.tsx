@@ -93,7 +93,7 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">2</span>
             <span className="option-select1">사이드메뉴 변경</span>
           </div>
-          <img src={`${process.env.PUBLIC_URL}/Item/potato.png`} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/Item/potato.webp`} alt="" />
           <span className="option-name">감자튀김(中)</span>
           <span className="option-select2" onClick={openSideSelect}>사이드메뉴 변경</span>
         </li>
@@ -102,7 +102,7 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">3</span>
             <span className="option-select1">음료 변경</span>
           </div>
-          <img src={`${process.env.PUBLIC_URL}/Item/cola.png`} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/Item/cola.webp`} alt="" />
           <span className="option-name">코카콜라(中)</span>
           <span className="option-select2" onClick={openDrinkSelect}>
             음료 변경
