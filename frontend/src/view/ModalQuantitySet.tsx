@@ -21,6 +21,7 @@ interface ModalQuantitySetProps {
 const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }) => {
   const [visible, setVisible] = useState(open);
   const [num, setNum] = useState(1);
+  const title2 = menu?.sets_title.replace("세트", "");
 
   const increase = () => {
     setNum(num + 1);
@@ -36,7 +37,7 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
 
   function moveSelect() {
     if (menu) {
-      movePage("/option_select", { state: { price: menu.sets_price * num } });
+      movePage("/option_select", { state: { price: menu.sets_price * num, title: title2, img: menu.sets_image } });
     }
   }
 

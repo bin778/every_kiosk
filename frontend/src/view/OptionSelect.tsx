@@ -25,6 +25,8 @@ const OptionSelect: React.FC = () => {
   const location = useLocation();
   const price = location.state.price;
   const price2 = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const title = location.state.title;
+  const image = location.state.img;
 
   // 홈 화면으로 이동한다
   const moveOrder: React.MouseEventHandler<HTMLSpanElement> = () => {
@@ -82,9 +84,8 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">1</span>
             <span className="option-select1">재료 변경</span>
           </div>
-          <img src={`${process.env.PUBLIC_URL}/Item/shrimp.png`} alt="" />
-          <span className="option-name">새우 버거</span>
-          <span className="option-engname">Shrimp Burger</span>
+          <img src={image} alt="" />
+          <span className="option-name">{title}</span>
           <span className="option-select2" onClick={openIngredientSelect}>재료 변경</span>
         </li>
         <li className="option-box">
@@ -94,7 +95,6 @@ const OptionSelect: React.FC = () => {
           </div>
           <img src={`${process.env.PUBLIC_URL}/Item/potato.png`} alt="" />
           <span className="option-name">감자튀김(中)</span>
-          <span className="option-engname">French Fries(Middle)</span>
           <span className="option-select2" onClick={openSideSelect}>사이드메뉴 변경</span>
         </li>
         <li className="option-box">
@@ -104,7 +104,6 @@ const OptionSelect: React.FC = () => {
           </div>
           <img src={`${process.env.PUBLIC_URL}/Item/cola.png`} alt="" />
           <span className="option-name">코카콜라(中)</span>
-          <span className="option-engname">Coca-Cola(Middle)</span>
           <span className="option-select2" onClick={openDrinkSelect}>
             음료 변경
           </span>
