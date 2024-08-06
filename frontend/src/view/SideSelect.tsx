@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../css/Modal.scss";
 
 interface SideSelectProps {
@@ -49,7 +50,7 @@ const SideSelect: React.FC<SideSelectProps> = ({ open, close }) => {
         <ul className="SelectDisplay">
           {SideItem.map((Side: Side) => (
               <li className="SelectChangeMenu" key={Side.item_id}>
-                <img src={Side.item_image} alt="" />
+                <LazyLoadImage src={Side.item_image} alt="" />
                 <span>{Side.item_title}</span>
                 <span className="red SelectPrice">+{Side.item_price}원</span>
               </li>

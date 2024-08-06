@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../css/Modal.scss";
 
 interface DrinkSelectProps {
@@ -49,7 +50,7 @@ const DrinkSelect: React.FC<DrinkSelectProps> = ({ open, close }) => {
         <ul className="SelectDisplay">
           {DrinkItem.map((Drink: Drink) => (
             <li className="SelectChangeMenu" key={Drink.item_id}>
-              <img src={Drink.item_image} alt="" />
+              <LazyLoadImage src={Drink.item_image} alt="" />
               <span>{Drink.item_title}</span>
               <span className="red SelectPrice">+{Drink.item_price}원</span>
             </li>

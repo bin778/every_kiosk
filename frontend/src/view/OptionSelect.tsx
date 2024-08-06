@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import axios from "axios";
 
 import ModalStaff from "./ModalStaff";
@@ -68,8 +69,8 @@ const OptionSelect: React.FC = () => {
   };
 
   // 직원 호출 요청
-  const staffCall = () => {
-    axios.get("/api/staff").then((response) => console.log(response.data));
+  const staffCall = (reason: string) => {
+    axios.post('/api/staff', { reason }).then(response => console.log(response.data));
   };
 
   return (
@@ -84,7 +85,7 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">1</span>
             <span className="option-select1">재료 변경</span>
           </div>
-          <img src={image} alt="" />
+          <LazyLoadImage src={image} alt="" />
           <span className="option-name">{title}</span>
           <span className="option-select2" onClick={openIngredientSelect}>재료 변경</span>
         </li>
@@ -93,7 +94,7 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">2</span>
             <span className="option-select1">사이드메뉴 변경</span>
           </div>
-          <img src={`${process.env.PUBLIC_URL}/Item/potato.webp`} alt="" />
+          <LazyLoadImage src={`${process.env.PUBLIC_URL}/Item/potato.webp`} alt="" />
           <span className="option-name">감자튀김(中)</span>
           <span className="option-select2" onClick={openSideSelect}>사이드메뉴 변경</span>
         </li>
@@ -102,7 +103,7 @@ const OptionSelect: React.FC = () => {
             <span className="option-number">3</span>
             <span className="option-select1">음료 변경</span>
           </div>
-          <img src={`${process.env.PUBLIC_URL}/Item/cola.webp`} alt="" />
+          <LazyLoadImage src={`${process.env.PUBLIC_URL}/Item/cola.webp`} alt="" />
           <span className="option-name">코카콜라(中)</span>
           <span className="option-select2" onClick={openDrinkSelect}>
             음료 변경
@@ -117,7 +118,7 @@ const OptionSelect: React.FC = () => {
         </div>
         <div className="button-select1 botton-button">
           <span className="guide-button" onClick={moveOrder}>주문 취소</span>
-          <span className="guide-button" onClick={() => {openModalStaff(); staffCall();}}>직원호출</span>
+          <span className="guide-button" onClick={() => {openModalStaff(); staffCall("고객 호출");}}>직원 호출</span>
           <span className="guide-button order-button">담기</span>
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
           {/* 메뉴 모달 창 */}

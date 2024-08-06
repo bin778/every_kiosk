@@ -17,6 +17,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "outDir": "./dist",
+    "typeRoots" : [".", "./node_modules/@types"],
     "jsx": "react-jsx"
   },
   "include": ["src"]

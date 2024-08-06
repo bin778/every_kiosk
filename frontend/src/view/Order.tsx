@@ -4,6 +4,7 @@ import ModalCancel from "./ModalCancel";
 import ModalStaff from "./ModalStaff";
 import ModalQuantity from "./ModalQuantity";
 import ModalQuantitySet from "./ModalQuantitySet";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import axios from 'axios';
 
 // 이미지 파일
@@ -283,7 +284,7 @@ const Order: React.FC = () => {
     return (
       <Link to="/order" onClick={() => setActive(type)}>
         <span className={"menu-button1" + border + (active === type ? ' active' : '')}>
-          <img src={image} alt={type} />
+          <LazyLoadImage src={image} alt={type} />
           <div>{title}</div>
         </span>
       </Link>
@@ -368,7 +369,7 @@ const Order: React.FC = () => {
             {Cart.map((Cart: Cart) => (
               <li key={Cart.orders_id} className="order-card">
                 <div className="card-text1">{Cart.orders_title}</div>
-                <img src={Cart.orders_image} className="ordered" alt="Ordered Item" />
+                <LazyLoadImage src={Cart.orders_image} className="ordered" alt="Ordered Item" />
                 <img src={IMG_CLOSE} className="btn-close" onClick={() => DeleteCart(Cart.orders_id)} alt="Close" />
                 <div className="card-text2 position-up">{Cart.orders_quantity}개</div>
                 <div className="card-text2 red">{String(Cart.orders_price * Cart.orders_quantity).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
@@ -402,7 +403,7 @@ interface MenuCardProps {
 const MenuCard: React.FC<MenuCardProps> = ({ name, img, price }) => {
   return (
     <>
-      <img src={img} alt="" />
+      <LazyLoadImage src={img} alt="" />
       <div className="menu-text">{name}</div>
       <div className="menu-text position-down red">{price}원~</div>
     </>

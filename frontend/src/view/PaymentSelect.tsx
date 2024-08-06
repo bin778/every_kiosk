@@ -44,8 +44,8 @@ const PaymentSelect: React.FC = () => {
   }
 
   // 직원 호출 요청
-  const staffCall = () => {
-    axios.get('/api/staff').then(response => console.log(response.data));
+  const staffCall = (reason: string) => {
+    axios.post('/api/staff', { reason }).then(response => console.log(response.data));
   };
 
   return (
@@ -94,8 +94,8 @@ const PaymentSelect: React.FC = () => {
             <span className="guide-button paymentselect-button" onClick={moveOrder}>결제취소</span>
             <span className="guide-button paymentselect-button" onClick={() => {
               openModalStaff()
-              staffCall()
-            }}>직원호출</span>
+              staffCall("고객 호출")
+            }}>직원 호출</span>
             <ModalStaff open={staffModalOpen} close={closeModalStaff} />
         </div>
       </div>

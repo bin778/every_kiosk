@@ -36,8 +36,8 @@ const Check: React.FC = () => {
   }
 
   // 직원 호출 요청
-  const staffCall = () => {
-    axios.get('/api/staff').then(response => console.log(response.data));
+  const staffCall = (reason: string) => {
+    axios.post('/api/staff', { reason }).then(response => console.log(response.data));
   };
 
   return (
@@ -66,7 +66,7 @@ const Check: React.FC = () => {
       {/* 주문확인 목록 */}
       <ul className="check-main">
         <li className="check-card">
-          <img src={`${process.env.PUBLIC_URL}/Item/bulgogi_set.png`} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/Item/bulgogi_set.webp`} alt="" />
           <div className="check-text">불고기버거세트</div>
           <div className="check-text check-option">치즈 추가</div>
           <div className="check-text check-side">감자튀김(中), 코카콜라(中)</div>
@@ -84,7 +84,7 @@ const Check: React.FC = () => {
             <span className="guide-button" onClick={moveOrder}>취소</span>
             <span className="guide-button" onClick={() => {
               openModalStaff()
-              staffCall()}}>직원호출</span>
+              staffCall("고객 호출")}}>직원 호출</span>
             <span className="guide-button order-button" onClick={movePaySelect}>결제</span>
             <ModalStaff open={staffModalOpen} close={closeModalStaff} />
         </div>

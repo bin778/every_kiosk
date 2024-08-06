@@ -9,3 +9,6 @@ package.json
 
 # Ignore .env file
 .env
+
+# Ignore Yarn.lock file
+Yarn.lock
