@@ -37,7 +37,7 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
 
   function moveSelect() {
     if (menu) {
-      movePage("/option_select", { state: { price: menu.sets_price * num, title: title2, img: menu.sets_image } });
+      movePage("/option_select", { state: { price: menu.sets_price - 2000, quantity: num, title: title2, img: menu.sets_image } });
     }
   }
 

@@ -81,6 +81,14 @@
     top: 50px;
     left: 200px;
   }
+
+  .option-ingredient {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 600;
+    top: 100px;
+    left: 200px;
+  }
   
   .option-select2 {
     position: absolute;
@@ -182,6 +190,12 @@
     left: 150px;
   }
 
+  .option-ingredient {
+    font-size: 1.2rem;
+    top: 75px;
+    left: 150px;
+  }
+
   .option-select2 {
     margin: 7px;
     padding: 7px;
@@ -259,6 +273,12 @@
   .option-name {
     font-size: 1.5rem;
     top: 30px;
+    left: 120px;
+  }
+
+  .option-ingredient {
+    font-size: 1.0rem;
+    top: 60px;
     left: 120px;
   }
 

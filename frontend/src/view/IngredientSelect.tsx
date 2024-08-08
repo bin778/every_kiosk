@@ -6,6 +6,7 @@ import "../css/Modal.scss";
 interface IngredientSelectProps {
   open: boolean;
   close: () => void;
+  onSelect: (ingredient: Ingredient) => void;
 }
 
 interface Ingredient {
@@ -15,9 +16,9 @@ interface Ingredient {
   ingredient_price: number;
 }
 
-const IngredientSelect: React.FC<IngredientSelectProps> = ({ open, close }) => {
+const IngredientSelect: React.FC<IngredientSelectProps> = ({ open, close, onSelect }) => {
   // 재료 아이템 DB State
-  let [IngredientItem, setIngredientItem] = useState([]);
+  let [IngredientItem, setIngredientItem] = useState<Ingredient[]>([]); // 타입 수정
   
   // 사이드 아이템 DB 가져오기
   axios.get("/api/ingredientitem").then((res) => {
@@ -49,15 +50,14 @@ const IngredientSelect: React.FC<IngredientSelectProps> = ({ open, close }) => {
         <div className="SelectTitle">원하는 재료를 선택해주세요</div>
         <ul className="SelectDisplay">
           {IngredientItem.map((Ingredient: Ingredient) => (
-            <li className="SelectChangeMenu" key={Ingredient.ingredient_id}>
+            <li className="SelectChangeMenu" key={Ingredient.ingredient_id} onClick={() => onSelect(Ingredient)}>
               <LazyLoadImage src={Ingredient.ingredient_image} alt="" />
               <span>{Ingredient.ingredient_title}</span>
               <span className="red SelectPrice">+{Ingredient.ingredient_price}원</span>
             </li>
           ))}
         </ul>
-        <span className="modal-button cancel-button bottom left" onClick={close}>취소</span>
-        <span className="modal-button bottom right">추가</span>
+        <span className="modal-button cancel-button cancel-button2 bottom left" onClick={close}>취소</span>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import "../css/Modal.scss";
 interface SideSelectProps {
   open: boolean;
   close: () => void;
+  onSelect: (side: Side) => void; // 선택된 부분
 }
 
 interface Side {
@@ -15,9 +16,9 @@ interface Side {
   item_price: number;
 }
 
-const SideSelect: React.FC<SideSelectProps> = ({ open, close }) => {
+const SideSelect: React.FC<SideSelectProps> = ({ open, close, onSelect }) => {
   // 사이드 아이템 DB State
-  let [SideItem, setSideItem] = useState([]);
+  let [SideItem, setSideItem] = useState<Side[]>([]); // 타입 수정
 
   // 실제 컴포넌트가 사라지는 시점을 지연시키기 위한 값
   const [visible, setVisible] = useState(open);
@@ -49,15 +50,14 @@ const SideSelect: React.FC<SideSelectProps> = ({ open, close }) => {
         <div className="SelectTitle">원하는 사이드를 선택해주세요</div>
         <ul className="SelectDisplay">
           {SideItem.map((Side: Side) => (
-              <li className="SelectChangeMenu" key={Side.item_id}>
+              <li className="SelectChangeMenu" key={Side.item_id} onClick={() => onSelect(Side)}>
                 <LazyLoadImage src={Side.item_image} alt="" />
                 <span>{Side.item_title}</span>
                 <span className="red SelectPrice">+{Side.item_price}원</span>
               </li>
           ))}
         </ul>
-        <span className="modal-button cancel-button bottom left" onClick={close}>취소</span>
-        <span className="modal-button bottom right">선택</span>
+        <span className="modal-button cancel-button cancel-button2 bottom left" onClick={close}>취소</span>
       </div>
     </div>
   );
