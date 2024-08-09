@@ -1,9 +1,10 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ModalCancel from "./ModalCancel";
-import ModalStaff from "./ModalStaff";
-import ModalQuantity from "./ModalQuantity";
-import ModalQuantitySet from "./ModalQuantitySet";
+import ModalCancel from "./Modal/ModalCancel";
+import ModalEmpty from "./Modal/ModalEmpty";
+import ModalStaff from "./Modal/ModalStaff";
+import ModalQuantity from "./Modal/ModalQuantity";
+import ModalQuantitySet from "./Modal/ModalQuantitySet";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import axios from 'axios';
 
@@ -58,6 +59,7 @@ interface TotalPrice {
 const Order: React.FC = () => {
   const [active, setActive] = useState<string>('recommend');
   const [cancelModalOpen, setCancelModalOpen] = useState<boolean>(false);
+  const [emptyModalOpen, setEmptyModalOpen] = useState<boolean>(false);
   const [staffModalOpen, setStaffModalOpen] = useState<boolean>(false);
   const [quantityModalOpen, setQuantityModalOpen] = useState<boolean>(false);
   const [quantitySetModalOpen, setQuantitySetModalOpen] = useState<boolean>(false);
@@ -82,7 +84,6 @@ const Order: React.FC = () => {
   let [CartQuantity, setCartQuantity] = useState<TotalQuantity>({ orders_count: 0 });
   let [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
 
-  // 전체 아이템 DB 가져오기
   useEffect(() => {
     // 전체 아이템 DB 가져오기
     axios.get("/api/item").then((res) => {
@@ -168,6 +169,14 @@ const Order: React.FC = () => {
   const closeModalStaff = () => {
     setStaffModalOpen(false);
   };
+
+  const openModalEmpty = () => {
+    setEmptyModalOpen(true);
+  }
+
+  const closeModalEmpty = () => {
+    setEmptyModalOpen(false);
+  }
 
   const openModalQuantity = (item: Item) => {
     setSelectedMenu(item);
@@ -269,7 +278,10 @@ const Order: React.FC = () => {
   };
 
   const moveCheck = () => {
-    navigate("/check");
+    if (CartQuantity.orders_count > 0)
+      navigate("/check");
+    else
+      openModalEmpty();
   };
 
   // 목록 컴포넌트
@@ -371,6 +383,9 @@ const Order: React.FC = () => {
                 <div className="card-text1">{Cart.orders_title}</div>
                 <LazyLoadImage src={Cart.orders_image} className="ordered" alt="Ordered Item" />
                 <img src={IMG_CLOSE} className="btn-close" onClick={() => DeleteCart(Cart.orders_id)} alt="Close" />
+                <div className="card-text2 position-ingredient">{Cart.sets_ingredient === "추가 없음" || Cart.sets_ingredient === null ? "" : Cart.sets_ingredient + " 추가"}</div>
+                <div className="card-text2 position-side">{Cart.sets_side}</div>
+                <div className="card-text2 position-drink">{Cart.sets_drink}</div>
                 <div className="card-text2 position-up">{Cart.orders_quantity}개</div>
                 <div className="card-text2 red">{String(Cart.orders_price * Cart.orders_quantity).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
               </li>
@@ -385,6 +400,7 @@ const Order: React.FC = () => {
           }}>직원 호출</span>
           <span className="guide-button order-button" onClick={moveCheck}>결제하기</span>
           <ModalCancel open={cancelModalOpen} close={closeModalCancel} />
+          <ModalEmpty open={emptyModalOpen} close={closeModalEmpty} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
           <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={selectedMenu} fetchCart={fetchCart} />
           <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={selectedSets} />

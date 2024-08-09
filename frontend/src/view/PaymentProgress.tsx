@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 
 import IMG_PAYMENT from "../images/payment.webp";
 
-import ModalStaff from "./ModalStaff";
+import ModalStaff from "./Modal/ModalStaff";
 
 // SCSS 파일
 import "../css/PaymentProgress.scss"
@@ -17,6 +17,10 @@ const PaymentProgress: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);
 
   const movePage = useNavigate();
+  const location = useLocation();
+  
+  // 전달된 total_price 값
+  const { total_price } = location.state || { total_price: 0 };
 
   // 주문 화면으로 이동한다.
   function moveOrder() {
@@ -71,7 +75,7 @@ const PaymentProgress: React.FC = () => {
       <div className="paymentprogress-menu">
         <div>
           <span className="check-price1">총 주문금액</span>
-          <span className="check-price1 check-price2">5,000원</span>
+          <span className="check-price1 check-price2">{String(total_price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
         </div>
         <div className="button-select1">
             <span className="guide-button guide-button2" onClick={moveOrder}>결제취소</span>

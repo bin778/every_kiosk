@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import "../css/Modal.scss";
+import "../../css/Modal.scss";
 
-interface ModalStaffProps {
+interface ModalEmptyProps {
   open: boolean;
   close: () => void;
 }
 
-const ModalStaff: React.FC<ModalStaffProps> = ({ open, close }) => {
+const ModalEmpty: React.FC<ModalEmptyProps> = ({ open, close }) => {
   const [visible, setVisible] = useState(open);
 
   useEffect(() => {
@@ -25,12 +25,11 @@ const ModalStaff: React.FC<ModalStaffProps> = ({ open, close }) => {
   return (
     <div className={open ? 'openModal modal' : 'modal'}>
       <div className='modalBox'>
-        <div>직원을 호출하였습니다.</div>
-        <div>잠시만 기다려주세요!</div>
+        <div>주문할 메뉴를 선택해주세요!</div>
         <span className='modal-button bottom center' onClick={close}>예</span>
       </div>
     </div>
   );
 };
 
-export default ModalStaff;
+export default ModalEmpty;

@@ -208,14 +208,26 @@ body {
 .card-text2 {
   position: absolute;
   padding: 3px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   right: 20px;
   bottom: 20px;
 }
 
 .position-up {
-  bottom: 60px;
+  bottom: 45px;
+}
+
+.position-drink {
+  bottom: 70px;
+}
+
+.position-side {
+  bottom: 95px;
+}
+
+.position-ingredient {
+  bottom: 120px;
 }
 
 .ordered {
@@ -369,8 +381,24 @@ body {
   }
 
   .card-text2 {
-    font-size: 1.3rem;
+    font-size: 1rem;
     bottom: 15px;
+  }
+
+  .position-up {
+    bottom: 35px !important;
+  }
+  
+  .position-drink {
+    bottom: 55px;
+  }
+  
+  .position-side {
+    bottom: 75px;
+  }
+  
+  .position-ingredient {
+    bottom: 95px;
   }
   
   .btn-close {
@@ -499,14 +527,30 @@ body {
   }
 
   .card-text1 {
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     left: 10px;
     top: 5px;
   }
 
   .card-text2 {
-    font-size: 1.1rem;
+    font-size: 0.75rem;
     bottom: 10px;
+  }
+
+  .position-up {
+    bottom: 25px !important;
+  }
+  
+  .position-drink {
+    bottom: 40px;
+  }
+  
+  .position-side {
+    bottom: 55px;
+  }
+  
+  .position-ingredient {
+    bottom: 70px;
   }
   
   .btn-close {

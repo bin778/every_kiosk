@@ -125,6 +125,20 @@ export const insertCart = async (title: string, image: string, quantity: number,
   });
 };
 
+// 장바구니 DB 목록 추가하기(세트 상품)
+export const insertSetCart = async (title: string, image: string, quantity: number, price: number, ingredient: string, side: string, drink: string): Promise<unknown> => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const sql = `INSERT INTO ORDERS (orders_title, orders_image, orders_quantity, orders_price, sets_ingredient, sets_side, sets_drink) VALUES ('${title}', '${image}', '${quantity}', '${price}', '${ingredient}', '${side}', '${drink}');`;
+
+      const result = await queryFunc(sql);
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 // 장바구니 DB 목록 삭제하기
 export const deleteCart = async (id: number): Promise<unknown> => {
   return new Promise(async (resolve, reject) => {

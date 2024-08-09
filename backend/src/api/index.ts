@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import db, { insertCart, deleteCart } from "./db"; // db 모듈을 default로 가져옴
+import db, { insertCart, deleteCart, insertSetCart } from "./db"; // db 모듈을 default로 가져옴
 
 const router = Router();
 
@@ -73,6 +73,14 @@ router.post("/addcart", async (req: Request, res: Response) => {
 
   const AddCart = await insertCart(title, image, quantity, price);
   res.send({ result: AddCart });
+});
+
+// /api/addsetcart POST 데이터를 전달받는다.
+router.post("/addsetcart",async (req: Request, res: Response) => {
+  const { title, image, quantity, price, ingredient, side, drink } = req.body;
+
+  const AddSetCart = await insertSetCart(title, image, quantity, price, ingredient, side, drink);
+  res.send({ result: AddSetCart })
 });
 
 // /api/deletecart DELETE 데이터를 전달받는다.

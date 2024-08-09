@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from 'axios';
 
-import ModalStaff from "./ModalStaff";
+import ModalStaff from "./Modal/ModalStaff";
 
 // SCSS 파일
 import "../css/Check.scss"
@@ -10,9 +10,45 @@ import "../css/Modal.scss"
 
 // 헤더 파일
 import Header from "./Component/Header";
+import { useEffect } from "react";
+
+interface Cart {
+  orders_id: number;
+  orders_title: string;
+  orders_image: string;
+  orders_quantity: number;
+  orders_price: number;
+  sets_ingredient: string;
+  sets_side: string;
+  sets_drink: string;
+}
+
+interface TotalPrice {
+  total_price: number;
+}
 
 const Check: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);
+  let [Cart, setCart] = useState([]);
+  let [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
+
+  useEffect(() => {
+    fetchCart();
+  }, [])
+
+  // 장바구니 목록을 불러온다.
+  const fetchCart = () => {
+    axios.get("/api/cart").then((res) => {
+      const cartData = res.data.result;
+      setCart(cartData);
+
+      // 장바구니 총 가격을 여기서 계산
+      const totalPrice = cartData.reduce((acc: number, item: Cart) => acc + (item.orders_price * item.orders_quantity), 0);
+      setCartPrice({ total_price: totalPrice });
+    }).catch((error) => {
+      console.log('데이터 가져오기 실패: ', error);
+    });
+  };
 
   const movePage = useNavigate();
 
@@ -23,7 +59,7 @@ const Check: React.FC = () => {
 
   // 결제수단 선택 화면으로 이동한다.
   function movePaySelect() {
-    movePage("/payment_select")
+    movePage("/payment_select", { state: { total_price: CartPrice.total_price } });
   }
 
   // 모달 직원 호출창
@@ -65,20 +101,22 @@ const Check: React.FC = () => {
       </div>
       {/* 주문확인 목록 */}
       <ul className="check-main">
-        <li className="check-card">
-          <img src={`${process.env.PUBLIC_URL}/Item/bulgogi_set.webp`} alt="" />
-          <div className="check-text">불고기버거세트</div>
-          <div className="check-text check-option">치즈 추가</div>
-          <div className="check-text check-side">감자튀김(中), 코카콜라(中)</div>
-          <div className="check-text check-quantity">2개</div>
-          <div className="check-text check-price red">6,500원</div>
-        </li>
+        {Cart.map((Cart: Cart) => (
+          <li key={Cart.orders_id} className="check-card">
+            <img src={Cart.orders_image} alt="" />
+            <div className="check-text">{Cart.orders_title}</div>
+            <div className="check-text check-option">{Cart.sets_ingredient === "추가 없음" || Cart.sets_ingredient === null ? "" : Cart.sets_ingredient + " 추가"}</div>
+            <div className="check-text check-side">{Cart.sets_side} {Cart.sets_side ? ", " : ""} {Cart.sets_drink}</div>
+            <div className="check-text check-quantity">{Cart.orders_quantity}개</div>
+            <div className="check-text check-price red">{String(Cart.orders_price * Cart.orders_quantity).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
+          </li>
+        ))};
       </ul>
       {/* 총 주문금액 */}
       <div className="check-menu">
         <div>
           <span className="check-price1">총 주문금액</span>
-          <span className="check-price1 check-price2">5,000원</span>
+          <span className="check-price1 check-price2">{String(CartPrice.total_price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
         </div>
         <div className="button-select1">
             <span className="guide-button" onClick={moveOrder}>취소</span>

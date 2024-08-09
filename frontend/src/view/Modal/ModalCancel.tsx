@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/Modal.scss";
+import "../../css/Modal.scss";
 
 interface ModalCancelProps {
   open: boolean;
@@ -35,15 +35,8 @@ const ModalCancel: React.FC<ModalCancelProps> = ({ open, close }) => {
     <div className={open ? "openModal modal" : "modal"}>
       <div className="modalBox">
         <div>정말로 주문을 취소하시겠습니까?</div>
-        <span
-          className="modal-button cancel-button bottom left"
-          onClick={close}
-        >
-          아니요
-        </span>
-        <span className="modal-button bottom right" onClick={moveHome}>
-          예
-        </span>
+        <span className="modal-button cancel-button bottom left" onClick={close}>아니요</span>
+        <span className="modal-button bottom right" onClick={moveHome}>예</span>
       </div>
     </div>
   );

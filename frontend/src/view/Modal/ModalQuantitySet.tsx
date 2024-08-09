@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/Modal.scss";
-import IMG_PLUS from "../images/plus.webp";
-import IMG_MINUS from "../images/minus.webp";
+import "../../css/Modal.scss";
+import IMG_PLUS from "../../images/plus.webp";
+import IMG_MINUS from "../../images/minus.webp";
 
 // 세트 메뉴 전달 타입
 type Sets = {

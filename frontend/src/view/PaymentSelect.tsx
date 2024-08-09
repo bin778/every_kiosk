@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
 
 import IMG_CARD from "../images/card.webp";
 import IMG_MONEY from "../images/money.webp";
 
-import ModalStaff from "./ModalStaff";
+import ModalStaff from "./Modal/ModalStaff";
 
 // SCSS 파일
 import "../css/PaymentSelect.scss"
@@ -18,6 +18,10 @@ const PaymentSelect: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);
 
   const movePage = useNavigate();
+  const location = useLocation();
+  
+  // 전달된 total_price 값
+  const { total_price } = location.state || { total_price: 0 };
 
   // 주문 화면으로 이동한다.
   function moveOrder() {
@@ -25,13 +29,8 @@ const PaymentSelect: React.FC = () => {
   }
 
   // 결제수단 선택 화면으로 이동한다.
-  function movePaySelect() {
-    movePage("/payment_select")
-  }
-
-  // 결제수단 선택 화면으로 이동한다.
   function movePayProgress() {
-    movePage("/payment_progress")
+    movePage("/payment_progress", { state: { total_price: total_price } })
   }
 
   // 모달 직원 호출창
@@ -88,7 +87,7 @@ const PaymentSelect: React.FC = () => {
       <div className="paymentselect-menu">
         <div>
           <span className="check-price1">총 주문금액</span>
-          <span className="check-price1 check-price2">5,000원</span>
+          <span className="check-price1 check-price2">{String(total_price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
         </div>
         <div className="button-select1">
             <span className="guide-button paymentselect-button" onClick={moveOrder}>결제취소</span>

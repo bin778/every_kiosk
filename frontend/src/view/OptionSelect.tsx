@@ -3,7 +3,7 @@ import { useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import axios from "axios";
 
-import ModalStaff from "./ModalStaff";
+import ModalStaff from "./Modal/ModalStaff";
 import IngredientSelect from "./IngredientSelect";
 import SideSelect from "./SideSelect";
 import DrinkSelect from "./DrinkSelect";
@@ -48,7 +48,7 @@ const OptionSelect: React.FC = () => {
   const image = location.state.img;
 
   // 홈 화면으로 이동한다
-  const moveOrder: React.MouseEventHandler<HTMLSpanElement> = () => {
+  const moveOrder = () => {
     movePage("/order");
   }
 
@@ -109,6 +109,16 @@ const OptionSelect: React.FC = () => {
   const totalAmount = (price * quantity) + (selectedIngredient.ingredient_price * quantity) + (selectedSide.item_price * quantity) + (selectedDrink.item_price * quantity);
   const formattedAmount = totalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+  // 상품을 장바구니에 추가하기
+  const onClickSetAddCart = (title: string, image: string, quantity: number, price: number, ingredient: string, side: string, drink: string) => {
+    const data = { title, image, quantity, price, ingredient, side, drink };
+    axios.post("/api/addsetcart", data).then((res) => {
+      // 장바구니 추가
+    }).catch((error) => {
+      console.error('데이터를 추가하는 중 오류 발생: ', error);
+    });
+  }
+
   return (
     <div className="select-layer">
       {/* header 화면 */}
@@ -156,7 +166,10 @@ const OptionSelect: React.FC = () => {
         <div className="button-select1 botton-button">
           <span className="guide-button" onClick={moveOrder}>주문 취소</span>
           <span className="guide-button" onClick={() => {openModalStaff(); staffCall("고객 호출");}}>직원 호출</span>
-          <span className="guide-button order-button">담기</span>
+          <span className="guide-button order-button" onClick={() => {
+            onClickSetAddCart(title + "세트", image, quantity, totalAmount / quantity, selectedIngredient.ingredient_title, selectedSide.item_title, selectedDrink.item_title);
+            moveOrder();
+          }}>담기</span>
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
           {/* 메뉴 모달 창 */}
           <IngredientSelect open={ingredientSelectOpen} close={closeIngredientSelect} onSelect={handleIngredientSelect} />
