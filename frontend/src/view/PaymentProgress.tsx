@@ -19,8 +19,9 @@ const PaymentProgress: React.FC = () => {
   const movePage = useNavigate();
   const location = useLocation();
   
-  // 전달된 total_price 값
+  // 전달된 total_price, total_name 값
   const { total_price } = location.state || { total_price: 0 };
+  const { total_name } = location.state || { total_name: "" };
 
   // 주문 화면으로 이동한다.
   function moveOrder() {
@@ -40,6 +41,48 @@ const PaymentProgress: React.FC = () => {
   const staffCall = (reason: string) => {
     axios.post('/api/staff', { reason }).then(response => console.log(response.data));
   };
+
+  // 결제 요청
+  const requestPayment = () => {
+    const { IMP } = window as any;  // window 객체에서 IMP 가져오기
+    IMP.init("imp01181305"); // 가맹점 식별코드
+  
+    // 모바일에서 리디렉션을 위한 URL을 설정
+    const m_redirect_url = `${window.location.origin}/payment_mobile?amount=${encodeURIComponent(total_price)}`;
+  
+    IMP.request_pay({
+      pg: 'uplus', // 결제 수단 설정
+      pay_method: 'card', // 결제 수단
+      merchant_uid: `mid_${new Date().getTime()}`, // 주문 번호
+      amount: total_price, // 결제 금액
+      name: total_name, // 주문명
+      m_redirect_url, // 모바일 리디렉션 URL
+    }, async (rsp: any) => {
+      if (rsp.success) {
+        // 결제 성공 시 서버로 결제 정보 전송
+        try {
+          const response = await axios.post('/api/payment', {
+            imp_uid: rsp.imp_uid,
+            merchant_uid: rsp.merchant_uid,
+            amount: rsp.paid_amount,
+          });
+          if (response.data.success) {
+            alert('결제 성공');
+            movePage("/number");  // 결제 완료 페이지로 이동
+          } else {
+            alert('결제 실패: ' + response.data.message);
+          }
+          console.log(response);
+        } catch (error) {
+          alert('결제 처리 중 오류가 발생했습니다.');
+          console.error(error);
+        }
+      } else {
+        // 결제 실패 시 처리
+        alert(`결제 실패: ${rsp.error_msg}`);
+      }
+    });
+  };    
 
   return (
     <div className="check-layer">
@@ -78,11 +121,12 @@ const PaymentProgress: React.FC = () => {
           <span className="check-price1 check-price2">{String(total_price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
         </div>
         <div className="button-select1">
-            <span className="guide-button guide-button2" onClick={moveOrder}>결제취소</span>
-            <span className="guide-button guide-button2" onClick={() => {
+            <span className="guide-button" onClick={moveOrder}>결제취소</span>
+            <span className="guide-button" onClick={() => {
               openModalStaff()
               staffCall("고객 호출")
             }}>직원호출</span>
+            <span className="guide-button order-button" onClick={requestPayment}>결제</span>
             <ModalStaff open={staffModalOpen} close={closeModalStaff} />
         </div>
       </div>

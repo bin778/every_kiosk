@@ -37,7 +37,7 @@ const Number: React.FC = () => {
       <div className="payment-center">
         <div className="pay-up pay-text">주문이 완료됐습니다!</div>
         <div className="pay-text2">주문번호</div>
-        <div className="number">269</div>
+        <div className="number">001</div>
         <img className="pay-number" src={IMG_NUMBER} alt="" />
       </div>
     </div>

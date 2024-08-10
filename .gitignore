@@ -10,5 +10,10 @@ package.json
 # Ignore .env file
 .env
 
+# Ignore .hintrc file
+.hintrc
+
 # Ignore Yarn.lock file
 Yarn.lock
+.hintrc
+.hintrc

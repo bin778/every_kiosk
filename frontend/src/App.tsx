@@ -6,6 +6,7 @@ import Order from "./view/Order";
 import OptionSelect from "./view/OptionSelect";
 import Check from "./view/Check";
 import PaymentSelect from "./view/PaymentSelect";
+import PaymentMobile from "./view/PaymentMobile";
 import PaymentProgress from "./view/PaymentProgress";
 import Number from "./view/Number";
 
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Link to="/option_select"></Link>
           <Link to="/check"></Link>
           <Link to="/payment_select"></Link>
+          <Link to="/payment_mobile"></Link>
           <Link to="/payment_progress"></Link>
           <Link to="/number"></Link>
         </nav>
@@ -31,6 +33,7 @@ const App: React.FC = () => {
           <Route path="/option_select" element={<OptionSelect />} />
           <Route path="/check" element={<Check />} />
           <Route path="/payment_select" element={<PaymentSelect />} />
+          <Route path="/payment_mobile" element={<PaymentMobile />} />
           <Route path="/payment_progress" element={<PaymentProgress />} />
           <Route path="/number" element={<Number />} />
         </Routes>

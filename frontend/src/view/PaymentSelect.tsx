@@ -3,8 +3,6 @@ import { useState } from "react";
 import axios from 'axios';
 
 import IMG_CARD from "../images/card.webp";
-import IMG_MONEY from "../images/money.webp";
-
 import ModalStaff from "./Modal/ModalStaff";
 
 // SCSS 파일
@@ -20,8 +18,9 @@ const PaymentSelect: React.FC = () => {
   const movePage = useNavigate();
   const location = useLocation();
   
-  // 전달된 total_price 값
+  // 전달된 total_price, total_name 값
   const { total_price } = location.state || { total_price: 0 };
+  const { total_name } = location.state || { total_name: "" };
 
   // 주문 화면으로 이동한다.
   function moveOrder() {
@@ -30,7 +29,7 @@ const PaymentSelect: React.FC = () => {
 
   // 결제수단 선택 화면으로 이동한다.
   function movePayProgress() {
-    movePage("/payment_progress", { state: { total_price: total_price } })
+    movePage("/payment_progress", { state: { total_price: total_price, total_name: total_name } })
   }
 
   // 모달 직원 호출창
@@ -77,10 +76,6 @@ const PaymentSelect: React.FC = () => {
         <span className="pay-menu" onClick={movePayProgress}>
           <img src={IMG_CARD} alt="" />
           <div>신용카드</div>
-        </span>
-        <span className="pay-menu" onClick={movePayProgress}>
-          <img src={IMG_MONEY} alt="" />
-          <div>현금</div>
         </span>
       </div>
       {/* 총 주문금액 */}

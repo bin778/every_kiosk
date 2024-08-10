@@ -153,4 +153,14 @@ export const deleteCart = async (id: number): Promise<unknown> => {
   });
 };
 
+// 모든 장바구니 DB 목록 가져오기
+db.allDelete = () => {
+  return new Promise(async (resolve, reject) => {
+    const sql = `DELETE FROM ORDERS;`
+
+    const result = await queryFunc(sql);
+    resolve(result);
+  });
+}
+
 export default db;

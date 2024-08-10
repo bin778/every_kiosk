@@ -1,13 +1,22 @@
 import express, { Request, Response } from 'express';
+import dotenv from 'dotenv';
 import path from 'path';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import api from './src/api/index';
 import db from './src/api/db';
+import Iamport from 'iamport'
+
+dotenv.config();
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
+
+const iamport = new Iamport({
+  impKey: process.env.IMP_KEY,
+  impSecret: process.env.IMP_SECRET
+});
 
 // 미들웨어 설정
 app.use(express.json());
@@ -41,6 +50,22 @@ app.post("/api/staff", (req: Request, res: Response) => {
   console.log(call);
 });
 
+// 결제 요청 엔드포인트
+app.post("/api/payment", async (req: Request, res: Response) => {
+  const { amount, imp_uid, merchant_uid } = req.body;
+
+  iamport.payment.getByImpUid({ imp_uid: imp_uid }).then(function(payment) {
+    // 결제 금액 확인
+    if (payment.amount === amount) {
+      res.status(200).json({ success: true, message: "결제 성공" });
+    } else {
+      res.status(400).json({ success: false, message: "금액이 맞지 않습니다." });
+    }
+  }).catch(function(error){
+    console.error("Error processing payment:", error);
+  });
+});
+
 // 서버 시작
 server.listen(5000, () => {
   console.log("server listen start : 5000");
@@ -54,4 +79,3 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
 });
-

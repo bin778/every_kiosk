@@ -91,4 +91,12 @@ router.delete("/deletecart/:id", async (req: Request, res: Response) => {
   res.send({ result: DeleteCart });
 });
 
+// /api/alldelete DELETE 데이터를 전달받는다.
+router.delete("/alldelete", async (req: Request, res: Response) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
+  const AllDeleteCart = await db.allDelete();
+  res.send({ result: AllDeleteCart });
+});
+
 export default router;

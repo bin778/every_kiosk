@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/Modal.scss";
@@ -18,6 +19,14 @@ const ModalCancel: React.FC<ModalCancelProps> = ({ open, close }) => {
     movePage("/");
   }
 
+  const AllDelete = () => {
+    axios.delete(`/api/alldelete`).then((res) => {
+
+    }).catch((error) => {
+      console.error("데이터를 삭제하는 중 오류 발생: ", error);
+    })
+  }
+
   useEffect(() => {
     setVisible(open);
 
@@ -36,7 +45,10 @@ const ModalCancel: React.FC<ModalCancelProps> = ({ open, close }) => {
       <div className="modalBox">
         <div>정말로 주문을 취소하시겠습니까?</div>
         <span className="modal-button cancel-button bottom left" onClick={close}>아니요</span>
-        <span className="modal-button bottom right" onClick={moveHome}>예</span>
+        <span className="modal-button bottom right" onClick={() => { 
+          AllDelete();
+          moveHome();
+        }}>예</span>
       </div>
     </div>
   );

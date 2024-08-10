@@ -27,10 +27,15 @@ interface TotalPrice {
   total_price: number;
 }
 
+interface TotalName {
+  total_name: string;
+}
+
 const Check: React.FC = () => {
   let [staffModalOpen, setStaffModalOpen] = useState(false);
   let [Cart, setCart] = useState([]);
   let [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
+  let [CartName, setCartName] = useState<TotalName>({ total_name: "" });
 
   useEffect(() => {
     fetchCart();
@@ -42,9 +47,12 @@ const Check: React.FC = () => {
       const cartData = res.data.result;
       setCart(cartData);
 
-      // 장바구니 총 가격을 여기서 계산
+      // 장바구니 총 개수 및 총 가격을 여기서 계산
+      const totalQuantity = cartData.length;
       const totalPrice = cartData.reduce((acc: number, item: Cart) => acc + (item.orders_price * item.orders_quantity), 0);
       setCartPrice({ total_price: totalPrice });
+      const totalName = (totalQuantity === 1 ? cartData[0].orders_title : cartData[0].orders_title + " 외 " + (totalQuantity - 1) + "개");
+      setCartName({ total_name: totalName })
     }).catch((error) => {
       console.log('데이터 가져오기 실패: ', error);
     });
@@ -59,7 +67,7 @@ const Check: React.FC = () => {
 
   // 결제수단 선택 화면으로 이동한다.
   function movePaySelect() {
-    movePage("/payment_select", { state: { total_price: CartPrice.total_price } });
+    movePage("/payment_select", { state: { total_price: CartPrice.total_price, total_name: CartName.total_name } });
   }
 
   // 모달 직원 호출창

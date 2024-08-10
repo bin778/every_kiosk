@@ -141,10 +141,22 @@ body {
 
 .card-list {
   overflow-x: scroll;
+  overflow-y: hidden;
   height: 250px;
 
   &::-webkit-scrollbar {
-    display: none;
+    height: 10px;
+    background-color: #b08972;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #683a2f;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #b08972;
   }
 
   > ul {
@@ -367,6 +379,10 @@ body {
 
   .card-list {
     height: 220px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   // 주문 카드
