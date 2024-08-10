@@ -15,5 +15,3 @@ package.json
 
 # Ignore Yarn.lock file
 Yarn.lock
-.hintrc
-.hintrc
