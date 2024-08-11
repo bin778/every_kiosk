@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
+import axios from 'axios';
 import dotenv from 'dotenv';
 import path from 'path';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import api from './src/api/index';
 import db from './src/api/db';
-import Iamport from 'iamport'
 
 dotenv.config();
 
@@ -13,10 +13,9 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server);
 
-const iamport = new Iamport({
-  impKey: process.env.IMP_KEY,
-  impSecret: process.env.IMP_SECRET
-});
+// Iamport API를 사용하기 위한 인증 정보
+const API_KEY = process.env.IMP_KEY;
+const API_SECRET = process.env.IMP_SECRET;
 
 // 미들웨어 설정
 app.use(express.json());
@@ -50,20 +49,55 @@ app.post("/api/staff", (req: Request, res: Response) => {
   console.log(call);
 });
 
+// 액세스 토큰을 가져오기 위한 함수
+const getAccessToken = async () => {
+  try {
+    const response = await axios.post('https://api.iamport.kr/users/getToken', {
+      imp_key: API_KEY,
+      imp_secret: API_SECRET,
+    });
+    return response.data.response.access_token;
+  } catch (error) {
+    console.error('Error getting access token:', error);
+    throw error;
+  }
+};
+
+// 결제 정보를 조회하기 위한 함수
+const getPaymentByImpUid = async (imp_uid: string) => {
+  try {
+    const accessToken = await getAccessToken();
+    const response = await axios.get(`https://api.iamport.kr/payments/${imp_uid}`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error getting payment information:', error);
+    throw error;
+  }
+};
+
 // 결제 요청 엔드포인트
-app.post("/api/payment", async (req: Request, res: Response) => {
+app.post('/api/payment', async (req: Request, res: Response) => {
   const { amount, imp_uid, merchant_uid } = req.body;
 
-  iamport.payment.getByImpUid({ imp_uid: imp_uid }).then(function(payment) {
-    // 결제 금액 확인
-    if (payment.amount === amount) {
-      res.status(200).json({ success: true, message: "결제 성공" });
+  try {
+    const paymentInfo = await getPaymentByImpUid(imp_uid);
+
+    if (paymentInfo.response.status === 'paid') {
+      if (paymentInfo.response.amount === amount) {
+        res.status(200).json({ success: true, message: '결제 성공' });
+      } else {
+        res.status(400).json({ success: false, message: '금액이 맞지 않습니다.' });
+      }
     } else {
-      res.status(400).json({ success: false, message: "금액이 맞지 않습니다." });
+      res.status(400).json({ success: false, message: `결제 실패: ${paymentInfo.response.fail_reason}` });
     }
-  }).catch(function(error){
-    console.error("Error processing payment:", error);
-  });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '결제 처리 중 오류가 발생했습니다.' });
+  }
 });
 
 // 서버 시작
