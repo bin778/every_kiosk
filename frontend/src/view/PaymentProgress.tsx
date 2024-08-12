@@ -73,17 +73,8 @@ const PaymentProgress: React.FC = () => {
             movePage("/order");
           }
         } else {
-          // 결제 실패 상태를 서버에 전송
-          try {
-            await axios.post("/api/payment", {
-              imp_uid: rsp.imp_uid,
-              merchant_uid: rsp.merchant_uid,
-              amount: 0, // 결제 취소 상태를 나타내기 위해 0으로 설정
-            });
-          } catch (error) {
-            alert(`결제 실패: ${rsp.error_msg}`);
-            movePage("/order");
-          }
+          alert(`결제 실패: ${rsp.error_msg}`);
+          movePage("/order");
         }
       }
     );
