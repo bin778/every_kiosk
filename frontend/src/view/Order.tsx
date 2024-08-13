@@ -85,55 +85,23 @@ const Order: React.FC = () => {
   let [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
 
   useEffect(() => {
-    // 전체 아이템 DB 가져오기
-    axios.get("/api/item").then((res) => {
-      const itemData = res.data.result;
-      setItem(itemData);
-    }).catch((error) => {
-      console.log('데이터 가져오기 실패: ', error);
-    });
-
-    // 세트 아이템 DB 가져오기
-    axios.get("/api/sets").then((res) => {
-      const SetsData = res.data.result;
-      setsItem(SetsData);
-    }).catch((error) => {
-      console.error('데이터 가져오기 실패: ', error.response ? error.response.data : error.message);
-    });
-
-    // 추천 아이템 DB 가져오기
-    axios.get("/api/recommenditem").then((res) => {
-      const recommendItemData = res.data.result;
-      setRecommendItem(recommendItemData);
-    }).catch((error) => {
-      console.log('데이터 가져오기 실패: ', error);
-    });
-
-    // 햄버거 아이템 DB 가져오기
-    axios.get("/api/hamburgeritem").then((res) => {
-      const hamburgerItemData = res.data.result;
-      setHamburgerItem(hamburgerItemData);
-    }).catch((error) => {
-      console.log('데이터 가져오기 실패: ', error);
-    });
-
-    // 사이드 아이템 DB 가져오기
-    axios.get("/api/sideitem").then((res) => {
-      const sideItemData = res.data.result;
-      setSideItem(sideItemData);
-    }).catch((error) => {
-      console.log('데이터 가져오기 실패: ', error);
-    });
-
-    // 음료 아이템 DB 가져오기
-    axios.get("/api/drinkitem").then((res) => {
-      const drinkItemData = res.data.result;
-      setDrinkItem(drinkItemData);
-    }).catch((error) => {
-      console.log('데이터 가져오기 실패: ', error);
-    });
+    const fetchData = async (url: string, setter: React.Dispatch<React.SetStateAction<any>>) => {
+      try {
+        const res = await axios.get(url);
+        setter(res.data.result);
+      } catch (error) {
+        console.log('데이터 가져오기 실패: ', error);
+      }
+    };
 
     // fetch 함수 목록
+    fetchData("/api/item", setItem);
+    fetchData("/api/sets", setsItem);
+    fetchData("/api/recommenditem", setRecommendItem);
+    fetchData("/api/hamburgeritem", setHamburgerItem);
+    fetchData("/api/sideitem", setSideItem);
+    fetchData("/api/drinkitem", setDrinkItem);
+    
     fetchCart();
   }, []);
 
@@ -296,7 +264,7 @@ const Order: React.FC = () => {
     return (
       <Link to="/order" onClick={() => setActive(type)}>
         <span className={"menu-button1" + border + (active === type ? ' active' : '')}>
-          <LazyLoadImage src={image} alt={type} />
+          <img src={image} alt={type} />
           <div>{title}</div>
         </span>
       </Link>

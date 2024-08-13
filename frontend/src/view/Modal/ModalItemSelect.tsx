@@ -11,10 +11,12 @@ interface ModalItemSelectProps {
 }
 
 interface Item {
+  // 사이드, 음료 아이템
   item_id: number;
   item_title: string;
   item_image: string;
   item_price: number;
+  // 햄버거 재료 아이템
   ingredient_id: number;
   ingredient_title: string;
   ingredient_image: string;
