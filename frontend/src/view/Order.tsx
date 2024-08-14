@@ -311,7 +311,7 @@ const Order: React.FC = () => {
           <CatalogueComponent type={'recommend'} border={' first'} image={IMG_RECO} title={'추천 메뉴'} />
           <CatalogueComponent type={'sets'} border={''} image={IMG_SET} title={'햄버거 세트'} />
           <CatalogueComponent type={'hamburger'} border={' right'} image={IMG_SINGLE} title={'햄버거 단품'} />
-          <CatalogueComponent type={'side'} border={''} image={IMG_SIDE} title={'사이드메뉴'} />
+          <CatalogueComponent type={'side'} border={''} image={IMG_SIDE} title={'곁들임'} />
           <CatalogueComponent type={'drink'} border={''} image={IMG_DRINK} title={'음료수'} />
           <CatalogueComponent type={'search'} border={' right'} image={IMG_SEARCH} title={'검색'} />
           <div className={(active === 'search' ? '' : 'search-hidden')}>
@@ -326,7 +326,7 @@ const Order: React.FC = () => {
             {Sets.map((Sets: Sets) => <SetComponent sets={Sets} key={Sets.sets_id} type={'sets'} />)}
             {/* 단품 메뉴 */}
             {HamburgerItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'hamburger'} />)}
-            {/* 사이드 메뉴 */}
+            {/* 곁들임 메뉴 */}
             {SideItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'side'} />)}
             {/* 음료 메뉴 */}
             {DrinkItem.map((Item: Item) => <MenuComponent items={Item} key={Item.item_id} type={'drink'} />)}

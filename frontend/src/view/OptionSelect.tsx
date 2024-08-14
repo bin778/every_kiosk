@@ -95,7 +95,7 @@ const OptionSelect: React.FC = () => {
       <div className="option-title">선택한 옵션을 확인하세요</div>
       <ul className="option-board">
         <OptionBox optionNumber={1} optionTitle="재료 추가" imageSrc={image} itemName={title} ingredientName={selectedIngredient.ingredient_title === "추가 없음" ? "" : selectedIngredient.ingredient_title} onSelect={() => openItemSelect('ingredient')}/>
-        <OptionBox optionNumber={2} optionTitle="사이드메뉴 변경" imageSrc={selectedSide.item_image} itemName={selectedSide.item_title} onSelect={() => openItemSelect('side')} />
+        <OptionBox optionNumber={2} optionTitle="곁들임 변경" imageSrc={selectedSide.item_image} itemName={selectedSide.item_title} onSelect={() => openItemSelect('side')} />
         <OptionBox optionNumber={3} optionTitle="음료 변경" imageSrc={selectedDrink.item_image} itemName={selectedDrink.item_title} onSelect={() => openItemSelect('drink')} />
       </ul>
       <div className="option-menu">

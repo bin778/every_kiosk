@@ -66,7 +66,7 @@ const ModalItemSelect: React.FC<ModalItemSelectProps> = ({ open, close, onSelect
       <div className="modalBox modalSelect">
         <div className="SelectTitle">
           {itemType === "ingredient" && "원하는 재료를 선택해주세요"}
-          {itemType === "side" && "원하는 사이드를 선택해주세요"}
+          {itemType === "side" && "원하는 곁들임을 선택해주세요"}
           {itemType === "drink" && "원하는 음료를 선택해주세요"}
         </div>
         <ul className="SelectDisplay">
