@@ -56,7 +56,7 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
 
   return (
     <div className={open ? "openModal modal" : "modal"}>
-      <div className="modalBox">
+      <div className="modalBox modalBoxSet">
         <div>수량을 선택해주세요</div>
         <div className="red">{menu.sets_price * num} 원</div>
         <div>
@@ -67,6 +67,10 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
           <span className="increase-button" onClick={increase}>
             <img src={IMG_PLUS} alt="" />
           </span>
+        </div>
+        <div>
+          <div className="default-text">주문이 복잡하시나요?</div>
+          <span className="modal-button center">기본값 선택</span>
         </div>
         <span className="modal-button cancel-button bottom left" onClick={close}>아니요</span>
         <span className="modal-button bottom right" onClick={moveSelect}>세트 선택</span>

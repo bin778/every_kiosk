@@ -28,6 +28,10 @@
   }
 }
 
+.modalBoxSet {
+  height: 300px;
+}
+
 /* 선택 모달 창 */
 .modalSelect {
   width: 550px;
@@ -167,6 +171,15 @@
     }
   }
 
+  .modalBoxSet {
+    height: 250px;
+  }
+
+  .default-text {
+    margin-top: 15px;
+    font-size: 1.2rem;
+  }
+
   // 옵션 선택 창
   .modalSelect {
     width: 430px;
@@ -249,6 +262,15 @@
       margin-top: 3px;
       font-size: 1.2rem;
     }
+  }
+
+  .modalBoxSet {
+    height: 210px;
+  }
+
+  .default-text {
+    margin-top: 10px;
+    font-size: 1.1rem;
   }
 
   // 옵션 선택 창
