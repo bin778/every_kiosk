@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../css/Modal.scss";
 import IMG_PLUS from "../../images/plus.webp";
 import IMG_MINUS from "../../images/minus.webp";
+import axios from "axios";
 
 // 세트 메뉴 전달 타입
 type Sets = {
@@ -16,9 +17,10 @@ interface ModalQuantitySetProps {
   open: boolean;
   close: () => void;
   menu: Sets | null;
+  fetchCart: () => void;
 }
 
-const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }) => {
+const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu, fetchCart }) => {
   const [visible, setVisible] = useState(open);
   const [num, setNum] = useState(1);
   const title2 = menu?.sets_title.replace("세트", "");
@@ -54,6 +56,16 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
 
   if (!visible || !menu) return null;
 
+  // 상품을 장바구니에 추가하기
+  const onClickSetAddCart = (title: string, image: string, quantity: number, price: number, ingredient: string, side: string, drink: string) => {
+    const data = { title, image, quantity, price, ingredient, side, drink };
+    axios.post("/api/addsetcart", data).then((res) => {
+      fetchCart();
+    }).catch((error) => {
+      console.error('데이터를 추가하는 중 오류 발생: ', error);
+    });
+  };
+
   return (
     <div className={open ? "openModal modal" : "modal"}>
       <div className="modalBox modalBoxSet">
@@ -70,7 +82,10 @@ const ModalQuantitySet: React.FC<ModalQuantitySetProps> = ({ open, close, menu }
         </div>
         <div>
           <div className="default-text">주문이 복잡하시나요?</div>
-          <span className="modal-button center">기본값 선택</span>
+          <span className="modal-button center" onClick={() => {
+            onClickSetAddCart(menu.sets_title, menu.sets_image, num, menu.sets_price, "추가 없음", "감자튀김(중)", "코카콜라(중)");
+            close();
+          }}>기본값 선택</span>
         </div>
         <span className="modal-button cancel-button bottom left" onClick={close}>아니요</span>
         <span className="modal-button bottom right" onClick={moveSelect}>세트 선택</span>

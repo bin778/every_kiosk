@@ -371,7 +371,7 @@ const Order: React.FC = () => {
           <ModalEmpty open={emptyModalOpen} close={closeModalEmpty} />
           <ModalStaff open={staffModalOpen} close={closeModalStaff} />
           <ModalQuantity open={quantityModalOpen} close={closeModalQuantity} menu={selectedMenu} fetchCart={fetchCart} />
-          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={selectedSets} />
+          <ModalQuantitySet open={quantitySetModalOpen} close={closeModalQuantitySet} menu={selectedSets} fetchCart={fetchCart} />
         </div>
       </div>
     </div>
