@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ModalCancel from "./Modal/ModalCancel";
 import ModalEmpty from "./Modal/ModalEmpty";
@@ -16,6 +16,7 @@ import IMG_SIDE from "../images/side.webp";
 import IMG_DRINK from "../images/drink.webp";
 import IMG_SEARCH from "../images/search.webp";
 import IMG_CLOSE from "../images/close.webp";
+import IMG_MICROPHONE from "../images/microphone.webp";
 
 // CSS 파일, Header 컴포넌트
 import "../css/Order.scss";
@@ -64,6 +65,8 @@ const Order: React.FC = () => {
   const [quantityModalOpen, setQuantityModalOpen] = useState<boolean>(false);
   const [quantitySetModalOpen, setQuantitySetModalOpen] = useState<boolean>(false);
   const [userInput, setUserInput] = useState<string>('');
+  const [isListening, setIsListening] = useState<boolean>(false); // 음성 인식 활성화 상태
+  const inputRef = useRef<HTMLInputElement>(null); // input 요소 참조
 
   const navigate = useNavigate();
 
@@ -94,6 +97,10 @@ const Order: React.FC = () => {
       }
     };
 
+    if (inputRef.current) {
+      inputRef.current.value = userInput;
+    }
+
     // fetch 함수 목록
     fetchData("/api/item", setItem);
     fetchData("/api/sets", setsItem);
@@ -103,7 +110,7 @@ const Order: React.FC = () => {
     fetchData("/api/drinkitem", setDrinkItem);
     
     fetchCart();
-  }, []);
+  }, [userInput]);
 
   // 장바구니 목록을 불러온다.
   const fetchCart = () => {
@@ -172,6 +179,7 @@ const Order: React.FC = () => {
 
   const getSearchData = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value.toLowerCase());
+    console.log(userInput)
   };
 
   const decomposeHangul = (s: string): string => {
@@ -237,6 +245,39 @@ const Order: React.FC = () => {
     return itemJamo.includes(userJamo) || itemInitials.includes(userInitials);
   });
 
+  // 음성 인식 기능
+  const startListening = () => {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'ko-KR';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    console.log("음성 인식 시작");
+
+    // 음성 인식 시작
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    // 음성 인식 결과 출력
+    recognition.onresult = (event: { results: { transcript: string; }[][]; }) => {
+      const speechResult = event.results[0][0].transcript;
+      setUserInput(speechResult.toLowerCase());
+    };
+
+    // 음성 인식 오류
+    recognition.onerror = (event: { error: string; }) => {
+      console.error("음성 인식 오류:", event.error);
+      setIsListening(false);
+    };
+
+    // 음석 인식 완료
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.start();
+  };
+
   const DeleteCart = (id: number) => {
     axios.delete(`/api/deletecart/${id}`).then((res) => {
       fetchCart();
@@ -297,7 +338,7 @@ const Order: React.FC = () => {
     return (
       <>
         <li onClick={() => openModalQuantitySet(sets)} key={sets.sets_id} className={(active === type ? 'menu-card' : 'card-hidden')}>
-            <MenuCard name={sets.sets_title} img={sets.sets_image} price={sets.sets_price} />
+          <MenuCard name={sets.sets_title} img={sets.sets_image} price={sets.sets_price} />
         </li>
       </>
     )
@@ -315,7 +356,10 @@ const Order: React.FC = () => {
           <CatalogueComponent type={'drink'} border={''} image={IMG_DRINK} title={'음료수'} />
           <CatalogueComponent type={'search'} border={' right'} image={IMG_SEARCH} title={'검색'} />
           <div className={(active === 'search' ? '' : 'search-hidden')}>
-            <input onChange={getSearchData} type="text" name="search" className="menu-search" placeholder="원하는 메뉴를 검색하세요" />
+            <input ref={inputRef} onChange={getSearchData} type="text" name="search" className="menu-search" placeholder="원하는 메뉴를 검색하세요" />
+            <button onClick={startListening} disabled={isListening}>
+              <img src={IMG_MICROPHONE} className={isListening ? "isListening" : "noListening"} alt="close" />
+            </button>
           </div>
         </div>
         <div className="select-list">
