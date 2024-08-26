@@ -179,7 +179,6 @@ const Order: React.FC = () => {
 
   const getSearchData = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value.toLowerCase());
-    console.log(userInput)
   };
 
   const decomposeHangul = (s: string): string => {
@@ -251,7 +250,6 @@ const Order: React.FC = () => {
     recognition.lang = 'ko-KR';
     recognition.continuous = false;
     recognition.interimResults = false;
-    console.log("음성 인식 시작");
 
     // 음성 인식 시작
     recognition.onstart = () => {
