@@ -37,3 +37,45 @@
 
 <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 
+## 기능 소개
+| 초기 화면 | 주문 화면 |
+| :----------------------: | :----------------------: |
+| ![image](https://github.com/user-attachments/assets/32f23058-cf59-478b-beb4-4d233c60cc1a) | ![image](https://github.com/user-attachments/assets/1eba0d11-033b-4934-b282-d5d2c83f3c4a) |
+| 주문 화면(Tablet) | 주문 화면(Mobile) |
+| ![image](https://github.com/user-attachments/assets/1d02d069-3a23-45e1-8e3e-ddb53900b8bc) | ![image](https://github.com/user-attachments/assets/981df338-98cf-405a-b510-127a3fee9793) |
+| 세트 주문 화면 | 세트 옵션 창 |
+| ![image](https://github.com/user-attachments/assets/280d9dfe-0462-4f1d-9cdc-bc7bbec20a30) | ![image](https://github.com/user-attachments/assets/c7683003-f2ff-4c7a-9505-b4bfc7da1655) |
+| 결제 API | 결제 API(Mobile) |
+| ![image](https://github.com/user-attachments/assets/09377260-4172-448d-b2b3-6b352ce05518) | ![image](https://github.com/user-attachments/assets/02c77e97-9131-4fc2-8898-ca9c2c79d729) |
+
+### 반응형 웹
+* PC, 태블릿, 모바일 등 다양한 환경에서의 지원을 위해 반응형 웹 구현
+
+### 메뉴 주문 기능
+* 사용자가 메뉴나 수량을 선택하면 장바구니(주문 내역)에 구매할 메뉴가 추가됨
+* LazyLoadImage를 사용하여 이미지 로딩으로 인한 시간 단축 및 최적화
+
+### 세트 주문 기능
+* 옵션 선택에 어려워하고 복잡한 사용자를 위해 기본값 선택 기능 제공(감자튀김(중), 코카콜라(중))
+* 세트 옵션 창에서 재료 추가, 사이드메뉴 변경, 음료 변경 가능
+
+### 검색 기능
+* 검색 입력 창에 단어 또는 초성을 입력하면 원하는 메뉴를 검색할 수 있음
+* 음성 인식 기능을 이용하여 자신이 말한 음성을 감지하여 원하는 메뉴를 검색할 수 있음
+
+### 결제 API 기능
+* 토스페이먼츠 API 결제 기능 구현하여 PC는 물론 태블릿 및 모바일에서도 결제 기능 사용 가능
+* 결제가 성공하면 번호표 화면으로, 실패하거나 취소하면 주문 화면으로 이동
+
+## 실행 화면
+### 메뉴 주문
+https://github.com/user-attachments/assets/4e4a40b8-bbcd-4c9b-8346-80992c90a4fc
+
+### 세트 주문
+https://github.com/user-attachments/assets/d765e2fb-3b3e-44ae-a732-bf550d77bcea
+
+### 검색 기능
+https://github.com/user-attachments/assets/c61f7eb0-38b8-4a51-8d38-57995fd692cb
+
+### 음성 검색 기능
+https://github.com/user-attachments/assets/c1f8ffc0-6d56-4f39-8033-daa14ca93707
