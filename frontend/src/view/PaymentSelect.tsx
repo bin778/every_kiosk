@@ -13,8 +13,7 @@ import "../css/Modal.scss"
 import Header from "./Component/Header";
 
 const PaymentSelect: React.FC = () => {
-  let [staffModalOpen, setStaffModalOpen] = useState(false);
-
+  const [staffModalOpen, setStaffModalOpen] = useState(false);
   const movePage = useNavigate();
   const location = useLocation();
   
