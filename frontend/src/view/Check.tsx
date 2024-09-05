@@ -32,10 +32,10 @@ interface TotalName {
 }
 
 const Check: React.FC = () => {
-  let [staffModalOpen, setStaffModalOpen] = useState(false);
-  let [Cart, setCart] = useState([]);
-  let [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
-  let [CartName, setCartName] = useState<TotalName>({ total_name: "" });
+  const [staffModalOpen, setStaffModalOpen] = useState(false);
+  const [Cart, setCart] = useState([]);
+  const [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
+  const [CartName, setCartName] = useState<TotalName>({ total_name: "" });
 
   useEffect(() => {
     fetchCart();
