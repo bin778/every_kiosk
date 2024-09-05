@@ -71,21 +71,21 @@ const Order: React.FC = () => {
   const navigate = useNavigate();
 
   // DB 목록 State
-  let [Item, setItem] = useState([]);
-  let [Sets, setsItem] = useState([]);
-  let [RecommendItem, setRecommendItem] = useState([]);
-  let [HamburgerItem, setHamburgerItem] = useState([]);
-  let [SideItem, setSideItem] = useState([]);
-  let [DrinkItem, setDrinkItem] = useState([]);
+  const [Item, setItem] = useState([]);
+  const [Sets, setsItem] = useState([]);
+  const [RecommendItem, setRecommendItem] = useState([]);
+  const [HamburgerItem, setHamburgerItem] = useState([]);
+  const [SideItem, setSideItem] = useState([]);
+  const [DrinkItem, setDrinkItem] = useState([]);
+
+  // DB 주문 State
+  const [Cart, setCart] = useState([]);
+  const [CartQuantity, setCartQuantity] = useState<TotalQuantity>({ orders_count: 0 });
+  const [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
 
   // 메뉴 State
   const [selectedMenu, setSelectedMenu] = useState<Item | null>(null);
   const [selectedSets, setSelectedSets] = useState<Sets | null>(null);
-
-  // DB 주문 State
-  let [Cart, setCart] = useState([]);
-  let [CartQuantity, setCartQuantity] = useState<TotalQuantity>({ orders_count: 0 });
-  let [CartPrice, setCartPrice] = useState<TotalPrice>({ total_price: 0 });
 
   useEffect(() => {
     const fetchData = async (url: string, setter: React.Dispatch<React.SetStateAction<any>>) => {
