@@ -25,13 +25,13 @@ interface Ingredient {
 }
 
 const OptionSelect: React.FC = () => {
-  let [staffModalOpen, setStaffModalOpen] = useState<boolean>(false);
-  let [itemSelectOpen, setItemSelectOpen] = useState<boolean>(false);
-  let [currentItemType, setCurrentItemType] = useState<'ingredient' | 'side' | 'drink' | null>(null);
+  const [staffModalOpen, setStaffModalOpen] = useState<boolean>(false);
+  const [itemSelectOpen, setItemSelectOpen] = useState<boolean>(false);
+  const [currentItemType, setCurrentItemType] = useState<'ingredient' | 'side' | 'drink' | null>(null);
 
-  let [selectedIngredient, setSelectedIngredient] = useState<Ingredient>({ingredient_id: 1, ingredient_title: "추가 없음", ingredient_price: 0});
-  let [selectedSide, setSelectedSide] = useState<Item>({item_id: 5, item_title: "감자튀김(중)", item_image: `${process.env.PUBLIC_URL}/Item/potato.webp`, item_price: 1000});
-  let [selectedDrink, setSelectedDrink] = useState<Item>({item_id: 8, item_title: "코카콜라(중)", item_image: `${process.env.PUBLIC_URL}/Item/cola.webp`, item_price: 1000});
+  const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>({ingredient_id: 1, ingredient_title: "추가 없음", ingredient_price: 0});
+  const [selectedSide, setSelectedSide] = useState<Item>({item_id: 5, item_title: "감자튀김(중)", item_image: `${process.env.PUBLIC_URL}/Item/potato.webp`, item_price: 1000});
+  const [selectedDrink, setSelectedDrink] = useState<Item>({item_id: 8, item_title: "코카콜라(중)", item_image: `${process.env.PUBLIC_URL}/Item/cola.webp`, item_price: 1000});
 
   const movePage = useNavigate();
   const location = useLocation();
